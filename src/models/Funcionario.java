@@ -1,20 +1,27 @@
-package Models;
+package models;
 
 import java.util.Date;
 
+import dao.enuns.Cargo;
+import dao.enuns.Disponibilidade;
+import dao.enuns.Escolaridade;
+import dao.enuns.EstadoCivil;
+
 public class Funcionario extends Pessoa {
-    private String escolaridade;
+    private String rg;
+    private EstadoCivil estadoCivil;
+    private Escolaridade escolaridade;
     private Cargo cargo;
-    private String ctps;
+    private String pis;
+    private String senha;
     private Date dataAdmissao;
     private Date dataDemissao;
-    private boolean disponibilidade;
+    private Disponibilidade disponibilidade;
     private boolean status;
-    private String senha;
     private Date criadoEm;
-    private Funcionario criadoPor;
+    private String criadoPor;
     private Date alteradoEm;
-    private Funcionario alteradoPor;
+    private String alteradoPor;
     
     public Funcionario(String nome, String telefone, String cpf) {
         super(nome, telefone, cpf);
@@ -24,20 +31,36 @@ public class Funcionario extends Pessoa {
         super(id, nome, telefone, cpf);
     }
 
-    public Funcionario(int id, String nome, String telefone, String cpf, String escolaridade, String ctps, Date dataAdmissao, Cargo cargo) {
+    public Funcionario(int id, String nome, String telefone, String cpf, Escolaridade escolaridade, String pis, Date dataAdmissao, Cargo cargo) {
         super(id, nome, telefone, cpf);
         this.escolaridade = escolaridade;
         this.cargo = cargo;
-        this.ctps = ctps;
+        this.pis = pis;
         this.dataAdmissao = dataAdmissao;
         this.cargo = cargo;
     }
 
-    public String getEscolaridade() {
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public EstadoCivil getEstadoCivil() {
+        return estadoCivil;
+    }
+
+    public void setEstadoCivil(EstadoCivil estadoCivil) {
+        this.estadoCivil = estadoCivil;
+    }
+
+    public Escolaridade getEscolaridade() {
         return escolaridade;
     }
 
-    public void setEscolaridade(String escolaridade) {
+    public void setEscolaridade(Escolaridade escolaridade) {
         this.escolaridade = escolaridade;
     }
 
@@ -49,12 +72,20 @@ public class Funcionario extends Pessoa {
         this.cargo = cargo;
     }
 
-    public String getCtps() {
-        return ctps;
+    public String getPis() {
+        return pis;
     }
 
-    public void setCtps(String ctps) {
-        this.ctps = ctps;
+    public void setPis(String pis) {
+        this.pis = pis;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public Date getDataAdmissao() {
@@ -73,11 +104,11 @@ public class Funcionario extends Pessoa {
         this.dataDemissao = dataDemissao;
     }
 
-    public boolean isDisponibilidade() {
+    public Disponibilidade getDisponibilidade() {
         return disponibilidade;
     }
 
-    public void setDisponibilidade(boolean disponibilidade) {
+    public void setDisponibilidade(Disponibilidade disponibilidade) {
         this.disponibilidade = disponibilidade;
     }
 
@@ -97,11 +128,11 @@ public class Funcionario extends Pessoa {
         this.criadoEm = criadoEm;
     }
 
-    public Funcionario getCriadoPor() {
+    public String getCriadoPor() {
         return criadoPor;
     }
 
-    public void setCriadoPor(Funcionario criadoPor) {
+    public void setCriadoPor(String criadoPor) {
         this.criadoPor = criadoPor;
     }
 
@@ -113,16 +144,14 @@ public class Funcionario extends Pessoa {
         this.alteradoEm = alteradoEm;
     }
 
-    public Funcionario getAlteradoPor() {
+    public String getAlteradoPor() {
         return alteradoPor;
     }
 
-    public void setAlteradoPor(Funcionario alteradoPor) {
+    public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
     }
 
-    
-    
 }
 
 

@@ -1,28 +1,38 @@
-package Models;
+package models;
 
 import java.util.Date;
 
+import dao.enuns.TipoProduto;
+
 public class Produto {
+    private int id;
     private String nome;
     private String descricao;
-    private int codigo;
+    private String codigo;
     private double precoCusto;
     private double precoVenda;
-    private String statusPreparo;
     private String tempoPreparo;
     private String observacoes;
-    private boolean status;
+    private TipoProduto tipoProduto;
+    private boolean ativo;
     private Date criadoEm;
-    private Funcionario criadoPor;
+    private String criadoPor;
     private Date alteradoEm;
-    private Funcionario alteradoPor;
+    private String alteradoPor;
     
-    public Produto(String nome, String descricao, int codigo, double precoCusto, double precoVenda) {
+    public Produto(String nome, String descricao, double precoCusto, double precoVenda) {
         this.nome = nome;
         this.descricao = descricao;
-        this.codigo = codigo;
         this.precoCusto = precoCusto;
         this.precoVenda = precoVenda;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -41,11 +51,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
@@ -65,14 +75,6 @@ public class Produto {
         this.precoVenda = precoVenda;
     }
 
-    public String getStatusPreparo() {
-        return statusPreparo;
-    }
-
-    public void setStatusPreparo(String statusPreparo) {
-        this.statusPreparo = statusPreparo;
-    }
-
     public String getTempoPreparo() {
         return tempoPreparo;
     }
@@ -89,12 +91,20 @@ public class Produto {
         this.observacoes = observacoes;
     }
 
-    public boolean isStatus() {
-        return status;
+    public TipoProduto getTipoProduto() {
+        return tipoProduto;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setTipoProduto(TipoProduto tipoProduto) {
+        this.tipoProduto = tipoProduto;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public Date getCriadoEm() {
@@ -105,11 +115,11 @@ public class Produto {
         this.criadoEm = criadoEm;
     }
 
-    public Funcionario getCriadoPor() {
+    public String getCriadoPor() {
         return criadoPor;
     }
 
-    public void setCriadoPor(Funcionario criadoPor) {
+    public void setCriadoPor(String criadoPor) {
         this.criadoPor = criadoPor;
     }
 
@@ -121,13 +131,12 @@ public class Produto {
         this.alteradoEm = alteradoEm;
     }
 
-    public Funcionario getAlteradoPor() {
+    public String getAlteradoPor() {
         return alteradoPor;
     }
 
-    public void setAlteradoPor(Funcionario alteradoPor) {
+    public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
     }
 
-    
 }
