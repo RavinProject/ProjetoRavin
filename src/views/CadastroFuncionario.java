@@ -1,11 +1,11 @@
-package Views;
+package views;
 
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import Controllers.FuncionarioController;
-import Models.Funcionario;
+import controllers.FuncionarioController;
+import models.Funcionario;
 
 public class CadastroFuncionario extends View {
     

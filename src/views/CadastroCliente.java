@@ -1,11 +1,9 @@
-package Views;
+package views;
 
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import Controllers.ClienteController;
-import Models.Cliente;
+import controllers.*;
 
 public class CadastroCliente extends View {
 

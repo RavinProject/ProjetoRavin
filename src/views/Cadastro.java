@@ -1,4 +1,4 @@
-package Views;
+package views;
 
 import java.util.Scanner;
 
@@ -9,7 +9,12 @@ public class Cadastro extends View{
     public static void menu(){
         System.out.println(VERDE + "Selecione a opção desejada:\n" +
         "1 - Cadastro Cliente\n" +
-        "2 - Cadastro Funcionario\n" + RESET);
+        "2 - Cadastro Funcionario\n" +
+        "3 - Cadastro Produto\n" +
+        "4 - Cadastro Estoque\n" +
+        "5 - Cadastro Pedido\n" +
+        "6 - Cadastro Comanda\n" +
+        "7 - Cadastro Mesa\n" + RESET);
         scanner = new Scanner(System.in);
         String opcao = scanner.nextLine();
         switch(opcao){

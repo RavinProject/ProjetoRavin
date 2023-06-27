@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-import Views.Cadastro;
+import views.Cadastro;
 
 public class App {
 
