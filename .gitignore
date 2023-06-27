@@ -1,3 +1,4 @@
 .vscode
 *.class
 *.asta.lock
+*.bak
