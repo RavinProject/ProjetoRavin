@@ -3,7 +3,7 @@ package dao.dados;
 import java.util.ArrayList;
 import java.util.List;
 
-import Models.Cliente;
+import models.Cliente;
 
 public class GerarClientes {
 

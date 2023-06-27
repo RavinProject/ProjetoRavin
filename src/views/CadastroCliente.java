@@ -3,7 +3,9 @@ package views;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import controllers.*;
+import models.Cliente;
 
 public class CadastroCliente extends View {
 
@@ -56,7 +58,7 @@ public class CadastroCliente extends View {
             System.out.println("Informe uma observação ou tecle enter para continuar:");
             String observacao = scanner.nextLine();
             cliente.setObservacao(observacao);
-            cliente.setStatus(true);
+            cliente.setAtivo(true);
             cliente.setCriadoEm(new Date());
             cliente.setCriadoPor(null);
             cliente.setAlteradoEm(new Date());
@@ -90,7 +92,7 @@ public class CadastroCliente extends View {
                 System.out.println("Informe uma observação ou tecle enter para continuar:");
                 String observacao = scanner.nextLine();
                 novoCliente.setObservacao(observacao);
-                novoCliente.setStatus(true);
+                novoCliente.setAtivo(true);
                 novoCliente.setCriadoEm(clienteAntigo.getCriadoEm());
                 novoCliente.setCriadoPor(clienteAntigo.getCriadoPor());
                 novoCliente.setAlteradoEm(new Date());
@@ -131,7 +133,7 @@ public class CadastroCliente extends View {
         System.out.println(AMARELO + "Nome: " + cliente.getNome() +
                 "\nTelefone: " + cliente.getTelefone() +
                 "\nCPF: " + cliente.getCpf() +
-                "\nStatus: " + (cliente.getStatus() ? "Ativo" : "Inativo") +
+                "\nStatus: " + (cliente.getAtivo() ? "Ativo" : "Inativo") +
                 "\n" + RESET);
     }
 
@@ -142,7 +144,7 @@ public class CadastroCliente extends View {
             System.out.println(AMARELO + "Nome: " + cliente.getNome() +
                     " CPF: " + cliente.getCpf() +
                     " Telefone: " + cliente.getTelefone() +
-                    " Status: " + (cliente.getStatus() ? "Ativo" : "Inativo") +
+                    " Status: " + (cliente.getAtivo() ? "Ativo" : "Inativo") +
                     "" + RESET);
         }
         System.out.println("\nPressione enter para continuar...");

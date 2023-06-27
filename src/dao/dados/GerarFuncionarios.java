@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import Models.Cargo;
-import Models.Funcionario;
+import models.Cargo;
+import models.Funcionario;
 
 public class GerarFuncionarios {
     public static List<Funcionario> pegaLista() {

@@ -11,7 +11,7 @@ public class Pessoa {
     private String cpf;
     private Date nascimento;
     private String observacao;
-    private String ativo;
+    private boolean ativo;
     private Date criadoEm;	
     private String criadoPor;
     private Date alteradoEm;
@@ -88,11 +88,11 @@ public class Pessoa {
         this.observacao = observacao;
     }
 
-    public String getAtivo() {
+    public boolean getAtivo() {
         return ativo;
     }
 
-    public void setAtivo(String ativo) {
+    public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
 

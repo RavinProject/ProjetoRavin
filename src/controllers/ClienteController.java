@@ -2,8 +2,8 @@ package controllers;
 
 import java.util.List;
 
-import models.Cliente;
 import dao.ListasDados;
+import models.Cliente;
 
 public class ClienteController extends Controller <Cliente>{
 

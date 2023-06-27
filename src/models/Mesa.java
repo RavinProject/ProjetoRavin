@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import dao.enuns.StatusMesa;
-import models.Comanda;
 
 public class Mesa {
     private int id;

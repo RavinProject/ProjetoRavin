@@ -1,4 +1,4 @@
-package Views;
+package views;
 
 public class View {
     public static final String RESET = "\u001B[0m";

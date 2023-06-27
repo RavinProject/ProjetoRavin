@@ -20,6 +20,11 @@ public class Cadastro extends View{
         switch(opcao){
             case "1" : CadastroCliente.menu(); break;
             case "2" : CadastroFuncionario.menu(); break;
+            case "3" : CadastroProduto.menu(); break;
+            case "4" : CadastroEstoque.menu(); break;
+            case "5" : CadastroPedido.menu(); break;
+            case "6" : CadastroComanda.menu(); break;
+            case "7" : CadastroMesa.menu(); break;
             default : System.out.println("Opção inválida!");
         }
     }

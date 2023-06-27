@@ -16,9 +16,9 @@ public class CadastroFuncionario extends View {
         while (exec) {
             System.out.println(VERDE + "Selecione a opção desejada:\n" +
                     "1 - Cadastrar Funcionário\n" +
-                    "2 - Alterar Funcionário\n" +
-                    "3 - Listar Funcionários Cadastrados\n" +
-                    "4 - Visualizar Funcionário\n" +
+                    // "2 - Alterar Funcionário\n" +
+                    // "3 - Listar Funcionários Cadastrados\n" +
+                    // "4 - Visualizar Funcionário\n" +
                     "x - Voltar\n" + RESET);
             scanner = new Scanner(System.in);
             String opcao = scanner.nextLine();
@@ -26,15 +26,15 @@ public class CadastroFuncionario extends View {
                 case "1":
                     cadastrar();
                     break;
-                case "2":
-                    atualizar();
-                    break;
-                case "3":
-                    listarClientes();
-                    break;
-                case "4":
-                    pesquisarClientePorCpf();
-                    break;
+                // case "2":
+                //     atualizar();
+                //     break;
+                // case "3":
+                //     listarClientes();
+                //     break;
+                // case "4":
+                //     pesquisarClientePorCpf();
+                //     break;
                 case "x":
                     exec = false;
                     break;
