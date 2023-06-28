@@ -6,6 +6,9 @@ Respostas:
 
 [Modo Gráfico - Atualização 28/06/2023 1:47](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/CadastroCliente.java)
 
+Status atual:
+- Cadastra, Altera, Lista e Busca Clientes e Funcionários.
+
 Conceitos aplicados:
 - Padrão MVC, desacoplando a parte visual, entidades, regra de negócios e dados;
 - Padrão Singleton para a classe ListaDados.java, a qual monta as listas de dados fictícios ao iniciar o programa;
