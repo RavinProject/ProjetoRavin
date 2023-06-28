@@ -8,6 +8,7 @@ import dao.dados.GerarFuncionarios;
 import models.Cliente;
 import models.Funcionario;
 import models.Mesa;
+import models.Pessoa;
 import models.Produto;
 
 /**
@@ -17,16 +18,12 @@ public class ListasDados {
 
     private static ListasDados instancia;
 
-    private List<Cliente> listaClientes;
-    private List<Funcionario> listaFuncionarios;
+    private List<Pessoa> listaPessoas;
     private List<Produto> listaProduto;
     private List<Mesa> listaMesas;
 
-
-
     private ListasDados() {
-        listaClientes = GerarClientes.pegaLista();
-        listaFuncionarios = GerarFuncionarios.pegaLista();
+        listaPessoas = new ArrayList<Pessoa>();
     }
 
     public static ListasDados getInstance() {
@@ -36,11 +33,8 @@ public class ListasDados {
         return instancia;
     }
 
-    public List<Cliente> getListaClientes() {
-        return listaClientes;
+    public List<Pessoa> getListaPessoas() {
+        return listaPessoas;
     }
 
-    public List<Funcionario> getListaFuncionarios() {
-        return listaFuncionarios;
-    }
 }

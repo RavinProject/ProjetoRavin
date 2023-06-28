@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import controllers.*;
 import models.Cliente;
+import models.Pessoa;
 import utils.DateUtils;
 import views.menus.ClienteMenu;
 
@@ -48,7 +49,6 @@ public class CadastroCliente extends View {
             cliente.setEndereco(solicitaEntradaDeDado("Endereço: "));
             cliente.setCpf(solicitaEntradaDeDado("Informe o CPF:"));
             cliente.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy")));
-            System.out.println(DateUtils.dateToString(cliente.getNascimento()));
             cliente.setObservacao(solicitaEntradaDeDado("Informe uma observação ou tecle enter para continuar:"));
             cliente.setAlergias(solicitaEntradaDeDado("Alergias: "));
             boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim").equals("1") ? true : false;
@@ -58,10 +58,9 @@ public class CadastroCliente extends View {
             cliente.setCriadoPor(null);
             cliente.setAlteradoEm(new Date());
             cliente.setAlteradoPor(null);
-            imprimeCliente(cliente);
             clienteControler.inserir(cliente);
             exibeDialogo("Cliente inserido com sucesso!");
-            imprimeCliente(clienteControler.buscaClientePorCpf(cliente.getCpf()));
+            imprimeCliente(clienteControler.buscaPorCpf(cliente.getCpf()));
         } catch(InputMismatchException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -76,7 +75,7 @@ public class CadastroCliente extends View {
 
         try {
             String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
-            Cliente cliente = clienteControler.buscaClientePorCpf(cpf);
+            Cliente cliente = clienteControler.buscaPorCpf(cpf);
             
             if (cliente != null) {
                 cliente.setNome(solicitaEntradaDeDado("Nome:", cliente.getNome()));
@@ -94,7 +93,7 @@ public class CadastroCliente extends View {
                 cliente.setAlteradoPor(null);
                 clienteControler.atualizar(cliente);
                 exibeDialogo("Cliente atualizado com sucesso!");
-                imprimeCliente(clienteControler.buscaClientePorCpf(cliente.getCpf()));
+                imprimeCliente(clienteControler.buscaPorCpf(cliente.getCpf()));
             } else {
                 exibeDialogo("Cliente não encontrado!");
             }
@@ -109,7 +108,7 @@ public class CadastroCliente extends View {
 
         try {
             String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
-            Cliente cliente = clienteControler.buscaClientePorCpf(cpf);
+            Cliente cliente = clienteControler.buscaPorCpf(cpf);
            
             if (cliente != null) {
                 imprimeCliente(cliente);
@@ -139,8 +138,10 @@ public class CadastroCliente extends View {
     private static void listarClientes() {
         ClienteController clienteControler = new ClienteController();
         String texto = "";
-        for (Cliente cliente : clienteControler.pegarLista()) {
-            texto += "ID: " + cliente.getId() + " CPF: " + cliente.getCpf() + (cliente.getAtivo() ? " " : " (INATIVO) ") + cliente.getNome() + "\n";
+        for (Pessoa cliente : clienteControler.pegarLista()) {
+            if(cliente instanceof Cliente){
+                texto += "ID: " + cliente.getId() + " CPF: " + cliente.getCpf() + (cliente.getAtivo() ? " " : " (INATIVO) ") + cliente.getNome() + "\n";
+            }
         }
         exibeDialogo(texto);
     }

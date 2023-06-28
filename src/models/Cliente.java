@@ -13,8 +13,8 @@ public class Cliente extends Pessoa {
     public Cliente(){
     }
 
-    public Cliente(int id, String nome, String telefone, String cpf, boolean ativo) {
-        super(id, nome, telefone, cpf, ativo);
+    public Cliente(String nome, String telefone, String cpf, boolean ativo) {
+        super(nome, telefone, cpf, ativo);
     }
 
     public String getAlergias() {
