@@ -10,8 +10,11 @@ public class Cliente extends Pessoa {
     private Date alteradoEm;
     private String alteradoPor;
 
-    public Cliente(String nome, String telefone, String cpf) {
-        super(nome, telefone, cpf);
+    public Cliente(){
+    }
+
+    public Cliente(String nome, String telefone, String cpf, boolean ativo) {
+        super(nome, telefone, cpf, ativo);
     }
 
     public String getAlergias() {

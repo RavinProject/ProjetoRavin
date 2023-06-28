@@ -2,24 +2,22 @@ package views;
 
 import java.util.Date;
 import java.util.InputMismatchException;
-import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 import controllers.*;
+import models.Cliente;
+import models.Pessoa;
+import utils.DateUtils;
+import views.menus.ClienteMenu;
 
 public class CadastroCliente extends View {
 
-    private static Scanner scanner;
 
     public static void menu() {
         boolean exec = true;
         while (exec) {
-            System.out.println(VERDE + "Selecione a opção desejada:\n" +
-                    "1 - Cadastrar Cliente\n" +
-                    "2 - Alterar Cliente\n" +
-                    "3 - Listar Clientes Cadastrados\n" +
-                    "4 - Visualizar Cliente\n" +
-                    "x - Voltar\n" + RESET);
-            scanner = new Scanner(System.in);
-            String opcao = scanner.nextLine();
+            String opcao = JOptionPane.showInputDialog(ClienteMenu.inicial());
             switch (opcao) {
                 case "1":
                     cadastrar();
@@ -33,42 +31,46 @@ public class CadastroCliente extends View {
                 case "4":
                     pesquisarClientePorCpf();
                     break;
+                case "5":
+                    excluirCliente();
+                    break;
                 case "x":
                     exec = false;
                     break;
                 default:
-                    System.out.println("Opção inválida! Voltando...");
+                exibeDialogo("Opção inválida! Voltando...");
             }
         }
     }
 
+    
     private static void cadastrar() {
         ClienteController clienteControler = new ClienteController();
-
+        Cliente cliente = new Cliente();
         try {
-            System.out.println("Informe o nome:");
-            String nome = scanner.nextLine();
-            System.out.println("Informe o telefone:");
-            String telefone = scanner.nextLine();
-            System.out.println("Informe o CPF:");
-            String cpf = scanner.nextLine();
-            Cliente cliente = new Cliente(nome, telefone, cpf);
-            System.out.println("Informe uma observação ou tecle enter para continuar:");
-            String observacao = scanner.nextLine();
-            cliente.setObservacao(observacao);
-            cliente.setStatus(true);
+            cliente.setNome(solicitaEntradaDeDado("Informe o nome do cliente:"));
+            cliente.setTelefone(solicitaEntradaDeDado("Informe o telefone:"));
+            cliente.setEndereco(solicitaEntradaDeDado("Endereço: "));
+            cliente.setCpf(solicitaEntradaDeDado("Informe o CPF:"));
+            cliente.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy")));
+            cliente.setObservacao(solicitaEntradaDeDado("Informe uma observação ou tecle enter para continuar:"));
+            cliente.setAlergias(solicitaEntradaDeDado("Alergias: "));
+            boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim").equals("1") ? true : false;
+            cliente.setVip(vip);
+            cliente.setAtivo(true);
             cliente.setCriadoEm(new Date());
             cliente.setCriadoPor(null);
             cliente.setAlteradoEm(new Date());
             cliente.setAlteradoPor(null);
             clienteControler.inserir(cliente);
-            System.out.println("Cliente inserido com sucesso!\n");
-            System.out.println("Pressione enter para continuar...");
-            scanner.nextLine();
+            exibeDialogo("Cliente inserido com sucesso!");
+            imprimeCliente(clienteControler.buscaPorCpf(cliente.getCpf()));
         } catch(InputMismatchException e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
-            System.out.println("Um erro ocorreu!\nCadastro não finalizado...");
+            exibeDialogo("Um erro ocorreu!\nCadastro não finalizado...");
+            e.printStackTrace();
         }
     }
 
@@ -76,34 +78,32 @@ public class CadastroCliente extends View {
         ClienteController clienteControler = new ClienteController();
 
         try {
-            System.out.println("Informe o CPF do cliente que deseja alterar:");
-            String cpf = scanner.nextLine();
-            Cliente clienteAntigo = clienteControler.buscaClientePorCpf(cpf);
-            if (clienteAntigo != null) {
-                System.out.println(AMARELO + "CLIENTE SELECIONADO" + RESET);
-                imprimeCliente(clienteAntigo);
-                System.out.println("Informe o nome:");
-                String nome = scanner.nextLine();
-                System.out.println("Informe o telefone:");
-                String telefone = scanner.nextLine();
-                Cliente novoCliente = new Cliente(nome, telefone, cpf);
-                System.out.println("Informe uma observação ou tecle enter para continuar:");
-                String observacao = scanner.nextLine();
-                novoCliente.setObservacao(observacao);
-                novoCliente.setStatus(true);
-                novoCliente.setCriadoEm(clienteAntigo.getCriadoEm());
-                novoCliente.setCriadoPor(clienteAntigo.getCriadoPor());
-                novoCliente.setAlteradoEm(new Date());
-                novoCliente.setAlteradoPor(null);
-                clienteControler.atualizar(novoCliente);
-                System.out.println("Cliente atualizado com sucesso!\n");
+            String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+            Cliente cliente = clienteControler.buscaPorCpf(cpf);
+            
+            if (cliente != null) {
+                cliente.setNome(solicitaEntradaDeDado("Nome:", cliente.getNome()));
+                cliente.setTelefone(solicitaEntradaDeDado("Telefone:", cliente.getTelefone()));
+                cliente.setEndereco(solicitaEntradaDeDado("Endereço: ", cliente.getEndereco()));
+                cliente.setCpf(solicitaEntradaDeDado("CPF:", cliente.getCpf()));
+                cliente.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy", DateUtils.dateToString(cliente.getNascimento()))));
+                cliente.setObservacao(solicitaEntradaDeDado("Observação", cliente.getObservacao()));
+                cliente.setAlergias(solicitaEntradaDeDado("Alergias: ", cliente.getAlergias()));
+                boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim", cliente.isVip() ? "1" : "0").equals("1") ? true : false;
+                cliente.setVip(vip);
+                boolean ativo = solicitaEntradaDeDado("Ativo?\n 0 - Não \n 1 - Sim", cliente.getAtivo() ? "1" : "0").equals("1") ? true : false;
+                cliente.setAtivo(ativo);
+                cliente.setAlteradoEm(new Date());
+                cliente.setAlteradoPor(null);
+                clienteControler.atualizar(cliente);
+                exibeDialogo("Cliente atualizado com sucesso!");
+                imprimeCliente(clienteControler.buscaPorCpf(cliente.getCpf()));
             } else {
-                System.out.println("Cliente não encontrado!");
+                exibeDialogo("Cliente não encontrado!");
             }
-            System.out.println("Pressione enter para continuar...");
-            scanner.nextLine();
         } catch (Exception e) {
-            System.out.println("Dado informado inválido!\nCadastro não finalizado...");
+            exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
+            e.printStackTrace();
         }
     }
 
@@ -111,41 +111,71 @@ public class CadastroCliente extends View {
         ClienteController clienteControler = new ClienteController();
 
         try {
-            System.out.println("Informe o cpf de cliente:");
-            Cliente cliente = clienteControler.buscaClientePorCpf(scanner.nextLine());
+            String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+            Cliente cliente = clienteControler.buscaPorCpf(cpf);
+           
             if (cliente != null) {
-                System.out.println(AMARELO + "DADOS DO CLIENTE:" + RESET);
                 imprimeCliente(cliente);
-                System.out.println("Pressione enter para continuar...");
-                scanner.nextLine();
             } else {
-                System.out.println("Cliente não encontrado com o cpf informado!");
+                exibeDialogo("Cliente não encontrado com o cpf informado!");
             }
 
         } catch (Exception e) {
-            System.out.println("Dado informado inválido!\nCadastro não finalizado...");
+            exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
         }
     }
 
     private static void imprimeCliente(Cliente cliente) {
-        System.out.println(AMARELO + "Nome: " + cliente.getNome() +
-                "\nTelefone: " + cliente.getTelefone() +
-                "\nCPF: " + cliente.getCpf() +
-                "\nStatus: " + (cliente.getStatus() ? "Ativo" : "Inativo") +
-                "\n" + RESET);
+        String clienteDados = "ID: " + cliente.getId() +
+                        "\nNome: " + cliente.getNome() +
+                        "\nTelefone: " + cliente.getTelefone() +
+                        "\nEndereço: " + cliente.getEndereco() +
+                        "\nCPF: " + cliente.getCpf() +
+                        "\nNascimento: " + DateUtils.dateToString(cliente.getNascimento()) +
+                        "\nObservação: " + cliente.getObservacao() +
+                        "\nAtivo: " + (cliente.getAtivo() ? "Sim" : "Não") +
+                        "\nAlergia: " + cliente.getAlergias() +
+                        "\nVIP: " + (cliente.isVip() ? "Sim" : "Não");
+        exibeDialogo(clienteDados);
     }
 
     private static void listarClientes() {
         ClienteController clienteControler = new ClienteController();
-        System.out.println(AMARELO + "LISTA DE CLIENTES:\n" + RESET);
-        for (Cliente cliente : clienteControler.pegarLista()) {
-            System.out.println(AMARELO + "Nome: " + cliente.getNome() +
-                    " CPF: " + cliente.getCpf() +
-                    " Telefone: " + cliente.getTelefone() +
-                    " Status: " + (cliente.getStatus() ? "Ativo" : "Inativo") +
-                    "" + RESET);
+        String texto = "";
+        for (Pessoa cliente : clienteControler.pegarLista()) {
+            if(cliente instanceof Cliente){
+                texto += "ID: " + cliente.getId() + " CPF: " + cliente.getCpf() + (cliente.getAtivo() ? " " : " (INATIVO) ") + cliente.getNome() + "\n";
+            }
         }
-        System.out.println("\nPressione enter para continuar...");
-        scanner.nextLine();
+        exibeDialogo(texto);
+    }
+
+    private static void excluirCliente() {
+        ClienteController clienteControler = new ClienteController();
+        try {
+            String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+            Cliente cliente = clienteControler.buscaPorCpf(cpf);
+           
+            if (cliente != null) {
+                String clienteDados = "O seguinte cliente será excluído:" +
+                        "\n\nID: " + cliente.getId() +
+                        "\nNome: " + cliente.getNome() +
+                        "\nTelefone: " + cliente.getTelefone() +
+                        "\nEndereço: " + cliente.getEndereco() +
+                        "\nCPF: " + cliente.getCpf() +
+                        "\n\nClique em OK para confirmar ou Cancele.";
+                if(confirmaExclusao(clienteDados) == JOptionPane.YES_OPTION){
+                    boolean excluido = clienteControler.remover(cliente);
+                    exibeDialogo(excluido ? "O cliente foi removido!" : "Não foi possível excluir o cliente da lista");
+                }else{
+                    exibeDialogo("Nada foi alterado!");
+                }
+            } else {
+                exibeDialogo("Cliente não encontrado com o cpf informado!");
+            }
+        } catch (Exception e) {
+            exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
+            e.printStackTrace();
+        }
     }
 }

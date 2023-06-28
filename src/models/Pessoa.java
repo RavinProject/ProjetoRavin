@@ -11,7 +11,7 @@ public class Pessoa {
     private String cpf;
     private Date nascimento;
     private String observacao;
-    private String ativo;
+    private boolean ativo;
     private Date criadoEm;	
     private String criadoPor;
     private Date alteradoEm;
@@ -20,16 +20,11 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String telefone, String cpf) {
+    public Pessoa(String nome, String telefone, String cpf, boolean ativo) {
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
-    }
-
-    public Pessoa(int id, String nome, String telefone, String cpf) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.cpf = cpf;
+        this.ativo = ativo;
     }
 
     public int getId() {
@@ -88,11 +83,11 @@ public class Pessoa {
         this.observacao = observacao;
     }
 
-    public String getAtivo() {
+    public boolean getAtivo() {
         return ativo;
     }
 
-    public void setAtivo(String ativo) {
+    public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
 

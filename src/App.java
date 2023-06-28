@@ -1,6 +1,10 @@
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
-import views.Cadastro;
+import dao.dados.GerarClientes;
+import dao.dados.GerarFuncionarios;
+import views.CadastroCliente;
+import views.CadastroFuncionario;
+import views.menus.PrincipalMenu;
 
 public class App {
 
@@ -10,6 +14,9 @@ public class App {
     public static final String AMARELO = "\u001B[33m";
 
     public static void main(String[] args) {
+        
+        GerarFuncionarios.montaLista();
+        GerarClientes.montaLista();
 
         System.out.println("\u001B[38;2;255;0;0m\n         :::::::::          :::       :::     :::    :::::::::::     ::::    :::"+ RESET);
         System.out.println("\u001B[38;2;255;165;0m        :+:    :+:       :+: :+:     :+:     :+:        :+:         :+:+:   :+:"+ RESET);
@@ -24,19 +31,18 @@ public class App {
     }
 
     private static void menu() {
-        Scanner scanner;
-        scanner = new Scanner(System.in);
         boolean exec = true;
         while (exec) {
-            System.out.println(VERDE + "#########################################\n" +
-                    "Escolha a opção desejada:\n" +
-                    "1 - Cadastro\n" +
-                    "x - Encerrar Programa\n" +
-                    "#########################################\n" + RESET);
-            String opcao = scanner.nextLine();
+            String opcao = JOptionPane.showInputDialog(PrincipalMenu.inicial());
+            if(opcao == null){
+                continue;
+            }
             switch (opcao) {
                 case "1":
-                    Cadastro.menu();
+                    CadastroCliente.menu();
+                    break;
+                case "2":
+                    CadastroFuncionario.menu();
                     break;
                 case "x":
                     exec = false;
