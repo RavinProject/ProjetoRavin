@@ -1,6 +1,12 @@
 ![](https://github.com/regis-amaral/ProjetoRavin/blob/26a00626ba9604b7eb31236d6b8e46c22f6fbbad/documentation/printTelaInicial.png)
 
-Resposta em [Cadastro de Entidades](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/Cadastro.java)
+Respostas:
+
+[Cadastro de Entidades Modo Texto](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/Cadastro.java)
+
+[Modo Gráfico - Atualização 28/06/2023 1:47](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/CadastroCliente.java)
+
+---
 
 ### Faça os métodos de input das classes do nosso projeto
 
