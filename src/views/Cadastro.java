@@ -27,6 +27,7 @@ import models.Funcionario;
 import models.Mesa;
 import models.Pedido;
 import models.Produto;
+import views.menus.PrincipalMenu;
 
 public class Cadastro extends View {
 
@@ -45,17 +46,8 @@ public class Cadastro extends View {
     public static void menu() {
         boolean exec = true;
         while (exec) {
-            System.out.println(VERDE + "Selecione a opção desejada:\n" +
-                    "1 - Cadastrar Cliente\n" +
-                    "2 - Cadastrar Funcionario\n" +
-                    "3 - Cadastrar Produto\n" +
-                    "4 - Cadastrar Estoque\n" +
-                    "5 - Cadastrar Pedido\n" +
-                    "6 - Cadastrar Comanda\n" +
-                    "7 - Cadastrar Mesa\n" +
-                    "x - voltar\n" + RESET);
-            scanner = new Scanner(System.in);
-            String opcao = scanner.nextLine();
+            String opcao = selecionarOpcao(PrincipalMenu.inicial());
+            System.out.println(opcao + " selecionado");
             switch (opcao) {
                 case "1":
                     cadastrarCliente();

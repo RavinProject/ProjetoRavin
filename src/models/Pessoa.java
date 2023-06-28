@@ -20,16 +20,19 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String telefone, String cpf) {
+    public Pessoa(String nome, String telefone, String cpf, boolean ativo) {
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
+        this.ativo = ativo;
     }
 
-    public Pessoa(int id, String nome, String telefone, String cpf) {
+    public Pessoa(int id, String nome, String telefone, String cpf, boolean ativo) {
+        this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
+        this.ativo = ativo;
     }
 
     public int getId() {

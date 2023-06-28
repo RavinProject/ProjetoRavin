@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import views.Cadastro;
+import views.CadastroCliente;
+import views.menus.PrincipalMenu;
 
 public class App {
 
@@ -28,15 +32,13 @@ public class App {
         scanner = new Scanner(System.in);
         boolean exec = true;
         while (exec) {
-            System.out.println(VERDE + "#########################################\n" +
-                    "Escolha a opção desejada:\n" +
-                    "1 - Cadastrar Entidades\n" +
-                    "x - Encerrar Programa\n" +
-                    "#########################################\n" + RESET);
-            String opcao = scanner.nextLine();
+            String opcao = JOptionPane.showInputDialog(PrincipalMenu.inicial());
+            if(opcao == null){
+                continue;
+            }
             switch (opcao) {
                 case "1":
-                    Cadastro.menu();
+                    CadastroCliente.menu();
                     break;
                 case "x":
                     exec = false;

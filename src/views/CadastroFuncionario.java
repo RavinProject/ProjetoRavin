@@ -53,7 +53,7 @@ public class CadastroFuncionario extends View {
                 String telefone = scanner.nextLine();
                 System.out.println("Informe o CPF:");
                 String cpf = scanner.nextLine();
-                Funcionario funcionario = new Funcionario(nome, telefone, cpf);
+                Funcionario funcionario = new Funcionario(nome, telefone, cpf, true);
                 funcionario.setStatus(true);
                 funcionario.setCriadoEm(new Date());
                 funcionario.setCriadoPor(null);

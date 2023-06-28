@@ -26,22 +26,23 @@ public class Funcionario extends Pessoa {
     public Funcionario(){
 
     }
-    
-    public Funcionario(String nome, String telefone, String cpf) {
-        super(nome, telefone, cpf);
+
+    public Funcionario(String nome, String telefone, String cpf, boolean ativo) {
+        super(nome, telefone, cpf, ativo);
     }
 
-    public Funcionario(int id, String nome, String telefone, String cpf) {
-        super(id, nome, telefone, cpf);
+    public Funcionario(int id, String nome, String telefone, String cpf, boolean ativo) {
+        super(id, nome, telefone, cpf, ativo);
     }
 
-    public Funcionario(int id, String nome, String telefone, String cpf, Escolaridade escolaridade, String pis, Date dataAdmissao, Cargo cargo) {
-        super(id, nome, telefone, cpf);
+    public Funcionario(int id, String nome, String telefone, String cpf, Escolaridade escolaridade, String pis, Date dataAdmissao, Cargo cargo, boolean ativo) {
+        super(id, nome, telefone, cpf, ativo);
         this.escolaridade = escolaridade;
         this.cargo = cargo;
         this.pis = pis;
         this.dataAdmissao = dataAdmissao;
         this.cargo = cargo;
+        
     }
 
     public String getRg() {

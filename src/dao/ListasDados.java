@@ -3,7 +3,6 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.dados.GerarCargos;
 import dao.dados.GerarClientes;
 import dao.dados.GerarFuncionarios;
 import models.Cliente;
