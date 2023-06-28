@@ -23,6 +23,10 @@ public class Funcionario extends Pessoa {
     private Date alteradoEm;
     private String alteradoPor;
     
+    public Funcionario(){
+
+    }
+    
     public Funcionario(String nome, String telefone, String cpf) {
         super(nome, telefone, cpf);
     }

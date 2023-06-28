@@ -1,5 +1,6 @@
 package models;
 
+import java.sql.Time;
 import java.util.Date;
 
 import dao.enuns.TipoProduto;
@@ -20,6 +21,10 @@ public class Produto {
     private Date alteradoEm;
     private String alteradoPor;
     
+    public Produto(){
+
+    }
+
     public Produto(String nome, String descricao, double precoCusto, double precoVenda) {
         this.nome = nome;
         this.descricao = descricao;

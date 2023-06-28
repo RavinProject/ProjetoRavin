@@ -10,6 +10,10 @@ public class Cliente extends Pessoa {
     private Date alteradoEm;
     private String alteradoPor;
 
+    public Cliente(){
+
+    }
+
     public Cliente(String nome, String telefone, String cpf) {
         super(nome, telefone, cpf);
     }

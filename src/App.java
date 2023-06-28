@@ -30,7 +30,7 @@ public class App {
         while (exec) {
             System.out.println(VERDE + "#########################################\n" +
                     "Escolha a opção desejada:\n" +
-                    "1 - Cadastros Entidades\n" +
+                    "1 - Cadastrar Entidades\n" +
                     "x - Encerrar Programa\n" +
                     "#########################################\n" + RESET);
             String opcao = scanner.nextLine();
