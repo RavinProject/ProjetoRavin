@@ -1,3 +1,5 @@
+Resposta em [Cadastro de Entidades](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/Cadastro.java)
+
 ### Faça os métodos de input das classes do nosso projeto
 
 Com base no projeto desenvolvido em sala (Diagrama de classes), crie os métodos de input para cada uma das entidades.
