@@ -14,7 +14,7 @@ Conceitos aplicados:
 - Herança;
 - Polimorfismo Estático ou Sobrecarga;
 - Polimorfismo Dinâmico ou Sobrescrita (método buscaPorCpf em ClienteController.java, FuncionarioController.java e PessoaController.java);
-- Classe abstrata Controller.java para métodos comuns das classes Controllers
+- Classe abstrata Controller.java para métodos comuns das classes Controllers;
 - ...
 
   
