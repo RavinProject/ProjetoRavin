@@ -6,6 +6,18 @@ Respostas:
 
 [Modo Gráfico - Atualização 28/06/2023 1:47](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/CadastroCliente.java)
 
+Conceitos aplicados:
+- Padrão MVC, desacoplando a parte visual, entidades, regra de negócios e dados;
+- Padrão Singleton para a classe ListaDados.java, a qual monta as listas de dados fictícios ao iniciar o programa;
+- Abstração;
+- Encapsulamento;
+- Herança;
+- Polimorfismo Estático ou Sobrecarga;
+- Polimorfismo Dinâmico ou Sobrescrita (método buscaPorCpf em ClienteController.java, FuncionarioController.java e PessoaController.java);
+- Classe abstrata Controller.java para métodos comuns das classes Controllers
+- ...
+
+  
 ---
 
 ### Faça os métodos de input das classes do nosso projeto
