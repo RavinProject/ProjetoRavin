@@ -6,6 +6,8 @@ Respostas:
 
 [Modo Gráfico - Atualização 28/06/2023 1:47](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/CadastroCliente.java)
 
+[Novas Funcionalidades para Funcionário](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/CadastroFuncionario.java)
+
 Status atual:
 - Cadastra, Altera, Lista e Busca Clientes e Funcionários.
 
