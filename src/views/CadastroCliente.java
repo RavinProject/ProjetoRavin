@@ -31,6 +31,9 @@ public class CadastroCliente extends View {
                 case "4":
                     pesquisarClientePorCpf();
                     break;
+                case "5":
+                    excluirCliente();
+                    break;
                 case "x":
                     exec = false;
                     break;
@@ -40,6 +43,7 @@ public class CadastroCliente extends View {
         }
     }
 
+    
     private static void cadastrar() {
         ClienteController clienteControler = new ClienteController();
         Cliente cliente = new Cliente();
@@ -144,5 +148,34 @@ public class CadastroCliente extends View {
             }
         }
         exibeDialogo(texto);
+    }
+
+    private static void excluirCliente() {
+        ClienteController clienteControler = new ClienteController();
+        try {
+            String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+            Cliente cliente = clienteControler.buscaPorCpf(cpf);
+           
+            if (cliente != null) {
+                String clienteDados = "O seguinte cliente será excluído:" +
+                        "\n\nID: " + cliente.getId() +
+                        "\nNome: " + cliente.getNome() +
+                        "\nTelefone: " + cliente.getTelefone() +
+                        "\nEndereço: " + cliente.getEndereco() +
+                        "\nCPF: " + cliente.getCpf() +
+                        "\n\nClique em OK para confirmar ou Cancele.";
+                if(confirmaExclusao(clienteDados) == JOptionPane.YES_OPTION){
+                    boolean excluido = clienteControler.remover(cliente);
+                    exibeDialogo(excluido ? "O cliente foi removido!" : "Não foi possível excluir o cliente da lista");
+                }else{
+                    exibeDialogo("Nada foi alterado!");
+                }
+            } else {
+                exibeDialogo("Cliente não encontrado com o cpf informado!");
+            }
+        } catch (Exception e) {
+            exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
+            e.printStackTrace();
+        }
     }
 }

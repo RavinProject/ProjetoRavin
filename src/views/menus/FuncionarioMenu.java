@@ -10,6 +10,7 @@ public class FuncionarioMenu {
 		builder.append("2 - Alterar Funcionário \n");
 		builder.append("3 - Listar Funcionários \n");
 		builder.append("4 - Visualizar Funcionário \n");
+		builder.append("5 - Excluir Funcionário \n");
 		builder.append("x - voltar \n");
         return builder.toString();
     }

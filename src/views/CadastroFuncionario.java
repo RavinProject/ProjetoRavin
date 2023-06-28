@@ -35,6 +35,9 @@ public class CadastroFuncionario extends View {
                 case "4":
                     pesquisarFuncionarioPorCpf();
                     break;
+                case "5":
+                    excluirFuncionario();
+                    break;
                 case "x":
                     exec = false;
                     break;
@@ -185,5 +188,34 @@ public class CadastroFuncionario extends View {
             }
         }
         exibeDialogo(texto);
+    }
+
+    private static void excluirFuncionario() {
+        FuncionarioController clienteControler = new FuncionarioController();
+        try {
+            String cpf = solicitaEntradaDeDado("Informe o CPF do funcionário que deseja alterar:");
+            Funcionario funcionario = clienteControler.buscaPorCpf(cpf);
+           
+            if (funcionario != null) {
+                String funcionarioDados = "O seguinte funcionário será excluído:" +
+                        "\n\nID: " + funcionario.getId() +
+                        "\nNome: " + funcionario.getNome() +
+                        "\nTelefone: " + funcionario.getTelefone() +
+                        "\nEndereço: " + funcionario.getEndereco() +
+                        "\nCPF: " + funcionario.getCpf() +
+                        "\n\nClique em OK para confirmar ou Cancele.";
+                if(confirmaExclusao(funcionarioDados) == JOptionPane.YES_OPTION){
+                    boolean excluido = clienteControler.remover(funcionario);
+                    exibeDialogo(excluido ? "O funcionário foi removido!" : "Não foi possível excluir o funcionário da lista");
+                }else{
+                    exibeDialogo("Nada foi alterado!");
+                }
+            } else {
+                exibeDialogo("Funcionário não encontrado com o cpf informado!");
+            }
+        } catch (Exception e) {
+            exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
+            e.printStackTrace();
+        }
     }
 }

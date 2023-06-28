@@ -1,6 +1,9 @@
 package controllers;
 
+import java.util.Iterator;
 import java.util.List;
+
+
 
 import dao.ListasDados;
 import models.Pessoa;
@@ -25,12 +28,8 @@ public class PessoaController extends Controller<Pessoa> {
     }
 
     @Override
-    public void remover(Pessoa pessoa) {
-        for (Pessoa p : pegaLista()) {
-            if (p.getId() == pessoa.getId()) {
-                pegaLista().remove(pessoa);
-            }
-        }
+    public boolean remover(Pessoa pessoa) {
+        return pegaLista().removeIf(p -> p.getId() == pessoa.getId());
     }
 
     @Override

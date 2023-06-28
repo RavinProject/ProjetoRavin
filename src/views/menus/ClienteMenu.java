@@ -10,6 +10,7 @@ public class ClienteMenu {
 		builder.append("2 - Alterar Cliente \n");
 		builder.append("3 - Listar Clientes \n");
 		builder.append("4 - Visualizar Cliente \n");
+		builder.append("5 - Excluir Cliente \n");
 		builder.append("x - voltar \n");
         return builder.toString();
     }
