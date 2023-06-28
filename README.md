@@ -9,7 +9,7 @@ Respostas:
 [Novas Funcionalidades para Funcionário](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/CadastroFuncionario.java)
 
 Status atual:
-- Cadastra, Altera, Lista e Busca Clientes e Funcionários.
+- Cadastra, Altera, Excluí, Lista, e Busca Clientes e Funcionários.
 
 Conceitos aplicados:
 - Padrão MVC, desacoplando a parte visual, entidades, regra de negócios e dados;
