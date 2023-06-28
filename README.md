@@ -1,3 +1,5 @@
+![](https://github.com/regis-amaral/ProjetoRavin/blob/26a00626ba9604b7eb31236d6b8e46c22f6fbbad/documentation/printTelaInicial.png)
+
 Resposta em [Cadastro de Entidades](https://github.com/regis-amaral/ProjetoRavin/blob/atividade2/src/views/Cadastro.java)
 
 ### Faça os métodos de input das classes do nosso projeto
