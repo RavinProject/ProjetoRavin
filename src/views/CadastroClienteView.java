@@ -9,15 +9,14 @@ import controllers.*;
 import models.Cliente;
 import models.Pessoa;
 import utils.DateUtils;
-import views.menus.ClienteMenu;
 
-public class CadastroCliente extends View {
+public class CadastroClienteView extends View {
 
 
     public static void menu() {
         boolean exec = true;
         while (exec) {
-            String opcao = JOptionPane.showInputDialog(ClienteMenu.inicial());
+            String opcao = JOptionPane.showInputDialog(menuInicial());
             switch (opcao) {
                 case "1":
                     cadastrar();
@@ -43,9 +42,21 @@ public class CadastroCliente extends View {
         }
     }
 
+    private static String menuInicial(){
+        StringBuilder builder = new StringBuilder();
+		builder.append(" ==================== RAVIN ==================== ");
+		builder.append("\n");
+		builder.append("1 - Cadastrar Cliente \n");
+		builder.append("2 - Alterar Cliente \n");
+		builder.append("3 - Listar Clientes \n");
+		builder.append("4 - Visualizar Cliente \n");
+		builder.append("5 - Excluir Cliente \n");
+		builder.append("x - voltar \n");
+        return builder.toString();
+    }
     
     private static void cadastrar() {
-        ClienteController clienteControler = new ClienteController();
+        ClienteController clienteController = new ClienteController();
         Cliente cliente = new Cliente();
         try {
             cliente.setNome(solicitaEntradaDeDado("Informe o nome do cliente:"));
@@ -62,9 +73,9 @@ public class CadastroCliente extends View {
             cliente.setCriadoPor(null);
             cliente.setAlteradoEm(new Date());
             cliente.setAlteradoPor(null);
-            clienteControler.inserir(cliente);
+            clienteController.inserir(cliente);
             exibeDialogo("Cliente inserido com sucesso!");
-            imprimeCliente(clienteControler.buscaPorCpf(cliente.getCpf()));
+            imprimeCliente(clienteController.buscaPorCpf(cliente.getCpf()));
         } catch(InputMismatchException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -75,11 +86,11 @@ public class CadastroCliente extends View {
     }
 
     private static void atualizar() {
-        ClienteController clienteControler = new ClienteController();
+        ClienteController clienteController = new ClienteController();
 
         try {
             String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
-            Cliente cliente = clienteControler.buscaPorCpf(cpf);
+            Cliente cliente = clienteController.buscaPorCpf(cpf);
             
             if (cliente != null) {
                 cliente.setNome(solicitaEntradaDeDado("Nome:", cliente.getNome()));
@@ -95,9 +106,9 @@ public class CadastroCliente extends View {
                 cliente.setAtivo(ativo);
                 cliente.setAlteradoEm(new Date());
                 cliente.setAlteradoPor(null);
-                clienteControler.atualizar(cliente);
+                clienteController.atualizar(cliente);
                 exibeDialogo("Cliente atualizado com sucesso!");
-                imprimeCliente(clienteControler.buscaPorCpf(cliente.getCpf()));
+                imprimeCliente(clienteController.buscaPorCpf(cliente.getCpf()));
             } else {
                 exibeDialogo("Cliente não encontrado!");
             }
@@ -108,20 +119,15 @@ public class CadastroCliente extends View {
     }
 
     private static void pesquisarClientePorCpf() {
-        ClienteController clienteControler = new ClienteController();
+        ClienteController clienteController = new ClienteController();
 
-        try {
-            String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
-            Cliente cliente = clienteControler.buscaPorCpf(cpf);
-           
-            if (cliente != null) {
-                imprimeCliente(cliente);
-            } else {
-                exibeDialogo("Cliente não encontrado com o cpf informado!");
-            }
-
-        } catch (Exception e) {
-            exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
+        String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+        Cliente cliente = clienteController.buscaPorCpf(cpf);
+        
+        if (cliente != null) {
+            imprimeCliente(cliente);
+        } else {
+            exibeDialogo("Cliente não encontrado com o cpf informado!");
         }
     }
 
@@ -140,9 +146,9 @@ public class CadastroCliente extends View {
     }
 
     private static void listarClientes() {
-        ClienteController clienteControler = new ClienteController();
+        ClienteController clienteController = new ClienteController();
         String texto = "";
-        for (Pessoa cliente : clienteControler.pegarLista()) {
+        for (Pessoa cliente : clienteController.pegarLista()) {
             if(cliente instanceof Cliente){
                 texto += "ID: " + cliente.getId() + " CPF: " + cliente.getCpf() + (cliente.getAtivo() ? " " : " (INATIVO) ") + cliente.getNome() + "\n";
             }
@@ -151,10 +157,10 @@ public class CadastroCliente extends View {
     }
 
     private static void excluirCliente() {
-        ClienteController clienteControler = new ClienteController();
+        ClienteController clienteController = new ClienteController();
         try {
             String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
-            Cliente cliente = clienteControler.buscaPorCpf(cpf);
+            Cliente cliente = clienteController.buscaPorCpf(cpf);
            
             if (cliente != null) {
                 String clienteDados = "O seguinte cliente será excluído:" +
@@ -164,8 +170,8 @@ public class CadastroCliente extends View {
                         "\nEndereço: " + cliente.getEndereco() +
                         "\nCPF: " + cliente.getCpf() +
                         "\n\nClique em OK para confirmar ou Cancele.";
-                if(confirmaExclusao(clienteDados) == JOptionPane.YES_OPTION){
-                    boolean excluido = clienteControler.remover(cliente);
+                if(confirmaAcao(clienteDados) == JOptionPane.YES_OPTION){
+                    boolean excluido = clienteController.remover(cliente);
                     exibeDialogo(excluido ? "O cliente foi removido!" : "Não foi possível excluir o cliente da lista");
                 }else{
                     exibeDialogo("Nada foi alterado!");

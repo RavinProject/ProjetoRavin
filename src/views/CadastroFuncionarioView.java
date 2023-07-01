@@ -14,14 +14,13 @@ import dao.enuns.EstadoCivil;
 import models.Funcionario;
 import models.Pessoa;
 import utils.DateUtils;
-import views.menus.FuncionarioMenu;
 
-public class CadastroFuncionario extends View {
+public class CadastroFuncionarioView extends View {
 
     public static void menu() {
         boolean exec = true;
         while (exec) {
-            String opcao = JOptionPane.showInputDialog(FuncionarioMenu.inicial());
+            String opcao = JOptionPane.showInputDialog(menuInicial());
             switch (opcao) {
                 case "1":
                     cadastrar();
@@ -45,6 +44,19 @@ public class CadastroFuncionario extends View {
                     exibeDialogo("Opção inválida! Voltando...");
             }
         }
+    }
+
+    private static String menuInicial(){
+        StringBuilder builder = new StringBuilder();
+		builder.append(" ==================== RAVIN ==================== ");
+		builder.append("\n");
+		builder.append("1 - Cadastrar Funcionário \n");
+		builder.append("2 - Alterar Funcionário \n");
+		builder.append("3 - Listar Funcionários \n");
+		builder.append("4 - Visualizar Funcionário \n");
+		builder.append("5 - Excluir Funcionário \n");
+		builder.append("x - voltar \n");
+        return builder.toString();
     }
 
     private static void cadastrar() {
@@ -141,18 +153,13 @@ public class CadastroFuncionario extends View {
     private static void pesquisarFuncionarioPorCpf() {
         FuncionarioController funcionarioController = new FuncionarioController();
 
-        try {
-            String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
-            Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
-           
-            if (funcionario != null) {
-                imprimeFuncionario(funcionario);
-            } else {
-                exibeDialogo("Funcionário não encontrado com o cpf informado!");
-            }
-
-        } catch (Exception e) {
-            exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
+        String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+        Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
+        
+        if (funcionario != null) {
+            imprimeFuncionario(funcionario);
+        } else {
+            exibeDialogo("Funcionário não encontrado com o cpf informado!");
         }
     }
 
@@ -204,7 +211,7 @@ public class CadastroFuncionario extends View {
                         "\nEndereço: " + funcionario.getEndereco() +
                         "\nCPF: " + funcionario.getCpf() +
                         "\n\nClique em OK para confirmar ou Cancele.";
-                if(confirmaExclusao(funcionarioDados) == JOptionPane.YES_OPTION){
+                if(confirmaAcao(funcionarioDados) == JOptionPane.YES_OPTION){
                     boolean excluido = clienteControler.remover(funcionario);
                     exibeDialogo(excluido ? "O funcionário foi removido!" : "Não foi possível excluir o funcionário da lista");
                 }else{

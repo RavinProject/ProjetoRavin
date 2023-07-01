@@ -27,7 +27,6 @@ import models.Funcionario;
 import models.Mesa;
 import models.Pedido;
 import models.Produto;
-import views.menus.PrincipalMenu;
 
 public class Cadastro extends View {
 
@@ -46,7 +45,7 @@ public class Cadastro extends View {
     public static void menu() {
         boolean exec = true;
         while (exec) {
-            String opcao = selecionarOpcao(PrincipalMenu.inicial());
+            String opcao = selecionarOpcao(menuInicial());
             System.out.println(opcao + " selecionado");
             switch (opcao) {
                 case "1":
@@ -77,6 +76,20 @@ public class Cadastro extends View {
                     System.out.println("Opção inválida!");
             }
         }
+    }
+
+    public static String menuInicial(){
+        StringBuilder builder = new StringBuilder();
+		builder.append(" ==================== RAVIN ==================== ");
+		builder.append("\n");
+		builder.append("1 - Clientes \n");
+		builder.append("2 - Funcionarios \n");
+		builder.append("3 - Estoque \n");
+		builder.append("4 - Mesas \n");
+		// builder.append("5 - Mesas \n");
+		// builder.append("6 - Pedidos \n");
+		builder.append("x - Sair");
+        return builder.toString();
     }
 
     public static void cadastrarCliente() {

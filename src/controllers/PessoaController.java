@@ -1,6 +1,5 @@
 package controllers;
 
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -13,15 +12,11 @@ public class PessoaController extends Controller<Pessoa> {
     public PessoaController() {
     }
 
-    public List<Pessoa> pegaLista() {
-        return ListasDados.getInstance().getListaPessoas();
-    }
-
     @Override
     public void atualizar(Pessoa pessoa) {
-        for (int i = 0; i < pegaLista().size(); i++) {
-            if (pegaLista().get(i).getId() == pessoa.getId()) {
-                pegaLista().set(i, pessoa);
+        for (int i = 0; i < pegarLista().size(); i++) {
+            if (pegarLista().get(i).getId() == pessoa.getId()) {
+                pegarLista().set(i, pessoa);
                 break;
             }
         }
@@ -29,7 +24,7 @@ public class PessoaController extends Controller<Pessoa> {
 
     @Override
     public boolean remover(Pessoa pessoa) {
-        return pegaLista().removeIf(p -> p.getId() == pessoa.getId());
+        return pegarLista().removeIf(p -> p.getId() == pessoa.getId());
     }
 
     @Override
@@ -37,16 +32,16 @@ public class PessoaController extends Controller<Pessoa> {
         if (pessoa.getId() == 0) {
             pessoa.setId(geraProximoId());
         }
-        pegaLista().add(pessoa);
+        pegarLista().add(pessoa);
     }
 
     public int geraProximoId() {
-        return pegaLista().size() + 1;
+        return pegarLista().size() + 1;
     }
 
     @Override
     public Pessoa recuperar(int id) {
-        for (Pessoa pessoa : pegaLista()) {
+        for (Pessoa pessoa : pegarLista()) {
             if (pessoa.getId() == id) {
                 return pessoa;
             }
@@ -56,11 +51,12 @@ public class PessoaController extends Controller<Pessoa> {
 
     @Override
     public List<Pessoa> pegarLista() {
-        return pegaLista();
+        return ListasDados.getInstance().getListaPessoas();
     }
 
+
     public Pessoa buscaPorCpf(String cpf) {
-        for (Pessoa pessoa : pegaLista()) {
+        for (Pessoa pessoa : pegarLista()) {
             if (pessoa.getCpf().equals(cpf) && pessoa instanceof Pessoa) {
                 return pessoa;
             }
