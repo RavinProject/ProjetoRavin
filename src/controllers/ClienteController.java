@@ -10,7 +10,7 @@ public class ClienteController extends PessoaController{
     }
 
     public Cliente buscaPorCpf(String cpf) {
-        for (Pessoa pessoa : pegaLista()) {
+        for (Pessoa pessoa : pegarLista()) {
             if (pessoa.getCpf().equals(cpf) && pessoa instanceof Cliente) {
                 return (Cliente) pessoa;
             }

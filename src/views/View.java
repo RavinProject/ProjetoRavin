@@ -1,6 +1,5 @@
 package views;
 
-import javax.security.auth.callback.Callback;
 import javax.swing.JOptionPane;
 
 public class View {
@@ -20,7 +19,7 @@ public class View {
         return JOptionPane.showInputDialog(mensagem, valorInicial);
     }
     
-    public static int confirmaExclusao(String mensagem){
+    public static int confirmaAcao(String mensagem){
         return JOptionPane.showConfirmDialog(null, mensagem, "Confirme a ação selecionada!", JOptionPane.YES_NO_OPTION);
     }
 }

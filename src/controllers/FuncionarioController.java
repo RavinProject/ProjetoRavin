@@ -10,7 +10,7 @@ public class FuncionarioController extends PessoaController {
     }
 
     public Funcionario buscaPorCpf(String cpf) {
-        for (Pessoa pessoa : pegaLista()) {
+        for (Pessoa pessoa : pegarLista()) {
             if (pessoa.getCpf().equals(cpf) && pessoa instanceof Funcionario) {
                 return (Funcionario) pessoa;
             }
