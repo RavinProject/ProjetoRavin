@@ -25,11 +25,16 @@ public class Produto {
 
     }
 
-    public Produto(String nome, String descricao, double precoCusto, double precoVenda) {
+    public Produto(String nome, String descricao, String codigo, double precoCusto, double precoVenda, TipoProduto tipoProduto) {
         this.nome = nome;
         this.descricao = descricao;
+        this.codigo = codigo;
         this.precoCusto = precoCusto;
         this.precoVenda = precoVenda;
+        this.tipoProduto = tipoProduto;
+        this.tempoPreparo = "";
+        this.observacoes = "";
+        this.ativo = true;
     }
 
     public int getId() {
