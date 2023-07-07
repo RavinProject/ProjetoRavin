@@ -1,6 +1,7 @@
 import javax.swing.JOptionPane;
 
 import dao.dados.GerarClientes;
+import dao.dados.GerarEstoqueProdutos;
 import dao.dados.GerarFuncionarios;
 import views.CadastroClienteView;
 import views.CadastroEstoqueView;
@@ -12,6 +13,7 @@ public class App {
         
         GerarFuncionarios.montaLista();
         GerarClientes.montaLista();
+        GerarEstoqueProdutos.montaLista();
 
         System.out.println("\u001B[38;2;255;0;0m\n         :::::::::          :::       :::     :::    :::::::::::     ::::    :::\u001B[0m");
         System.out.println("\u001B[38;2;255;165;0m        :+:    :+:       :+: :+:     :+:     :+:        :+:         :+:+:   :+:\u001B[0m");
