@@ -19,8 +19,7 @@ public class ProdutoControler extends Controller <Produto> {
 
     @Override
     public boolean remover(Produto produto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remover'");
+        return pegarLista().removeIf(p -> p.getId() == produto.getId());
     }
 
     @Override
@@ -33,8 +32,21 @@ public class ProdutoControler extends Controller <Produto> {
 
     @Override
     public Produto recuperar(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recuperar'");
+        for (Produto produto : pegarLista()) {
+            if (produto.getId() == id) {
+                return produto;
+            }
+        }
+        return null;
+    }
+
+    public Produto recuperar(String codigo) {
+        for(Produto produto : pegarLista()){
+            if(produto.getCodigo().equals(codigo)){
+                return produto;
+            }
+        }
+        return null;
     }
 
     @Override

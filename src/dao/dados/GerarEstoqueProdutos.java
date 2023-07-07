@@ -1,6 +1,5 @@
 package dao.dados;
 
-import java.util.List;
 import java.util.Random;
 
 import controllers.EstoqueController;

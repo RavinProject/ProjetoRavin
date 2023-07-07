@@ -32,8 +32,12 @@ public class EstoqueController extends Controller <Estoque> {
 
     @Override
     public Estoque recuperar(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recuperar'");
+        for (Estoque estoque : pegarLista()) {
+            if (estoque.getId() == id) {
+                return estoque;
+            }
+        }
+        return null;
     }
 
     public Estoque recuperar(String codigo) {
