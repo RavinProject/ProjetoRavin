@@ -18,26 +18,13 @@ public class CadastroEstoqueView extends View {
         while (exec) {
             String opcao = JOptionPane.showInputDialog(menuInicial());
             switch (opcao) {
-                case "1":
-                    cadastrar();
-                    break;
-                case "2":
-                    atualizar();
-                    break;
-                case "3":
-                    listarEstoque();
-                    break;
-                case "4":
-                    pesquisarEstoque();
-                    break;
-                case "5":
-                    excluirProdutoEmEstoque();
-                    break;
-                case "x":
-                    exec = false;
-                    break;
-                default:
-                exibeDialogo("Opção inválida! Voltando...");
+                case "1" -> cadastrar();
+                case "2" -> atualizar();
+                case "3" -> listarEstoque();
+                case "4" -> pesquisarEstoque();
+                case "5" -> excluirProdutoEmEstoque();
+                case "x" -> exec = false;
+                default -> exibeDialogo("Opção inválida! Voltando...");
             }
         }
     }
@@ -74,12 +61,13 @@ public class CadastroEstoqueView extends View {
         produto.setPrecoVenda(Double.parseDouble(solicitaEntradaDeDado("Informe o preço de venda (1,99):").replace(',', '.')));
         produto.setTempoPreparo(solicitaEntradaDeDado("Informe o tempo de preparo"));
         produto.setObservacoes(solicitaEntradaDeDado("Informe uma observação para o produto:"));
-        String stringTipoProduto = "Selecione o tipo do produto:" +
-            "\n1 - Bebidas" +
-            "\n2 - Carnes" +
-            "\n3 - Saladas" +
-            "\n4 - Sopas" +
-            "\n5 - Sobremesas";
+        String stringTipoProduto = """
+                Selecione o tipo do produto:
+                1 - Bebidas
+                2 - Carnes
+                3 - Saladas
+                4 - Sopas
+                5 - Sobremesas""";
         produto.setTipoProduto(TipoProduto.values()[Integer.parseInt(solicitaEntradaDeDado(stringTipoProduto)) - 1]);
         produto.setAtivo(true);
         produto.setCriadoEm(new Date());
@@ -115,12 +103,13 @@ public class CadastroEstoqueView extends View {
             produto.setPrecoVenda(Double.parseDouble(solicitaEntradaDeDado("Informe o preço de venda (1,99):", ("" + produto.getPrecoVenda()).replace(".", ",")).replace(',', '.')));
             produto.setTempoPreparo(solicitaEntradaDeDado("Informe o tempo de preparo", produto.getTempoPreparo()));
             produto.setObservacoes(solicitaEntradaDeDado("Informe uma observação para o produto:", produto.getObservacoes()));
-            String stringTipoProduto = "Selecione o tipo do produto:" +
-                "\n1 - Bebidas" +
-                "\n2 - Carnes" +
-                "\n3 - Saladas" +
-                "\n4 - Sopas" +
-                "\n5 - Sobremesas";
+            String stringTipoProduto = """
+                    Selecione o tipo do produto:
+                    1 - Bebidas
+                    2 - Carnes
+                    3 - Saladas
+                    4 - Sopas
+                    5 - Sobremesas""";
             produto.setTipoProduto(TipoProduto.values()[Integer.parseInt(solicitaEntradaDeDado(stringTipoProduto, (produto.getTipoProduto().ordinal() + 1) + "")) - 1]);
             boolean ativo = solicitaEntradaDeDado("Ativo?\n 0 - Não \n 1 - Sim", produto.isAtivo() ? "1" : "0").equals("1") ? true : false;
             produto.setAtivo(ativo);

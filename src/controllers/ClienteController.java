@@ -1,8 +1,6 @@
 package controllers;
 
 import controllers.interfaces.IClienteController;
-import controllers.interfaces.IController;
-import controllers.interfaces.IPessoaController;
 import models.Cliente;
 import models.Pessoa;
 

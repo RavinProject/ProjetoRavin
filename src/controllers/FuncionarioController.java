@@ -1,7 +1,6 @@
 package controllers;
 
 import controllers.interfaces.IFuncionarioController;
-import controllers.interfaces.IPessoaController;
 import models.Funcionario;
 import models.Pessoa;
 

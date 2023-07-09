@@ -2,7 +2,6 @@ package controllers;
 
 import java.util.List;
 
-import controllers.interfaces.IController;
 import controllers.interfaces.IEstoqueController;
 import dao.ListasDados;
 import models.Estoque;

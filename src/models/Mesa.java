@@ -28,7 +28,7 @@ public class Mesa {
 
     public boolean reservarMesa(){
         return false;
-    };
+    }
 
     public boolean liberarMesa(){
         return false;
