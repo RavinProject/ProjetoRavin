@@ -2,17 +2,17 @@
 
 ### Status atual
 
-|   Entidades  | Criação (Create) | Leitura (Read)     | Atualização (Update) | Deleção (Delete)   |
-|--------------|------------------|--------------------|----------------------|--------------------|
-| Cardápio     | :white_check_mark:| :white_check_mark: | :white_check_mark:   | :white_check_mark: |
-| Cliente      | :heavy_check_mark | :heavy_check_mark: | :heavy_check_mark:   | :heavy_check_mark: |
-| Comanda      | :white_check_mark:| :white_check_mark: | :white_check_mark:   | :white_check_mark: |
-| Estoque      | :white_check_mark:| :white_check_mark: | :white_check_mark:   | :white_check_mark: |
-| Funcionário  | :heavy_check_mark:| :heavy_check_mark: | :heavy_check_mark:   | :heavy_check_mark: |
-| Mesa         | :white_check_mark:| :white_check_mark: | :white_check_mark:   | :white_check_mark: |
-| Pedido       | :white_check_mark:| :white_check_mark: | :white_check_mark:   | :white_check_mark: |
-| Pessoa       | :white_check_mark:| :white_check_mark: | :white_check_mark:   | :white_check_mark: |
-| Produto      | :white_check_mark:| :white_check_mark: | :white_check_mark:   | :white_check_mark: |
+|   Entidades  | Criação (Create)   | Leitura (Read)     | Atualização (Update) | Deleção (Delete)   |
+|--------------|--------------------|--------------------|----------------------|--------------------|
+| Cardápio     | :white_check_mark: | :white_check_mark: | :white_check_mark:   | :white_check_mark: |
+| Cliente      | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:   | :heavy_check_mark: |
+| Comanda      | :white_check_mark: | :white_check_mark: | :white_check_mark:   | :white_check_mark: |
+| Estoque      | :white_check_mark: | :white_check_mark: | :white_check_mark:   | :white_check_mark: |
+| Funcionário  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:   | :heavy_check_mark: |
+| Mesa         | :white_check_mark: | :white_check_mark: | :white_check_mark:   | :white_check_mark: |
+| Pedido       | :white_check_mark: | :white_check_mark: | :white_check_mark:   | :white_check_mark: |
+| Pessoa       | :white_check_mark: | :white_check_mark: | :white_check_mark:   | :white_check_mark: |
+| Produto      | :white_check_mark: | :white_check_mark: | :white_check_mark:   | :white_check_mark: |
 
 
 ### Conceitos aplicados
