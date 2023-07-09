@@ -3,22 +3,12 @@ package views;
 import java.util.Date;
 import java.util.Scanner;
 
-import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import utils.enuns.EstadoCivil;
+import utils.enuns.TipoProduto;
 
-import dao.enuns.EstadoCivil;
-import dao.enuns.TipoProduto;
-
-import java.awt.GridLayout;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 
 import models.Cliente;
 import models.Comanda;

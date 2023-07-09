@@ -3,8 +3,8 @@ package dao.dados;
 import java.util.Random;
 
 import controllers.EstoqueController;
-import controllers.ProdutoControler;
-import dao.enuns.TipoProduto;
+import controllers.ProdutoController;
+import utils.enuns.TipoProduto;
 import models.Estoque;
 import models.Produto;
 
@@ -13,7 +13,7 @@ public class GerarEstoqueProdutos {
 
     public static void montaLista() {
         EstoqueController estoqueController = new EstoqueController();
-        ProdutoControler produtoController = new ProdutoControler();
+        ProdutoController produtoController = new ProdutoController();
         
         Random random = new Random();
 

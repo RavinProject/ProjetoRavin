@@ -4,8 +4,8 @@ package dao.dados;
 import java.util.Date;
 
 import controllers.PessoaController;
-import dao.enuns.Cargo;
-import dao.enuns.Escolaridade;
+import utils.enuns.Cargo;
+import utils.enuns.Escolaridade;
 import models.Funcionario;
 
 public class GerarFuncionarios {

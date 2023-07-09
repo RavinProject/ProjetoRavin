@@ -3,7 +3,7 @@ package models;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import dao.enuns.StatusPreparo;
+import utils.enuns.StatusPreparo;
 
 public class Pedido {
     private int Id;

@@ -1,12 +1,42 @@
 package controllers;
 
+import controllers.interfaces.IClienteController;
+import controllers.interfaces.IController;
+import controllers.interfaces.IPessoaController;
 import models.Cliente;
 import models.Pessoa;
 
-public class ClienteController extends PessoaController{
+import java.util.List;
+
+public class ClienteController implements IClienteController {
 
     public ClienteController() {
         
+    }
+
+    @Override
+    public void atualizar(Cliente objeto) {
+
+    }
+
+    @Override
+    public boolean remover(Cliente objeto) {
+        return false;
+    }
+
+    @Override
+    public void inserir(Cliente objeto) {
+
+    }
+
+    @Override
+    public Cliente recuperarPorId(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Cliente> pegarLista() {
+        return null;
     }
 
     public Cliente buscaPorCpf(String cpf) {

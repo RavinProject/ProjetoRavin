@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 
-import dao.enuns.StatusMesa;
+import utils.enuns.StatusMesa;
 
 public class Mesa {
     private int id;

@@ -2,10 +2,12 @@ package controllers;
 
 import java.util.List;
 
+import controllers.interfaces.IController;
+import controllers.interfaces.IEstoqueController;
 import dao.ListasDados;
 import models.Estoque;
 
-public class EstoqueController extends Controller <Estoque> {
+public class EstoqueController implements IEstoqueController {
 
     @Override
     public void atualizar(Estoque estoque) {
@@ -31,7 +33,7 @@ public class EstoqueController extends Controller <Estoque> {
     }
 
     @Override
-    public Estoque recuperar(int id) {
+    public Estoque recuperarPorId(int id) {
         for (Estoque estoque : pegarLista()) {
             if (estoque.getId() == id) {
                 return estoque;
@@ -39,8 +41,8 @@ public class EstoqueController extends Controller <Estoque> {
         }
         return null;
     }
-
-    public Estoque recuperar(String codigo) {
+    @Override
+    public Estoque recuperarPorCodigo(String codigo) {
         for(Estoque estoque : pegarLista()){
             if(estoque.getProduto().getCodigo().equals(codigo)){
                 return estoque;

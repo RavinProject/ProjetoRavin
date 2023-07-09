@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 
-import dao.enuns.StatusComanda;
+import utils.enuns.StatusComanda;
 
 public class Comanda {
     private int id;

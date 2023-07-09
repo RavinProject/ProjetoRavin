@@ -3,7 +3,7 @@ package models;
 import java.util.Date;
 import java.util.List;
 
-import dao.enuns.Categorias;
+import utils.enuns.Categorias;
 
 public class Cardapio {
     private int id;

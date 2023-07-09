@@ -6,8 +6,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import controllers.EstoqueController;
-import controllers.ProdutoControler;
-import dao.enuns.TipoProduto;
+import controllers.ProdutoController;
+import utils.enuns.TipoProduto;
 import models.Estoque;
 import models.Produto;
 
@@ -57,9 +57,9 @@ public class CadastroEstoqueView extends View {
 
     private static void cadastrar() {
         EstoqueController estoqueController = new EstoqueController();
-        ProdutoControler produtoController = new ProdutoControler();
+        ProdutoController produtoController = new ProdutoController();
         String codigoProduto = solicitaEntradaDeDado("Informe o código do produto:");
-        if(estoqueController.recuperar(codigoProduto) != null){
+        if(estoqueController.recuperarPorCodigo(codigoProduto) != null){
             if(confirmaAcao("Já existe um produto com esse código! Clique em SIM para abrir a edição do produto ou NÃO para retornar.") == 1){
                 atualizar();
             }else{
@@ -103,9 +103,9 @@ public class CadastroEstoqueView extends View {
 
     private static void atualizar(){
         EstoqueController estoqueController = new EstoqueController();
-        ProdutoControler produtoController = new ProdutoControler();
+        ProdutoController produtoController = new ProdutoController();
         String codigo = solicitaEntradaDeDado("Informe o código do produto que deseja alterar: ");
-        Estoque estoque = estoqueController.recuperar(codigo);
+        Estoque estoque = estoqueController.recuperarPorCodigo(codigo);
         if (estoque != null) {
             Produto produto = estoque.getProduto();
             produto.setCodigo(solicitaEntradaDeDado("Informe o código do produto: ", produto.getCodigo()));
@@ -143,7 +143,7 @@ public class CadastroEstoqueView extends View {
         EstoqueController estoqueController = new EstoqueController();
 
         String produtoCodigo = solicitaEntradaDeDado("Informe o código do produto que deseja excluir: ");
-        Estoque estoque = estoqueController.recuperar(produtoCodigo);
+        Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
         if (estoque != null) {
             imprimeProdutoEmEstoque(estoque);
         } else {
@@ -186,7 +186,7 @@ public class CadastroEstoqueView extends View {
     private static void excluirProdutoEmEstoque() {
         EstoqueController estoqueController = new EstoqueController();
         String produtoCodigo = solicitaEntradaDeDado("Informe o código do produto que deseja excluir: ");
-        Estoque estoque = estoqueController.recuperar(produtoCodigo);
+        Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
         if(estoque != null){
             String estoqueDados = "ESTOQUE ID: " + estoque.getId() +
                         "\nQuantidade: " + estoque.getQuantidade() +

@@ -7,10 +7,10 @@ import javax.swing.JOptionPane;
 
 import controllers.FuncionarioController;
 import controllers.PessoaController;
-import dao.enuns.Cargo;
-import dao.enuns.Disponibilidade;
-import dao.enuns.Escolaridade;
-import dao.enuns.EstadoCivil;
+import utils.enuns.Cargo;
+import utils.enuns.Disponibilidade;
+import utils.enuns.Escolaridade;
+import utils.enuns.EstadoCivil;
 import models.Funcionario;
 import models.Pessoa;
 import utils.DateUtils;
