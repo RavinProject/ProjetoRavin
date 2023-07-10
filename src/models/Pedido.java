@@ -3,7 +3,7 @@ package models;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import dao.enuns.StatusPreparo;
+import utils.enuns.StatusPreparo;
 
 public class Pedido {
     private int Id;
@@ -12,7 +12,7 @@ public class Pedido {
     private Timestamp dataHoraInicioPreparo;
     private Timestamp tempoPreparoRestante;
     private StatusPreparo statusPreparo;
-    private String observação;
+    private String observacao;
     private int quantidade;
     private Date criadoEm;	
     private String criadoPor;
@@ -76,12 +76,12 @@ public class Pedido {
         this.statusPreparo = statusPreparo;
     }
 
-    public String getObservação() {
-        return observação;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setObservação(String observação) {
-        this.observação = observação;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public int getQuantidade() {

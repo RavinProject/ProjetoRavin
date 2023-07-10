@@ -2,10 +2,11 @@ package controllers;
 
 import java.util.List;
 
+import controllers.interfaces.IProdutoController;
 import dao.ListasDados;
 import models.Produto;
 
-public class ProdutoControler extends Controller <Produto> {
+public class ProdutoController implements IProdutoController {
 
     @Override
     public void atualizar(Produto produto) {
@@ -30,8 +31,10 @@ public class ProdutoControler extends Controller <Produto> {
         pegarLista().add(produto);
     }
 
+
+
     @Override
-    public Produto recuperar(int id) {
+    public Produto recuperarPorId(int id) {
         for (Produto produto : pegarLista()) {
             if (produto.getId() == id) {
                 return produto;
@@ -40,7 +43,8 @@ public class ProdutoControler extends Controller <Produto> {
         return null;
     }
 
-    public Produto recuperar(String codigo) {
+    @Override
+    public Produto recuperarPorCodigo(String codigo) {
         for(Produto produto : pegarLista()){
             if(produto.getCodigo().equals(codigo)){
                 return produto;

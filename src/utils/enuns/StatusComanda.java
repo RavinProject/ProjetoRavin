@@ -1,4 +1,4 @@
-package dao.enuns;
+package utils.enuns;
 
 public enum StatusComanda {
     PAGA,

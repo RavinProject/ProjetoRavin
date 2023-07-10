@@ -2,12 +2,11 @@ package controllers;
 
 import java.util.List;
 
-
-
+import controllers.interfaces.IPessoaController;
 import dao.ListasDados;
 import models.Pessoa;
 
-public class PessoaController extends Controller<Pessoa> {
+public class PessoaController implements IPessoaController {
 
     public PessoaController() {
     }
@@ -40,7 +39,7 @@ public class PessoaController extends Controller<Pessoa> {
     }
 
     @Override
-    public Pessoa recuperar(int id) {
+    public Pessoa recuperarPorId(int id) {
         for (Pessoa pessoa : pegarLista()) {
             if (pessoa.getId() == id) {
                 return pessoa;
@@ -57,7 +56,7 @@ public class PessoaController extends Controller<Pessoa> {
 
     public Pessoa buscaPorCpf(String cpf) {
         for (Pessoa pessoa : pegarLista()) {
-            if (pessoa.getCpf().equals(cpf) && pessoa instanceof Pessoa) {
+            if (pessoa.getCpf().equals(cpf)) {
                 return pessoa;
             }
         }

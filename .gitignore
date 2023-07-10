@@ -1,4 +1,11 @@
+# Vscode
 .vscode
 *.class
-*.asta.lock
 *.bak
+
+# Astah
+*.asta.lock
+
+# IntelliJ
+*.iml
+.idea

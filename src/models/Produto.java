@@ -1,9 +1,8 @@
 package models;
 
-import java.sql.Time;
 import java.util.Date;
 
-import dao.enuns.TipoProduto;
+import utils.enuns.TipoProduto;
 
 public class Produto {
     private int id;
