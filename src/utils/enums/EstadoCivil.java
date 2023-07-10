@@ -1,4 +1,4 @@
-package utils.enuns;
+package utils.enums;
 
 public enum EstadoCivil {
     SOLTEIRO,

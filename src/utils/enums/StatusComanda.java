@@ -1,7 +1,7 @@
-package utils.enuns;
+package utils.enums;
 
 public enum StatusComanda {
     PAGA,
     FECHADA,
-    EMABERTO
+    ABERTA
 }
