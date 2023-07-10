@@ -1,16 +1,17 @@
 package models;
 
 import java.sql.Timestamp;
+import java.time.Duration;
 import java.util.Date;
 
-import utils.enuns.StatusPreparo;
+import utils.enums.StatusPreparo;
 
 public class Pedido {
-    private int Id;
+    private int id;
     private Produto produto;
     private Timestamp dataHoraSolicitacao;
     private Timestamp dataHoraInicioPreparo;
-    private Timestamp tempoPreparoRestante;
+    private Duration tempoPreparoRestante;
     private StatusPreparo statusPreparo;
     private String observacao;
     private int quantidade;
@@ -25,15 +26,23 @@ public class Pedido {
     }
 
     public void adicionarQuantidadePedido(int quantidade){
-        
+        this.quantidade += quantidade;
+    }
+
+    public void reduzirQuantidadePedido(int quantidade){
+        this.quantidade -= quantidade;
+    }
+
+    public double getTotal() {
+        return quantidade * produto.getPrecoVenda();
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public Produto getProduto() {
@@ -60,11 +69,11 @@ public class Pedido {
         this.dataHoraInicioPreparo = dataHoraInicioPreparo;
     }
 
-    public Timestamp getTempoPreparoRestante() {
+    public Duration getTempoPreparoRestante() {
         return tempoPreparoRestante;
     }
 
-    public void setTempoPreparoRestante(Timestamp tempoPreparoRestante) {
+    public void setTempoPreparoRestante(Duration tempoPreparoRestante) {
         this.tempoPreparoRestante = tempoPreparoRestante;
     }
 

@@ -2,7 +2,7 @@ package models;
 
 import java.util.Date;
 
-import utils.enuns.TipoProduto;
+import utils.enums.TipoProduto;
 
 public class Produto {
     private int id;

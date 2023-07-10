@@ -1,13 +1,14 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import utils.enuns.Categorias;
+import utils.enums.Categorias;
 
 public class Cardapio {
     private int id;
-    private List<Produto> Produtos;
+    private List<Produto> produtos;
     private String nome;
     private String codigo;
     private String descricao;
@@ -17,9 +18,12 @@ public class Cardapio {
     private String criadoPor;
     private Date alteradoEm;
     private String alteradoPor;
-    
+
+    public Cardapio() {
+        produtos = new ArrayList<>();
+    }
     public Cardapio(List<Produto> produtos, String nome, String codigo, String descricao, Categorias categoria) {
-        Produtos = produtos;
+        this.produtos = produtos;
         this.nome = nome;
         this.codigo = codigo;
         this.descricao = descricao;
@@ -35,11 +39,11 @@ public class Cardapio {
     }
 
     public List<Produto> getProdutos() {
-        return Produtos;
+        return produtos;
     }
 
     public void setProdutos(List<Produto> produtos) {
-        Produtos = produtos;
+        this.produtos = produtos;
     }
 
     public String getNome() {

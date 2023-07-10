@@ -2,10 +2,10 @@ package models;
 
 import java.util.Date;
 
-import utils.enuns.Cargo;
-import utils.enuns.Disponibilidade;
-import utils.enuns.Escolaridade;
-import utils.enuns.EstadoCivil;
+import utils.enums.Cargo;
+import utils.enums.Disponibilidade;
+import utils.enums.Escolaridade;
+import utils.enums.EstadoCivil;
 
 public class Funcionario extends Pessoa {
     private String rg;
