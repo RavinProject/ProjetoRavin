@@ -3,8 +3,8 @@ package views;
 import java.util.Date;
 import java.util.Scanner;
 
-import utils.enuns.EstadoCivil;
-import utils.enuns.TipoProduto;
+import utils.enums.EstadoCivil;
+import utils.enums.TipoProduto;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -20,6 +20,7 @@ import models.Produto;
 
 public class Cadastro extends View {
 
+    // TODO verificar a possibilidade de desacoplamento por meio de Interfaces
     private static Scanner scanner;
     private static Cliente cliente;
     private static Funcionario funcionario;
@@ -38,32 +39,15 @@ public class Cadastro extends View {
             String opcao = selecionarOpcao(menuInicial());
             System.out.println(opcao + " selecionado");
             switch (opcao) {
-                case "1":
-                    cadastrarCliente();
-                    break;
-                case "2":
-                    cadastrarFuncionario();
-                    break;
-                case "3":
-                    cadastrarProduto();
-                    break;
-                case "4":
-                    cadastrarEstoque();
-                    break;
-                case "5":
-                    cadastrarPedido();
-                    break;
-                case "6":
-                    cadastrarComanda();
-                    break;
-                case "7":
-                    cadastrarMesa();
-                    break;
-                case "x":
-                    exec = false;
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
+                case "1" -> cadastrarCliente();
+                case "2" -> cadastrarFuncionario();
+                case "3" -> cadastrarProduto();
+                case "4" -> cadastrarEstoque();
+                case "5" -> cadastrarPedido();
+                case "6" -> cadastrarComanda();
+                case "7" -> cadastrarMesa();
+                case "x" -> exec = false;
+                default -> System.out.println("Opção inválida!");
             }
         }
     }
@@ -113,7 +97,7 @@ public class Cadastro extends View {
         } catch (ParseException e) {
             System.out.println("Erro na conversão da data.");
         } catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Opção inálida para o Estado Civil");
+            System.out.println("Opção inválida para o Estado Civil");
         }
     }
 

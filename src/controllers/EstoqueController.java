@@ -6,6 +6,7 @@ import controllers.interfaces.IEstoqueController;
 import dao.ListasDados;
 import models.Estoque;
 
+// TODO testar
 public class EstoqueController implements IEstoqueController {
 
     @Override
@@ -52,7 +53,7 @@ public class EstoqueController implements IEstoqueController {
 
     @Override
     public List<Estoque> pegarLista() {
-        return ListasDados.getInstance().getListaEstoque();
+        return ListasDados.getInstance().getEstoqueList();
     }
 
     public int geraProximoId() {

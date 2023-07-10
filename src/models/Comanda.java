@@ -1,9 +1,10 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import utils.enuns.StatusComanda;
+import utils.enums.StatusComanda;
 
 public class Comanda {
     private int id;
@@ -20,6 +21,8 @@ public class Comanda {
     public Comanda(Cliente cliente, String codigo) {
         this.cliente = cliente;
         this.codigo = codigo;
+        this.pedidos = new ArrayList<>();
+        this.statusComanda = StatusComanda.ABERTA;
     }
 
     public void adicionarPedido(Pedido pedido){
@@ -30,12 +33,8 @@ public class Comanda {
         return false;
     }
 
-    public void fecharComanda(String codigo){
-
-    }
-
     public double calcularTotal(){
-        return 0;
+        return pedidos.stream().mapToDouble(Pedido::getTotal).sum();
     }
 
     public int getId() {
