@@ -1,19 +1,25 @@
 import javax.swing.JOptionPane;
 
-import dao.dados.GerarClientes;
-import dao.dados.GerarEstoqueProdutos;
-import dao.dados.GerarFuncionarios;
-import views.CadastroClienteView;
-import views.CadastroEstoqueView;
-import views.CadastroFuncionarioView;
+import controllers.ClienteController;
+import controllers.interfaces.IClienteController;
+import dao.ListasDados;
+import dao.interfaces.IClienteRepositorio;
+import views.cliente.SubmenuCliente;
+import views.estoque.CadastroEstoqueView;
+import views.funcionario.CadastroFuncionarioView;
 
 public class App {
 
     public static void main(String[] args) {
-        
-        GerarFuncionarios.montaLista();
-        GerarClientes.montaLista();
-        GerarEstoqueProdutos.montaLista();
+
+        // Lista de dados Singleton
+        ListasDados listasDados = ListasDados.getInstance();
+
+        // Injeção de Dependência
+        IClienteRepositorio clienteRepo = listasDados.getClienteRepositorio();
+        ClienteController clienteController = new ClienteController(clienteRepo);
+
+        // TODO criar os outros controladores e passar eles através do mainMenu
 
         System.out.println("\u001B[38;2;255;0;0m\n         :::::::::          :::       :::     :::    :::::::::::     ::::    :::\u001B[0m");
         System.out.println("\u001B[38;2;255;165;0m        :+:    :+:       :+: :+:     :+:     :+:        :+:         :+:+:   :+:\u001B[0m");
@@ -24,10 +30,10 @@ public class App {
         System.out.println("\u001B[38;2;0;0;139m   ###    ###     ###     ###       ###        ###########     ###    ####\u001B[0m");
         System.out.println("\u001B[31m \n BEM VINDO AO SISTEMA RAVIN!\n\u001B[0m");
 
-        menu();
+        mainMenu(clienteController);
     }
 
-    private static void menu() {
+    private static void mainMenu(IClienteController clienteController) {
         boolean exec = true;
         while (exec) {
             String opcao = JOptionPane.showInputDialog(menuInicial());
@@ -35,20 +41,11 @@ public class App {
                 continue;
             }
             switch (opcao) {
-                case "1":
-                    CadastroClienteView.menu();
-                    break;
-                case "2":
-                    CadastroFuncionarioView.menu();
-                    break;
-                case "3":
-                    CadastroEstoqueView.menu();
-                    break;
-                case "x":
-                    exec = false;
-                    break;
-                default:
-                    System.out.println("Opção inválida!");
+                case "1" -> SubmenuCliente.menu(clienteController);
+                case "2" -> CadastroFuncionarioView.menu();
+                case "3" -> CadastroEstoqueView.menu();
+                case "x" -> exec = false;
+                default -> System.out.println("Opção inválida!");
             }
         }
         System.out.println("Programa encerrando...");

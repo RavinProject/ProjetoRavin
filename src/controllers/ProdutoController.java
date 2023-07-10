@@ -55,7 +55,7 @@ public class ProdutoController implements IProdutoController {
 
     @Override
     public List<Produto> pegarLista() {
-        return ListasDados.getInstance().getListaProduto();
+        return null;
     }
     
     public int geraProximoId() {
