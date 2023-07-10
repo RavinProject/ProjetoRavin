@@ -3,14 +3,9 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.dados.GerarClientes;
-import dao.dados.GerarFuncionarios;
-import models.Cliente;
-import models.Estoque;
-import models.Funcionario;
-import models.Mesa;
-import models.Pessoa;
-import models.Produto;
+import dao.dados.*;
+import dao.interfaces.*;
+import models.*;
 
 /**
  * Padrão Singleton
@@ -18,13 +13,42 @@ import models.Produto;
 public class ListasDados {
 
     private static ListasDados instancia;
+    private List<Cliente> clientesList;
+    private List<Funcionario> funcionariosList;
+    private List<Estoque> estoqueList;
+    private List<Produto> produtosList;
 
-    private List<Pessoa> listaPessoas;
-    private List<Estoque> listaEstoque;
-    private List<Produto> listaProduto;
+    private IClienteRepositorio clienteRepo;
+    private IFuncionarioRepositorio funcionarioRepo;
+    private IEstoqueRepositorio estoqueRepo;
+    private IProdutoRepositorio produtoRepo;
 
     private ListasDados() {
-        listaPessoas = new ArrayList<Pessoa>();
+        clienteRepo = new ClienteRepositorio(new ArrayList<>());
+        estoqueRepo = new EstoqueRepositorio(new ArrayList<>());
+        funcionarioRepo = new FuncionarioRepositorio(new ArrayList<>());
+        produtoRepo = new ProdutoRepositorio(new ArrayList<>());
+
+        // Gerador de lista de clientes
+        List<Cliente> clientesGerados = GerarClientes.montaLista();
+        clienteRepo = new ClienteRepositorio(clientesGerados);
+
+        // Gerador de lista de funcionarios
+        List<Funcionario> funcionariosGerados = GerarFuncionarios.montaLista();
+        funcionarioRepo = new FuncionarioRepositorio(funcionariosGerados);
+
+        // Gerador de lista de produtos
+        produtosList = GerarProdutos.montaLista();
+        produtoRepo = new ProdutoRepositorio(produtosList);
+
+        // Gerador de lista de estoque
+        GerarEstoque gerarEstoque = new GerarEstoque(produtosList);
+        estoqueList = gerarEstoque.generateEstoqueList();
+        estoqueRepo = new EstoqueRepositorio(estoqueList);
+
+        // Atualizando as listas após as inserções
+        clientesList = clienteRepo.pegarLista();
+        funcionariosList = funcionarioRepo.pegarLista();
     }
 
     public static ListasDados getInstance() {
@@ -34,25 +58,36 @@ public class ListasDados {
         return instancia;
     }
 
-    public List<Pessoa> getListaPessoas() {
-        if(listaPessoas == null){
-            listaPessoas = new ArrayList<Pessoa>();
-        }
-        return listaPessoas;
+    public List<Cliente> getClientList() {
+        return clientesList;
     }
 
-    public List<Estoque> getListaEstoque() {
-        if(listaEstoque == null){
-            listaEstoque = new ArrayList<Estoque>();
-        }
-        return listaEstoque;
+    public List<Funcionario> getFuncionariosList() {
+        return funcionariosList;
     }
 
-    public List<Produto> getListaProduto() {
-        if(listaProduto == null){
-            listaProduto = new ArrayList<Produto>();
-        }
-        return listaProduto;
+    public List<Estoque> getEstoqueList() {
+        return estoqueList;
+    }
+
+    public List<Produto> getProdutosList() {
+        return produtosList;
+    }
+
+    public IClienteRepositorio getClienteRepositorio() {
+        return clienteRepo;
+    }
+
+    public IFuncionarioRepositorio getFuncionarioRepositorio() {
+        return funcionarioRepo;
+    }
+
+    public IEstoqueRepositorio getEstoqueRepositorio() {
+        return estoqueRepo;
+    }
+
+    public IProdutoRepositorio getProdutoRepositorio() {
+        return produtoRepo;
     }
 
 }
