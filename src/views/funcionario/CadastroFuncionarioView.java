@@ -1,4 +1,4 @@
-package views;
+package views.funcionario;
 
 import java.util.Date;
 import java.util.InputMismatchException;
@@ -6,42 +6,30 @@ import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
 import controllers.FuncionarioController;
-import controllers.PessoaController;
-import utils.enuns.Cargo;
-import utils.enuns.Disponibilidade;
-import utils.enuns.Escolaridade;
-import utils.enuns.EstadoCivil;
+import utils.enums.Cargo;
+import utils.enums.Disponibilidade;
+import utils.enums.Escolaridade;
+import utils.enums.EstadoCivil;
 import models.Funcionario;
-import models.Pessoa;
 import utils.DateUtils;
+import views.View;
 
 public class CadastroFuncionarioView extends View {
+
+    // TODO Desacoplar funções em outras classes
 
     public static void menu() {
         boolean exec = true;
         while (exec) {
             String opcao = JOptionPane.showInputDialog(menuInicial());
             switch (opcao) {
-                case "1":
-                    cadastrar();
-                    break;
-                case "2":
-                    atualizar();
-                    break;
-                case "3":
-                    listarFuncionarios();
-                    break;
-                case "4":
-                    pesquisarFuncionarioPorCpf();
-                    break;
-                case "5":
-                    excluirFuncionario();
-                    break;
-                case "x":
-                    exec = false;
-                    break;
-                default:
-                    exibeDialogo("Opção inválida! Voltando...");
+                case "1" -> cadastrar();
+                case "2" -> atualizar();
+                case "3" -> listarFuncionarios();
+                case "4" -> pesquisarFuncionarioPorCpf();
+                case "5" -> excluirFuncionario();
+                case "x" -> exec = false;
+                default -> exibeDialogo("Opção inválida! Voltando...");
             }
         }
     }
@@ -186,15 +174,21 @@ public class CadastroFuncionarioView extends View {
     }
 
     private static void listarFuncionarios() {
-        PessoaController pessoaController = new PessoaController();
-        String texto = "";
-        for (Pessoa pessoa : pessoaController.pegarLista()) {
-            if(pessoa instanceof Funcionario){
-                Funcionario funcionario = (Funcionario) pessoa;
-                texto += "ID: " + funcionario.getId() + " CPF: " + funcionario.getCpf() + (funcionario.getAtivo() ? " " : " (INATIVO) ") + funcionario.getNome() + " (" + funcionario.getCargoString().toUpperCase() + ")\n";
-            }
+        FuncionarioController funcionarioController = new FuncionarioController();
+        StringBuilder texto = new StringBuilder();
+
+        for (Funcionario funcionario : funcionarioController.pegarLista()) {
+            texto.append("ID: ")
+                    .append(funcionario.getId())
+                    .append(" CPF: ")
+                    .append(funcionario.getCpf())
+                    .append(funcionario.getAtivo() ? " " : " (INATIVO) ")
+                    .append(funcionario.getNome())
+                    .append(" (")
+                    .append(funcionario.getCargoString().toUpperCase())
+                    .append(")\n");
         }
-        exibeDialogo(texto);
+        exibeDialogo(texto.toString());
     }
 
     private static void excluirFuncionario() {

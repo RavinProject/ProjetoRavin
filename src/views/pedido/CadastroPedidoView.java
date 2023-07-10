@@ -1,4 +1,4 @@
-package views;
+package views.pedido;
 
 public class CadastroPedidoView {
 

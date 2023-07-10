@@ -1,4 +1,4 @@
-package views;
+package views.estoque;
 
 import java.util.Date;
 import java.util.List;
@@ -7,9 +7,10 @@ import javax.swing.JOptionPane;
 
 import controllers.EstoqueController;
 import controllers.ProdutoController;
-import utils.enuns.TipoProduto;
+import utils.enums.TipoProduto;
 import models.Estoque;
 import models.Produto;
+import views.View;
 
 public class CadastroEstoqueView extends View {
 

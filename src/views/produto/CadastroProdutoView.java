@@ -1,4 +1,4 @@
-package views;
+package views.produto;
 
 public class CadastroProdutoView {
 

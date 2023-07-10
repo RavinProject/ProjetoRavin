@@ -1,4 +1,4 @@
-package views;
+package views.comanda;
 
 import java.util.Scanner;
 
