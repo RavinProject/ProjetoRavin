@@ -1,6 +1,9 @@
 package views.cliente;
 
+import controllers.ClienteController;
 import controllers.interfaces.IClienteController;
+import dao.ListasDados;
+import dao.interfaces.IClienteRepositorio;
 import models.Cliente;
 import utils.DateUtils;
 
@@ -14,7 +17,11 @@ import static views.cliente.RecuperarClienteView.listarClientes;
 import static views.cliente.RecuperarClienteView.pesquisarClientePorCpf;
 
 public class SubmenuCliente {
-    public static void menu(IClienteController clienteController) {
+    public static void menu() {
+        // Injeção de Dependência
+        IClienteRepositorio clienteRepo = ListasDados.getInstance().getClienteRepositorio();
+        ClienteController clienteController = new ClienteController(clienteRepo);
+
         boolean exec = true;
         while (exec) {
             String opcao = JOptionPane.showInputDialog(menuInicial());
