@@ -1,6 +1,5 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dao.dados.*;
@@ -24,10 +23,6 @@ public class ListasDados {
     private IProdutoRepositorio produtoRepo;
 
     private ListasDados() {
-        clienteRepo = new ClienteRepositorio(new ArrayList<>());
-        estoqueRepo = new EstoqueRepositorio(new ArrayList<>());
-        funcionarioRepo = new FuncionarioRepositorio(new ArrayList<>());
-        produtoRepo = new ProdutoRepositorio(new ArrayList<>());
 
         // Gerador de lista de clientes
         List<Cliente> clientesGerados = GerarClientes.montaLista();
