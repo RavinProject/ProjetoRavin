@@ -1,7 +1,6 @@
 package dao.interfaces;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IRepositorio<T> {
 
@@ -10,7 +9,7 @@ public interface IRepositorio<T> {
 
     // Read
     List<T> pegarLista();
-    Optional<T> recuperarPorId(int id);
+    T recuperarPorId(int id);
 
     // Update
     void atualizar(T object);

@@ -4,7 +4,6 @@ import dao.interfaces.IMesaRepositorio;
 import models.Mesa;
 
 import java.util.List;
-import java.util.Optional;
 
 public class MesaRepositorio implements IMesaRepositorio {
     @Override
@@ -18,8 +17,8 @@ public class MesaRepositorio implements IMesaRepositorio {
     }
 
     @Override
-    public Optional<Mesa> recuperarPorId(int id) {
-        return Optional.empty();
+    public Mesa recuperarPorId(int id) {
+        return null;
     }
 
     @Override
