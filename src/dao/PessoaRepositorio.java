@@ -4,7 +4,6 @@ import dao.interfaces.IRepositorio;
 import models.Pessoa;
 
 import java.util.List;
-import java.util.Optional;
 
 public class PessoaRepositorio implements IRepositorio<Pessoa> {
     @Override
@@ -18,8 +17,8 @@ public class PessoaRepositorio implements IRepositorio<Pessoa> {
     }
 
     @Override
-    public Optional<Pessoa> recuperarPorId(int id) {
-        return Optional.empty();
+    public Pessoa recuperarPorId(int id) {
+        return null;
     }
 
     @Override

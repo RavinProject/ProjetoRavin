@@ -4,7 +4,6 @@ import dao.interfaces.IComandaRepositorio;
 import models.Comanda;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ComandaRepositorio implements IComandaRepositorio {
     @Override
@@ -18,8 +17,8 @@ public class ComandaRepositorio implements IComandaRepositorio {
     }
 
     @Override
-    public Optional<Comanda> recuperarPorId(int id) {
-        return Optional.empty();
+    public Comanda recuperarPorId(int id) {
+        return null;
     }
 
     @Override

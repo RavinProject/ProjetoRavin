@@ -4,10 +4,8 @@ import dao.interfaces.IProdutoRepositorio;
 import models.Produto;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ProdutoRepositorio implements IProdutoRepositorio {
-
     private List<Produto> listaProdutos;
 
     public ProdutoRepositorio(List<Produto> listaProdutos) {
@@ -16,7 +14,20 @@ public class ProdutoRepositorio implements IProdutoRepositorio {
 
     @Override
     public void inserir(Produto produto) {
-        listaProdutos.add(produto);
+        if (produto.getId() == 0) {
+            produto.setId(geraProximoId());
+        }
+        pegarLista().add(produto);
+    }
+
+    public int geraProximoId() {
+        int maiorId = 0;
+        for (Produto produto : pegarLista()) {
+            if (produto.getId() > maiorId) {
+                maiorId = produto.getId();
+            }
+        }
+        return maiorId + 1;
     }
 
     @Override
@@ -25,22 +36,32 @@ public class ProdutoRepositorio implements IProdutoRepositorio {
     }
 
     @Override
-    public Optional<Produto> recuperarPorId(int id) {
-        return Optional.empty();
+    public Produto recuperarPorId(int id) {
+        for (Produto produto : pegarLista()) {
+            if (produto.getId() == id) {
+                return produto;
+            }
+        }
+        return null;
     }
 
     @Override
-    public void atualizar(Produto object) {
-
+    public void atualizar(Produto produto) {
+        for (int i = 0; i < pegarLista().size(); i++) {
+            if (pegarLista().get(i).getId() == produto.getId()) {
+                pegarLista().set(i, produto);
+                break;
+            }
+        }
     }
 
     @Override
-    public void remover(Produto object) {
-
+    public void remover(Produto produto) {
+        pegarLista().removeIf(p -> p.getId() == produto.getId());
     }
 
     @Override
     public void removerPorId(int id) {
-
+        pegarLista().removeIf(p -> p.getId() == id);
     }
 }
