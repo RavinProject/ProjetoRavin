@@ -1,7 +1,6 @@
 package views.cliente;
 
 import controllers.ClienteController;
-import controllers.interfaces.IClienteController;
 import dao.ListasDados;
 import dao.interfaces.IClienteRepositorio;
 import models.Cliente;

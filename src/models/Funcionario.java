@@ -30,8 +30,8 @@ public class Funcionario extends Pessoa {
         super(nome, telefone, cpf, ativo);
     }
 
-    public Funcionario(String nome, String telefone, String cpf, Escolaridade escolaridade, String pis, Date dataAdmissao, Cargo cargo, boolean ativo) {
-        super(nome, telefone, cpf, ativo);
+    public Funcionario(int id, String nome, String telefone, String cpf, Escolaridade escolaridade, String pis, Date dataAdmissao, Cargo cargo, boolean ativo) {
+        super(id, nome, telefone, cpf, ativo);
         this.escolaridade = escolaridade;
         this.cargo = cargo;
         this.pis = pis;

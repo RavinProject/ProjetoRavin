@@ -1,6 +1,5 @@
 import javax.swing.JOptionPane;
 
-import dao.ListasDados;
 import views.cliente.SubmenuCliente;
 import views.estoque.CadastroEstoqueView;
 import views.funcionario.CadastroFuncionarioView;
