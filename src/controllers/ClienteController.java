@@ -1,7 +1,6 @@
 package controllers;
 
 import controllers.interfaces.IClienteController;
-import dao.ClienteRepositorio;
 import dao.interfaces.IClienteRepositorio;
 import models.Cliente;
 
@@ -31,7 +30,6 @@ public class ClienteController implements IClienteController {
         clienteRepositorio.inserir(objeto);
     }
 
-    // TODO testar
     @Override
     public Cliente recuperarPorId(int id) {
         Optional<Cliente> cliente = clienteRepositorio.recuperarPorId(id);
@@ -42,11 +40,11 @@ public class ClienteController implements IClienteController {
         }
     }
 
-    // TODO testar
     @Override
     public List<Cliente> pegarLista() {
         return clienteRepositorio.pegarLista();
     }
+    
     @Override
     public Cliente recuperarPorCpf(String cpf) {
         Optional<Cliente> cliente = clienteRepositorio.recuperarPorCpf(cpf);

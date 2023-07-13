@@ -18,4 +18,7 @@ public interface IRepositorio<T> {
     // Delete
     void remover(T object);
     void removerPorId(int id);
+
+    // Gera ID
+    int geraProximoId();
 }

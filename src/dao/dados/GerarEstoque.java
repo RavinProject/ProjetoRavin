@@ -19,7 +19,7 @@ public class GerarEstoque {
         List<Estoque> estoqueList = new ArrayList<>();
 
         for(Produto produto : this.produtos) {
-            Estoque estoque = new Estoque(produto, random.nextInt(100));
+            Estoque estoque = new Estoque(produto.getId(), produto, random.nextInt(100));
             estoqueList.add(estoque);
         }
 

@@ -36,4 +36,10 @@ public class PessoaRepositorio implements IRepositorio<Pessoa> {
     public void removerPorId(int id) {
 
     }
+
+    @Override
+    public int geraProximoId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+    }
 }

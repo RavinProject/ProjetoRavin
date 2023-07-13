@@ -43,4 +43,10 @@ public class ProdutoRepositorio implements IProdutoRepositorio {
     public void removerPorId(int id) {
 
     }
+
+    @Override
+    public int geraProximoId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+    }
 }

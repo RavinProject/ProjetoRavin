@@ -41,4 +41,10 @@ public class ComandaRepositorio implements IComandaRepositorio {
     public Comanda getComandaPorCodigo(String codigo) {
         return null;
     }
+
+    @Override
+    public int geraProximoId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+    }
 }
