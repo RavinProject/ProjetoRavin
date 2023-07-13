@@ -4,6 +4,7 @@ import dao.interfaces.IClienteRepositorio;
 import models.Cliente;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ClienteRepositorio implements IClienteRepositorio {
 
@@ -15,20 +16,7 @@ public class ClienteRepositorio implements IClienteRepositorio {
 
     @Override
     public void inserir(Cliente cliente) {
-        if (cliente.getId() == 0) {
-            cliente.setId(geraProximoId());
-        }
-        pegarLista().add(cliente); // Adiciona o cliente na lista
-    }
-
-    public int geraProximoId() {
-        int maiorId = 0;
-        for (Cliente cliente : pegarLista()) {
-            if (cliente.getId() > maiorId) {
-                maiorId = cliente.getId();
-            }
-        }
-        return maiorId + 1;
+        listaClientes.add(cliente); // Adiciona o cliente na lista
     }
 
     @Override
@@ -36,23 +24,25 @@ public class ClienteRepositorio implements IClienteRepositorio {
         return listaClientes; // Retorna a lista de clientes
     }
 
+    // TODO testar
     @Override
-    public Cliente recuperarPorId(int id) {
+    public Optional<Cliente> recuperarPorId(int id) {
         // Itera pela lista e tenta encontrar um cliente com o ID fornecido
-        for (Cliente cliente : pegarLista()) {
+        for (Cliente cliente : listaClientes) {
             if (cliente.getId() == id) {
-                return cliente;
+                return Optional.of(cliente);
             }
         }
-        return null; // Retorna um Optional vazio se não encontrar
+        return Optional.empty(); // Retorna um Optional vazio se não encontrar
     }
 
+    // TODO testar
     @Override
     public void atualizar(Cliente clienteAtualizado) {
         // Itera pela lista e atualiza o cliente com o mesmo ID
-        for (int i = 0; i < pegarLista().size(); i++) {
-            if (pegarLista().get(i).getId() == clienteAtualizado.getId()) {
-                pegarLista().set(i, clienteAtualizado);
+        for (int i = 0; i < listaClientes.size(); i++) {
+            if (listaClientes.get(i).getId() == clienteAtualizado.getId()) {
+                listaClientes.set(i, clienteAtualizado);
                 break;
             }
         }
@@ -60,23 +50,23 @@ public class ClienteRepositorio implements IClienteRepositorio {
 
     @Override
     public void remover(Cliente cliente) {
-        pegarLista().removeIf(p -> p.getId() == cliente.getId());
+        listaClientes.remove(cliente); // Remove o cliente da lista
     }
 
     @Override
     public void removerPorId(int id) {
         // Itera pela lista e remove o cliente com o ID fornecido
-        pegarLista().removeIf(p -> p.getId() == id);
+        listaClientes.removeIf(cliente -> cliente.getId() == id);
     }
 
     @Override
-    public Cliente recuperarPorCpf(String cpf) {
+    public Optional<Cliente> recuperarPorCpf(String cpf) {
         // Itera pela lista e tenta encontrar um cliente com o CPF fornecido
-        for (Cliente cliente : pegarLista()) {
+        for (Cliente cliente : listaClientes) {
             if (cliente.getCpf().equals(cpf)) {
-                return cliente;
+                return Optional.of(cliente);
             }
         }
-        return null; // Retorna um Optional vazio se não encontrar
+        return Optional.empty(); // Retorna um Optional vazio se não encontrar
     }
 }

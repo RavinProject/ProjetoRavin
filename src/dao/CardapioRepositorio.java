@@ -4,6 +4,7 @@ import dao.interfaces.ICardapioRepositorio;
 import models.Cardapio;
 
 import java.util.List;
+import java.util.Optional;
 
 public class CardapioRepositorio implements ICardapioRepositorio {
     @Override
@@ -17,8 +18,8 @@ public class CardapioRepositorio implements ICardapioRepositorio {
     }
 
     @Override
-    public Cardapio recuperarPorId(int id) {
-        return null;
+    public Optional<Cardapio> recuperarPorId(int id) {
+        return Optional.empty();
     }
 
     @Override

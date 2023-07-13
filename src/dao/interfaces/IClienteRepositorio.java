@@ -2,7 +2,9 @@ package dao.interfaces;
 
 import models.Cliente;
 
+import java.util.Optional;
+
 public interface IClienteRepositorio extends IRepositorio<Cliente> {
 
-    Cliente recuperarPorCpf(String cpf);
+    Optional<Cliente> recuperarPorCpf(String cpf);
 }

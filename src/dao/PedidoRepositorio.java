@@ -4,6 +4,7 @@ import dao.interfaces.IPedidoRepositorio;
 import models.Pedido;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class PedidoRepositorio implements IPedidoRepositorio {
     private List<Pedido> pedidos;
@@ -22,8 +23,8 @@ public class PedidoRepositorio implements IPedidoRepositorio {
     }
 
     @Override
-    public Pedido recuperarPorId(int id) {
-        return null;
+    public Optional<Pedido> recuperarPorId(int id) {
+        return Optional.empty();
     }
 
     @Override
