@@ -4,6 +4,7 @@ import dao.interfaces.IEstoqueRepositorio;
 import models.Estoque;
 
 import java.util.List;
+import java.util.Optional;
 
 public class EstoqueRepositorio implements IEstoqueRepositorio {
 
@@ -14,55 +15,32 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
     }
 
     @Override
-    public void inserir(Estoque estoque) {
-        if (estoque.getId() == 0) {
-            estoque.setId(geraProximoId());
-        }
-        pegarLista().add(estoque);
-    }
+    public void inserir(Estoque object) {
 
-    public int geraProximoId() {
-        int maiorId = 0;
-        for (Estoque estoque : pegarLista()) {
-            if (estoque.getId() > maiorId) {
-                maiorId = estoque.getId();
-            }
-        }
-        return maiorId + 1;
     }
 
     @Override
     public List<Estoque> pegarLista() {
-        return listaEstoque;
-    }
-
-    @Override
-    public Estoque recuperarPorId(int id) {
-        for (Estoque estoque : pegarLista()) {
-            if (estoque.getId() == id) {
-                return estoque;
-            }
-        }
         return null;
     }
 
     @Override
-    public void atualizar(Estoque estoque) {
-        for (int i = 0; i < pegarLista().size(); i++) {
-            if (pegarLista().get(i).getId() == estoque.getId()) {
-                pegarLista().set(i, estoque);
-                break;
-            }
-        }
+    public Optional<Estoque> recuperarPorId(int id) {
+        return Optional.empty();
     }
 
     @Override
-    public void remover(Estoque estoque) {
-        pegarLista().removeIf(p -> p.getId() == estoque.getId());
+    public void atualizar(Estoque object) {
+
+    }
+
+    @Override
+    public void remover(Estoque object) {
+
     }
 
     @Override
     public void removerPorId(int id) {
-        pegarLista().removeIf(p -> p.getId() == id);
+
     }
 }

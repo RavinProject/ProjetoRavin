@@ -15,8 +15,7 @@ public class Estoque {
 
     }
 
-    public Estoque(int id, Produto produto, double quantidade){
-        this.id = id;
+    public Estoque(Produto produto, double quantidade){
         this.produto = produto;
         this.quantidade = quantidade;
     }
