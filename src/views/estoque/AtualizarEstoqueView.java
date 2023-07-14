@@ -1,11 +1,8 @@
 package views.estoque;
 
-import controllers.interfaces.IClienteController;
 import controllers.interfaces.IEstoqueController;
-import models.Cliente;
 import models.Estoque;
 import models.Produto;
-import utils.DateUtils;
 import utils.enums.TipoProduto;
 
 import java.util.Date;
@@ -54,7 +51,7 @@ public class AtualizarEstoqueView {
     }
 
     static void atualizarQuantidadeEstoque(Estoque estoque){
-        estoque.setQuantidade(Double.parseDouble(solicitaEntradaDeDado("Qual a quantidade o produto " + produto.getNome() + " em estoque?", estoque.getQuantidade() + "").replace(',', '.')));
+        estoque.setQuantidade(Double.parseDouble(solicitaEntradaDeDado("Qual a quantidade o produto " + estoque.getProduto().getNome() + " em estoque?", estoque.getQuantidade() + "").replace(',', '.')));
         estoque.setAlteradoEm(new Date());
         estoque.setAlteradoPor(null);
     }
