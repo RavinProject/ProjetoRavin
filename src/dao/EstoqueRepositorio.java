@@ -67,4 +67,14 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
         }
         return maiorId + 1;
     }
+
+    @Override
+    public Optional<Estoque> recuperarPorCodigo(String codigo) {
+        for (Estoque estoque : pegarLista()) {
+            if (estoque.getProduto().getCodigo().equals(codigo)) {
+                return Optional.of(estoque);
+            }
+        }
+        return Optional.empty();
+    }
 }

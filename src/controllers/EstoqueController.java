@@ -1,63 +1,60 @@
 package controllers;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import controllers.interfaces.IEstoqueController;
-import dao.ListasDados;
+import dao.interfaces.IEstoqueRepositorio;
 import models.Estoque;
 
-// TODO testar
 public class EstoqueController implements IEstoqueController {
 
-    @Override
-    public void atualizar(Estoque estoque) {
-        for (int i = 0; i < pegarLista().size(); i++) {
-            if (pegarLista().get(i).getId() == estoque.getId()) {
-                pegarLista().set(i, estoque);
-                break;
-            }
-        }
+    private final IEstoqueRepositorio estoqueRepositorio;
+
+    public EstoqueController(IEstoqueRepositorio estoqueRepositorio){
+        this.estoqueRepositorio = estoqueRepositorio;
     }
 
     @Override
-    public boolean remover(Estoque estoque) {
-        return pegarLista().removeIf(p -> p.getId() == estoque.getId());
-    }
-
-    @Override
-    public void inserir(Estoque estoque) {
-        if (estoque.getId() == 0) {
-            estoque.setId(geraProximoId());
-        }
-        pegarLista().add(estoque);
+    public void inserir(Estoque objeto) {
+        estoqueRepositorio.inserir(objeto);
     }
 
     @Override
     public Estoque recuperarPorId(int id) {
-        for (Estoque estoque : pegarLista()) {
-            if (estoque.getId() == id) {
-                return estoque;
-            }
+        Optional<Estoque> estoque = estoqueRepositorio.recuperarPorId(id);
+        if (estoque.isPresent()) {
+            return estoque.get();
+        } else {
+            throw new NoSuchElementException("Estoque não encontrado para o ID: " + id);
         }
-        return null;
-    }
-    @Override
-    public Estoque recuperarPorCodigo(String codigo) {
-        for(Estoque estoque : pegarLista()){
-            if(estoque.getProduto().getCodigo().equals(codigo)){
-                return estoque;
-            }
-        }
-        return null;
     }
 
     @Override
     public List<Estoque> pegarLista() {
-        return ListasDados.getInstance().getEstoqueList();
+        return estoqueRepositorio.pegarLista();
     }
 
-    public int geraProximoId() {
-        return pegarLista().size() + 1;
+    @Override
+    public void atualizar(Estoque estoque) {
+        estoqueRepositorio.atualizar(estoque);
     }
-    
+
+    @Override
+    public boolean remover(Estoque estoque) {
+        estoqueRepositorio.remover(estoque);
+        return true;
+    }
+
+    @Override
+    public Estoque recuperarPorCodigo(String codigo) throws NoSuchElementException{
+        Optional<Estoque> estoque = estoqueRepositorio.recuperarPorCodigo(codigo);
+        if (estoque.isPresent()) {
+            return estoque.get();
+        } else {
+            throw new NoSuchElementException("Estoque não encontrado para o Código: " + codigo);
+        }
+    }
+
 }
