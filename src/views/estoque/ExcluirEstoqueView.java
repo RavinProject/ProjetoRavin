@@ -8,11 +8,13 @@ import javax.swing.*;
 import static views.View.*;
 import static views.View.exibeDialogo;
 
+import java.util.NoSuchElementException;
+
 public class ExcluirEstoqueView {
     static void excluirEstoque(IEstoqueController estoqueController) {
         String produtoCodigo = solicitaEntradaDeDado("Informe o código do produto que deseja excluir: ");
-        Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
-        if(estoque != null){
+        try{
+            Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
             String estoqueDados = "ESTOQUE ID: " + estoque.getId() +
                         "\nQuantidade: " + estoque.getQuantidade() +
                         "\n======== PRODUTO ========" +
@@ -33,9 +35,8 @@ public class ExcluirEstoqueView {
             }else{
                 exibeDialogo("Nada foi alterado!");
             }
-        }else{
+        }catch(NoSuchElementException e){
             exibeDialogo("Produto não encontrado com o código informado!");
         }
-
     }
 }

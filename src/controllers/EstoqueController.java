@@ -16,11 +16,11 @@ public class EstoqueController implements IEstoqueController {
         this.estoqueRepositorio = estoqueRepositorio;
     }
 
-    public boolean produtoJaCadastrado(String codigo){
-        try{
-            recuperarPorCodigo(codigo);
+    public boolean estoqueJaCadastrado(String codigo){
+        Optional<Estoque> estoque = estoqueRepositorio.recuperarPorCodigo(codigo);
+        if (estoque.isPresent()) {
             return true;
-        }catch(NoSuchElementException e){
+        } else {
             return false;
         }
     }
