@@ -5,5 +5,5 @@ import java.util.Optional;
 import models.Estoque;
 
 public interface IEstoqueRepositorio extends IRepositorio<Estoque> {
-    Optional<Estoque> recuperarPorCodigo(String codigo);
+    Optional<Estoque> recuperarPorCodigo(String codigo) ;
 }

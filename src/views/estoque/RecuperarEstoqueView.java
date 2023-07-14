@@ -7,15 +7,17 @@ import static views.View.exibeDialogo;
 import static views.View.solicitaEntradaDeDado;
 import static views.estoque.SubmenuEstoque.imprimeProdutoEmEstoque;
 
+import java.util.NoSuchElementException;
+
 public class RecuperarEstoqueView {
 
     static void pesquisarEstoque(IEstoqueController estoqueController) {
         String produtoCodigo = solicitaEntradaDeDado("Informe o código do produto que deseja consultar: ");
-        Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
-        if (estoque != null) {
+        try{
+            Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
             imprimeProdutoEmEstoque(estoque);
-        } else {
-            exibeDialogo("Produto não encontrado com o código informado!");
+        }catch(NoSuchElementException e){
+            exibeDialogo(e.getMessage());
         }
     }
 
