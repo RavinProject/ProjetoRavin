@@ -16,13 +16,22 @@ public class EstoqueController implements IEstoqueController {
         this.estoqueRepositorio = estoqueRepositorio;
     }
 
+    public boolean produtoJaCadastrado(String codigo){
+        try{
+            recuperarPorCodigo(codigo);
+            return true;
+        }catch(NoSuchElementException e){
+            return false;
+        }
+    }
+
     @Override
     public void inserir(Estoque objeto) {
         estoqueRepositorio.inserir(objeto);
     }
 
     @Override
-    public Estoque recuperarPorId(int id) {
+    public Estoque recuperarPorId(int id) throws NoSuchElementException{
         Optional<Estoque> estoque = estoqueRepositorio.recuperarPorId(id);
         if (estoque.isPresent()) {
             return estoque.get();
@@ -53,7 +62,7 @@ public class EstoqueController implements IEstoqueController {
         if (estoque.isPresent()) {
             return estoque.get();
         } else {
-            throw new NoSuchElementException("Estoque não encontrado para o Código: " + codigo);
+            throw new NoSuchElementException("Estoque não encontrado para o Produto com código: " + codigo);
         }
     }
 

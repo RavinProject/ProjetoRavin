@@ -10,12 +10,10 @@ import models.Estoque;
 import javax.swing.*;
 
 import static views.View.exibeDialogo;
-// import static views.cliente.AtualizarClienteView.atualizar;
-// import static views.cliente.CadastrarClienteView.*;
-// import static views.cliente.ExcluirClienteView.excluirCliente;
-// import static views.cliente.RecuperarClienteView.listarClientes;
-// import static views.cliente.RecuperarClienteView.pesquisarClientePorCpf;
 import static views.estoque.RecuperarEstoqueView.pesquisarEstoque;
+import static views.estoque.AtualizarEstoqueView.atualizar;
+import static views.estoque.CadastrarEstoqueView.cadastrar;
+import static views.estoque.ExcluirEstoqueView.excluirEstoque;
 
 import java.util.List;
 
@@ -30,11 +28,11 @@ public class SubmenuEstoque {
         while (exec) {
             String opcao = JOptionPane.showInputDialog(menuInicial());
             switch (opcao) {
-                // case "1" -> cadastrar(clienteController);
-                // case "2" -> atualizar(clienteController);
+                case "1" -> cadastrar(estoqueController);
+                case "2" -> atualizar(estoqueController);
                 case "3" -> listarEstoque(estoqueController);
                 case "4" -> pesquisarEstoque(estoqueController);
-                // case "5" -> excluirCliente(clienteController);
+                case "5" -> excluirEstoque(estoqueController);
                 case "x" -> exec = false;
                 default -> exibeDialogo("Opção inválida! Voltando...");
             }

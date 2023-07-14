@@ -1,64 +1,60 @@
 package controllers;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import controllers.interfaces.IProdutoController;
-import dao.ListasDados;
+import dao.interfaces.IProdutoRepositorio;
 import models.Produto;
 
 public class ProdutoController implements IProdutoController {
 
+    private final IProdutoRepositorio produtoRepositorio;
+
+    public ProdutoController(IProdutoRepositorio produtoRepositorio){
+        this.produtoRepositorio = produtoRepositorio;
+    }
+
     @Override
     public void atualizar(Produto produto) {
-        for (int i = 0; i < pegarLista().size(); i++) {
-            if (pegarLista().get(i).getId() == produto.getId()) {
-                pegarLista().set(i, produto);
-                break;
-            }
-        }
+        produtoRepositorio.atualizar(produto);
     }
 
     @Override
     public boolean remover(Produto produto) {
-        return pegarLista().removeIf(p -> p.getId() == produto.getId());
+        produtoRepositorio.remover(produto);
+        return true;
     }
 
     @Override
     public void inserir(Produto produto) {
-        if (produto.getId() == 0) {
-            produto.setId(geraProximoId());
-        }
-        pegarLista().add(produto);
-    }
-
-
-
-    @Override
-    public Produto recuperarPorId(int id) {
-        for (Produto produto : pegarLista()) {
-            if (produto.getId() == id) {
-                return produto;
-            }
-        }
-        return null;
+        produtoRepositorio.inserir(produto);
     }
 
     @Override
-    public Produto recuperarPorCodigo(String codigo) {
-        for(Produto produto : pegarLista()){
-            if(produto.getCodigo().equals(codigo)){
-                return produto;
-            }
+    public Produto recuperarPorId(int id) throws NoSuchElementException{
+        Optional<Produto> produto = produtoRepositorio.recuperarPorId(id);
+        if (produto.isPresent()) {
+            return produto.get();
+        } else {
+            throw new NoSuchElementException("Produto não encontrado com o id: " + id);
         }
-        return null;
+    }
+
+    @Override
+    public Produto recuperarPorCodigo(String codigo) throws NoSuchElementException{
+        Optional<Produto> produto = produtoRepositorio.recuperarPorCodigo(codigo);
+        if (produto.isPresent()) {
+            return produto.get();
+        } else {
+            throw new NoSuchElementException("Produto não encontrado com o Código: " + codigo);
+        }
     }
 
     @Override
     public List<Produto> pegarLista() {
-        return null;
+        return produtoRepositorio.pegarLista();
     }
     
-    public int geraProximoId() {
-        return pegarLista().size() + 1;
-    }
 }
