@@ -1,9 +1,9 @@
 package views.cliente;
 
 import controllers.ClienteController;
-import dao.ListasDados;
-import dao.interfaces.IClienteRepositorio;
 import models.Cliente;
+import services.ClienteService;
+import services.interfaces.IClienteService;
 import utils.DateUtils;
 
 import static views.cliente.AtualizarClienteView.atualizar;
@@ -17,8 +17,8 @@ import views.View;
 public class SubmenuCliente extends View{
     public static void menu() {
         // Injeção de Dependência
-        IClienteRepositorio clienteRepo = ListasDados.getInstance().getClienteRepositorio();
-        ClienteController clienteController = new ClienteController(clienteRepo);
+        IClienteService clienteServico = new ClienteService();
+        ClienteController clienteController = new ClienteController(clienteServico);
 
         boolean exec = true;
         while (exec) {
