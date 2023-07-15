@@ -10,7 +10,7 @@ import services.interfaces.IClienteService;
 
 public class ClienteService implements IClienteService{
 
-    IClienteRepositorio clienteRepositorio;
+    private final IClienteRepositorio clienteRepositorio;
 
     public ClienteService(){
         clienteRepositorio = ListasDados.getInstance().getClienteRepositorio();

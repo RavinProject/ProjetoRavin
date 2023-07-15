@@ -1,7 +1,6 @@
 package controllers;
 
 import controllers.interfaces.IClienteController;
-import dao.interfaces.IClienteRepositorio;
 import models.Cliente;
 import services.interfaces.IClienteService;
 
