@@ -18,7 +18,7 @@ public class SubmenuMesa extends View{
                 case "3" -> exibeDialogo("Excluir Mesa: implementar...");
                 case "4" -> exibeDialogo("Listar Mesas: implementar...");
                 case "5" -> exibeDialogo("Exibir Mesa: implementar...");
-                case "6" -> exibeDialogo("Exibir Mesa: implementar...");
+                case "6" -> exibeDialogo("Reservar Mesa: implementar...");
                 case "x" -> exec = false;
                 default -> exibeDialogo("Opção inválida! Voltando...");
             }
