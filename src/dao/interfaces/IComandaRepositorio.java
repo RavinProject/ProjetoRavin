@@ -2,6 +2,8 @@ package dao.interfaces;
 
 import models.Comanda;
 
+import java.util.Optional;
+
 public interface IComandaRepositorio extends IRepositorio<Comanda> {
-    Comanda getComandaPorCodigo (String codigo);
+    Optional<Comanda> getComandaPorCodigo (String codigo);
 }

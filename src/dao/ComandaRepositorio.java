@@ -4,6 +4,7 @@ import dao.interfaces.IComandaRepositorio;
 import models.Comanda;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ComandaRepositorio implements IComandaRepositorio {
@@ -38,8 +39,15 @@ public class ComandaRepositorio implements IComandaRepositorio {
     }
 
     @Override
-    public Comanda getComandaPorCodigo(String codigo) {
-        return null;
+    public Optional<Comanda> getComandaPorCodigo(String codigo) {
+        List<Comanda> comandas = this.pegarLista();
+
+        for (Comanda comanda : comandas) {
+            if (Objects.equals(comanda.getCodigo(), codigo)) {
+                return Optional.of(comanda);
+            }
+        }
+        return Optional.empty();
     }
 
     @Override
