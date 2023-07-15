@@ -1,7 +1,7 @@
 import javax.swing.JOptionPane;
 
 import views.cliente.SubmenuCliente;
-import views.estoque.CadastroEstoqueView;
+import views.estoque.SubmenuEstoque;
 import views.funcionario.CadastroFuncionarioView;
 
 public class App {
@@ -30,7 +30,7 @@ public class App {
             switch (opcao) {
                 case "1" -> SubmenuCliente.menu();
                 case "2" -> CadastroFuncionarioView.menu();
-                case "3" -> CadastroEstoqueView.menu();
+                case "3" -> SubmenuEstoque.menu();
                 case "x" -> exec = false;
                 default -> System.out.println("Opção inválida!");
             }

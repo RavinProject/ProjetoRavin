@@ -1,6 +1,7 @@
 package dao;
 
 import dao.interfaces.IEstoqueRepositorio;
+import dao.interfaces.IProdutoRepositorio;
 import models.Estoque;
 
 import java.util.List;
@@ -16,6 +17,10 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
 
     @Override
     public void inserir(Estoque estoque) {
+        // insiro o produto na lista de produtos
+        IProdutoRepositorio produtoRepositorio = ListasDados.getInstance().getProdutoRepositorio();
+        produtoRepositorio.inserir(estoque.getProduto());
+        // insiro o estoque na lista de estoque
         if (estoque.getId() == 0) {
             estoque.setId(geraProximoId());
         }
@@ -39,6 +44,10 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
 
     @Override
     public void atualizar(Estoque estoqueAtualizado) {
+        // atualizo o produto na lista de produtos
+        IProdutoRepositorio produtoRepositorio = ListasDados.getInstance().getProdutoRepositorio();
+        produtoRepositorio.atualizar(estoqueAtualizado.getProduto());
+        // atualizo o estoque
         for (int i = 0; i < pegarLista().size(); i++) {
             if (pegarLista().get(i).getId() == estoqueAtualizado.getId()) {
                 pegarLista().set(i, estoqueAtualizado);
@@ -66,5 +75,15 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
             }
         }
         return maiorId + 1;
+    }
+
+    @Override
+    public Optional<Estoque> recuperarPorCodigo(String codigo) {
+        for (Estoque estoque : pegarLista()) {
+            if (estoque.getProduto().getCodigo().toLowerCase().equals(codigo.toLowerCase())) {
+                return Optional.of(estoque);
+            }
+        }
+        return Optional.empty();
     }
 }

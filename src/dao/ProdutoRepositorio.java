@@ -16,7 +16,10 @@ public class ProdutoRepositorio implements IProdutoRepositorio {
 
     @Override
     public void inserir(Produto produto) {
-        listaProdutos.add(produto);
+        if (produto.getId() == 0) {
+            produto.setId(geraProximoId());
+        }
+        pegarLista().add(produto);
     }
 
     @Override
@@ -26,27 +29,52 @@ public class ProdutoRepositorio implements IProdutoRepositorio {
 
     @Override
     public Optional<Produto> recuperarPorId(int id) {
+        for (Produto produto : pegarLista()) {
+            if (produto.getId() == id) {
+                return Optional.of(produto);
+            }
+        }
         return Optional.empty();
     }
 
     @Override
-    public void atualizar(Produto object) {
-
+    public void atualizar(Produto produtoAtualizado) {
+        for (int i = 0; i < pegarLista().size(); i++) {
+            if (pegarLista().get(i).getId() == produtoAtualizado.getId()) {
+                pegarLista().set(i, produtoAtualizado);
+                break;
+            }
+        }
     }
 
     @Override
-    public void remover(Produto object) {
-
+    public void remover(Produto produto) {
+        pegarLista().remove(produto);
     }
 
     @Override
     public void removerPorId(int id) {
-
+        pegarLista().removeIf(produto -> produto.getId() == id);
     }
 
     @Override
     public int geraProximoId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+        int maiorId = 0;
+        for (Produto produto : pegarLista()) {
+            if (produto.getId() > maiorId) {
+                maiorId = produto.getId();
+            }
+        }
+        return maiorId + 1;
+    }
+
+    @Override
+    public Optional<Produto> recuperarPorCodigo(String codigo) {
+        for (Produto produto : pegarLista()) {
+            if (produto.getCodigo().equals(codigo)) {
+                return Optional.of(produto);
+            }
+        }
+        return Optional.empty();
     }
 }
