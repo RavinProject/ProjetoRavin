@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 import views.cliente.SubmenuCliente;
 import views.estoque.SubmenuEstoque;
 import views.funcionario.SubmenuFuncionario;
@@ -26,7 +24,7 @@ public class App {
     private static void mainMenu() {
         boolean exec = true;
         while (exec) {
-            String opcao = JOptionPane.showInputDialog(menuInicial());
+            String opcao = views.View.solicitaEntradaDeDado(menuInicial());
             if(opcao == null){
                 continue;
             }
@@ -46,15 +44,17 @@ public class App {
 
     public static String menuInicial(){
         StringBuilder builder = new StringBuilder();
-		builder.append(" ==================== RAVIN ==================== ");
-		builder.append("\n");
-		builder.append("1 - Clientes \n");
-		builder.append("2 - Funcionarios \n");
-		builder.append("3 - Estoque \n");
-		builder.append("4 - Mesas \n");
-		builder.append("5 - Comandas \n");
-		builder.append("6 - Cardápio \n");
-		builder.append("x - Sair");
+        builder.append("""
+                ==================== RAVIN ====================
+                HOME:
+                1 - Clientes
+                2 - Funcionários
+                3 - Estoque 
+                4 - Mesas
+                5 - Comandas
+                6 - Cardápio
+                x - voltar
+                """);
         return builder.toString();
     }
 }

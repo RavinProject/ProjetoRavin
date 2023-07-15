@@ -6,16 +6,15 @@ import dao.interfaces.IClienteRepositorio;
 import models.Cliente;
 import utils.DateUtils;
 
-import javax.swing.*;
-
-import static views.View.exibeDialogo;
 import static views.cliente.AtualizarClienteView.atualizar;
 import static views.cliente.CadastrarClienteView.*;
 import static views.cliente.ExcluirClienteView.excluirCliente;
 import static views.cliente.RecuperarClienteView.listarClientes;
 import static views.cliente.RecuperarClienteView.pesquisarClientePorCpf;
 
-public class SubmenuCliente {
+import views.View;
+
+public class SubmenuCliente extends View{
     public static void menu() {
         // Injeção de Dependência
         IClienteRepositorio clienteRepo = ListasDados.getInstance().getClienteRepositorio();
@@ -23,7 +22,7 @@ public class SubmenuCliente {
 
         boolean exec = true;
         while (exec) {
-            String opcao = JOptionPane.showInputDialog(menuInicial());
+            String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
                 case "1" -> cadastrar(clienteController);
                 case "2" -> atualizar(clienteController);
@@ -38,14 +37,16 @@ public class SubmenuCliente {
 
     private static String menuInicial(){
         StringBuilder builder = new StringBuilder();
-        builder.append(" ==================== RAVIN ==================== ");
-        builder.append("\n");
-        builder.append("1 - Cadastrar Cliente \n");
-        builder.append("2 - Alterar Cliente \n");
-        builder.append("3 - Listar Clientes \n");
-        builder.append("4 - Visualizar Cliente \n");
-        builder.append("5 - Excluir Cliente \n");
-        builder.append("x - voltar \n");
+        builder.append("""
+                ==================== RAVIN ====================
+                CLIENTE:
+                1 - Cadastrar Cliente
+                2 - Alterar Cliente
+                3 - Listar Clientes
+                4 - Visualizar Cliente
+                5 - Excluir Cliente
+                x - voltar
+                """);
         return builder.toString();
     }
 

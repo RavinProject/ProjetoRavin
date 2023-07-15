@@ -1,22 +1,24 @@
 package views.mesa;
 
-import javax.swing.JOptionPane;
-import static views.View.exibeDialogo;
+import views.View;
 
-public class SubmenuMesa {
+public class SubmenuMesa extends View{
 
-    public static void menu() {
+    public static void menu(){
+        
         // Injeção de Dependência
+
         // TODO
         boolean exec = true;
         while (exec) {
-            String opcao = JOptionPane.showInputDialog(menuInicial());
+            String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
                 case "1" -> exibeDialogo("Criar Mesa: implementar...");
                 case "2" -> exibeDialogo("Alterar Mesa: implementar...");
                 case "3" -> exibeDialogo("Excluir Mesa: implementar...");
                 case "4" -> exibeDialogo("Listar Mesas: implementar...");
                 case "5" -> exibeDialogo("Exibir Mesa: implementar...");
+                case "6" -> exibeDialogo("Exibir Mesa: implementar...");
                 case "x" -> exec = false;
                 default -> exibeDialogo("Opção inválida! Voltando...");
             }
@@ -25,14 +27,17 @@ public class SubmenuMesa {
 
     private static String menuInicial(){
         StringBuilder builder = new StringBuilder();
-        builder.append(" ==================== RAVIN ==================== ");
-        builder.append("\n");
-        builder.append("1 - Criar Mesa \n");
-        builder.append("2 - Alterar Mesa \n");
-        builder.append("3 - Excluir Mesa \n");
-        builder.append("4 - Listar Mesas \n");
-        builder.append("5 - Exibir Mesa \n");
-        builder.append("x - voltar \n");
+        builder.append("""
+            ==================== RAVIN ====================
+            MESA:
+            1 - Criar Mesa
+            2 - Alterar Mesa
+            3 - Excluir Mesa
+            4 - Listar Mesas
+            5 - Exibir Mesa
+            6 - Reservar Mesa
+            x - voltar
+            """);
         return builder.toString();
     }
 

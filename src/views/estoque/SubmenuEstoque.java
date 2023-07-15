@@ -17,7 +17,7 @@ public class SubmenuEstoque extends View {
     public static void menu() {
         boolean exec = true;
         while (exec) {
-            String opcao = JOptionPane.showInputDialog(menuInicial());
+            String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
                 case "1" -> cadastrar();
                 case "2" -> atualizar();
@@ -32,14 +32,16 @@ public class SubmenuEstoque extends View {
 
     private static String menuInicial(){
         StringBuilder builder = new StringBuilder();
-		builder.append(" ==================== RAVIN ==================== ");
-		builder.append("\n");
-		builder.append("1 - Cadastrar Produto \n");
-		builder.append("2 - Alterar Produto \n");
-		builder.append("3 - Listar Produtos em Estoque \n");
-		builder.append("4 - Visualizar Produto em Estoque \n");
-		builder.append("5 - Excluir Produto \n");
-		builder.append("x - voltar \n");
+        builder.append("""
+            ==================== RAVIN ====================
+            ESTOQUE:
+            1 - Cadastrar Produto
+            2 - Alterar Produto
+            3 - Listar Produtos em Estoque
+            4 - Visualizar Produto em Estoque
+            5 - Excluir Produto
+            x - voltar
+            """);
         return builder.toString();
     }
 
