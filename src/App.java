@@ -1,8 +1,11 @@
 import javax.swing.JOptionPane;
 
 import views.cliente.SubmenuCliente;
-import views.estoque.CadastroEstoqueView;
-import views.funcionario.CadastroFuncionarioView;
+import views.estoque.SubmenuEstoque;
+import views.funcionario.SubmenuFuncionario;
+import views.mesa.SubmenuMesa;
+import views.comanda.SubmenuComanda;
+import views.cardapio.SubmenuCardapio;
 
 public class App {
 
@@ -29,8 +32,11 @@ public class App {
             }
             switch (opcao) {
                 case "1" -> SubmenuCliente.menu();
-                case "2" -> CadastroFuncionarioView.menu();
-                case "3" -> CadastroEstoqueView.menu();
+                case "2" -> SubmenuFuncionario.menu();
+                case "3" -> SubmenuEstoque.menu();
+                case "4" -> SubmenuMesa.menu();
+                case "5" -> SubmenuComanda.menu();
+                case "6" -> SubmenuCardapio.menu();
                 case "x" -> exec = false;
                 default -> System.out.println("Opção inválida!");
             }
@@ -45,9 +51,9 @@ public class App {
 		builder.append("1 - Clientes \n");
 		builder.append("2 - Funcionarios \n");
 		builder.append("3 - Estoque \n");
-		// builder.append("4 - Mesas \n");
-		// builder.append("5 - Mesas \n");
-		// builder.append("6 - Pedidos \n");
+		builder.append("4 - Mesas \n");
+		builder.append("5 - Comandas \n");
+		builder.append("6 - Cardápio \n");
 		builder.append("x - Sair");
         return builder.toString();
     }

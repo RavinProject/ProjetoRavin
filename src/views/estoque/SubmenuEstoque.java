@@ -12,7 +12,7 @@ import models.Estoque;
 import models.Produto;
 import views.View;
 
-public class CadastroEstoqueView extends View {
+public class SubmenuEstoque extends View {
 
     public static void menu() {
         boolean exec = true;

@@ -1,6 +1,6 @@
 package views.pedido;
 
-public class CadastroPedidoView {
+public class SubmenuProduto {
 
     public static void menu() {
     }

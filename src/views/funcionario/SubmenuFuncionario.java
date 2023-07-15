@@ -14,7 +14,7 @@ import models.Funcionario;
 import utils.DateUtils;
 import views.View;
 
-public class CadastroFuncionarioView extends View {
+public class SubmenuFuncionario extends View {
 
     // TODO Desacoplar funções em outras classes
 
