@@ -3,8 +3,6 @@ package views.funcionario;
 import java.util.Date;
 import java.util.InputMismatchException;
 
-import javax.swing.JOptionPane;
-
 import controllers.FuncionarioController;
 import utils.enums.Cargo;
 import utils.enums.Disponibilidade;
@@ -14,14 +12,14 @@ import models.Funcionario;
 import utils.DateUtils;
 import views.View;
 
-public class CadastroFuncionarioView extends View {
+public class SubmenuFuncionario extends View {
 
     // TODO Desacoplar funções em outras classes
 
     public static void menu() {
         boolean exec = true;
         while (exec) {
-            String opcao = JOptionPane.showInputDialog(menuInicial());
+            String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
                 case "1" -> cadastrar();
                 case "2" -> atualizar();
@@ -36,14 +34,16 @@ public class CadastroFuncionarioView extends View {
 
     private static String menuInicial(){
         StringBuilder builder = new StringBuilder();
-		builder.append(" ==================== RAVIN ==================== ");
-		builder.append("\n");
-		builder.append("1 - Cadastrar Funcionário \n");
-		builder.append("2 - Alterar Funcionário \n");
-		builder.append("3 - Listar Funcionários \n");
-		builder.append("4 - Visualizar Funcionário \n");
-		builder.append("5 - Excluir Funcionário \n");
-		builder.append("x - voltar \n");
+        builder.append("""
+                ==================== RAVIN ====================
+                FUNCIONÁRIO:
+                1 - Cadastrar Funcionário
+                2 - Alterar Funcionário
+                3 - Listar Funcionários
+                4 - Visualizar Funcionário
+                5 - Excluir Funcionário
+                x - voltar
+                """);
         return builder.toString();
     }
 

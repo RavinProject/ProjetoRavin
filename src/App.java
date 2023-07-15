@@ -1,8 +1,9 @@
-import javax.swing.JOptionPane;
-
 import views.cliente.SubmenuCliente;
 import views.estoque.SubmenuEstoque;
-import views.funcionario.CadastroFuncionarioView;
+import views.funcionario.SubmenuFuncionario;
+import views.mesa.SubmenuMesa;
+import views.comanda.SubmenuComanda;
+import views.cardapio.SubmenuCardapio;
 
 public class App {
 
@@ -23,14 +24,17 @@ public class App {
     private static void mainMenu() {
         boolean exec = true;
         while (exec) {
-            String opcao = JOptionPane.showInputDialog(menuInicial());
+            String opcao = views.View.solicitaEntradaDeDado(menuInicial());
             if(opcao == null){
                 continue;
             }
             switch (opcao) {
                 case "1" -> SubmenuCliente.menu();
-                case "2" -> CadastroFuncionarioView.menu();
+                case "2" -> SubmenuFuncionario.menu();
                 case "3" -> SubmenuEstoque.menu();
+                case "4" -> SubmenuMesa.menu();
+                case "5" -> SubmenuComanda.menu();
+                case "6" -> SubmenuCardapio.menu();
                 case "x" -> exec = false;
                 default -> System.out.println("Opção inválida!");
             }
@@ -40,15 +44,17 @@ public class App {
 
     public static String menuInicial(){
         StringBuilder builder = new StringBuilder();
-		builder.append(" ==================== RAVIN ==================== ");
-		builder.append("\n");
-		builder.append("1 - Clientes \n");
-		builder.append("2 - Funcionarios \n");
-		builder.append("3 - Estoque \n");
-		// builder.append("4 - Mesas \n");
-		// builder.append("5 - Mesas \n");
-		// builder.append("6 - Pedidos \n");
-		builder.append("x - Sair");
+        builder.append("""
+                ==================== RAVIN ====================
+                HOME:
+                1 - Clientes
+                2 - Funcionários
+                3 - Estoque 
+                4 - Mesas
+                5 - Comandas
+                6 - Cardápio
+                x - voltar
+                """);
         return builder.toString();
     }
 }
