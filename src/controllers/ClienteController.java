@@ -3,36 +3,39 @@ package controllers;
 import controllers.interfaces.IClienteController;
 import dao.interfaces.IClienteRepositorio;
 import models.Cliente;
+import services.interfaces.IClienteService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class ClienteController implements IClienteController {
-    private final IClienteRepositorio clienteRepositorio;
-    public ClienteController(IClienteRepositorio clienteRepository) {
-        this.clienteRepositorio = clienteRepository;
+    
+    private final IClienteService clienteService;
+
+    public ClienteController(IClienteService clienteService) {
+        this.clienteService = clienteService;
     }
 
     @Override
     public void atualizar(Cliente objeto) {
-        clienteRepositorio.atualizar(objeto);
+        clienteService.atualizar(objeto);
     }
 
     @Override
     public boolean remover(Cliente objeto) {
-        clienteRepositorio.remover(objeto);
+        clienteService.remover(objeto);
         return true;
     }
 
     @Override
     public void inserir(Cliente objeto) {
-        clienteRepositorio.inserir(objeto);
+        clienteService.inserir(objeto);
     }
 
     @Override
     public Cliente recuperarPorId(int id) {
-        Optional<Cliente> cliente = clienteRepositorio.recuperarPorId(id);
+        Optional<Cliente> cliente = clienteService.recuperarPorId(id);
         if (cliente.isPresent()) {
             return cliente.get();
         } else {
@@ -42,12 +45,12 @@ public class ClienteController implements IClienteController {
 
     @Override
     public List<Cliente> pegarLista() {
-        return clienteRepositorio.pegarLista();
+        return clienteService.pegarLista();
     }
     
     @Override
     public Cliente recuperarPorCpf(String cpf) {
-        Optional<Cliente> cliente = clienteRepositorio.recuperarPorCpf(cpf);
+        Optional<Cliente> cliente = clienteService.recuperarPorCpf(cpf);
         if (cliente.isPresent()) {
             return cliente.get();
         } else {
