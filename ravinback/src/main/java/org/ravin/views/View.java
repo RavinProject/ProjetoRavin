@@ -1,10 +1,11 @@
-package views;
+package org.ravin.views;
 
 import javax.swing.*;
+import java.util.Objects;
 
 public class View {
 
-    public static ImageIcon icon = new ImageIcon("src/utils/images/logo.png");
+    public static ImageIcon icon = new ImageIcon(Objects.requireNonNull(View.class.getResource("/images/logo.png")));
 
     public static void exibeDialogo(String mensagem){
         // JOptionPane.showMessageDialog(null, mensagem);
