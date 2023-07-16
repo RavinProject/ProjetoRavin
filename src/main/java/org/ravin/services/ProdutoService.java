@@ -1,8 +1,6 @@
 package org.ravin.services;
 
 import org.ravin.dao.ListasDados;
-import org.ravin.dao.ProdutoRepositorio;
-import org.ravin.dao.interfaces.IEstoqueRepositorio;
 import org.ravin.dao.interfaces.IProdutoRepositorio;
 import org.ravin.models.Produto;
 import org.ravin.services.interfaces.IProdutoService;

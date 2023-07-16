@@ -1,7 +1,6 @@
 package org.ravin.controllers;
 
 import org.ravin.controllers.interfaces.IEstoqueController;
-import org.ravin.dao.interfaces.IEstoqueRepositorio;
 import org.ravin.models.Estoque;
 import org.ravin.services.interfaces.IEstoqueService;
 

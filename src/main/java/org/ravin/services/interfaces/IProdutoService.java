@@ -1,6 +1,5 @@
 package org.ravin.services.interfaces;
 
-import org.ravin.models.Estoque;
 import org.ravin.models.Produto;
 
 import java.util.Optional;
