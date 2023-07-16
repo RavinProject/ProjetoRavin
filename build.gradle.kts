@@ -11,7 +11,7 @@ java {
 }
 
 group = "org.ravin"
-version = "1.0-SNAPSHOT"
+version = "0.3.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -42,5 +42,11 @@ testing{
                 }
             }
         }
+    }
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "org.ravin.App"
     }
 }
