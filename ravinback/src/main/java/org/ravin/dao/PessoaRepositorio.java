@@ -1,12 +1,13 @@
-package org.backend.dao;
+package org.ravin.dao;
 
-import dao.interfaces.IRepositorio;
-import models.Pessoa;
+import org.ravin.dao.interfaces.IGeradorId;
+import org.ravin.dao.interfaces.IRepositorio;
+import org.ravin.models.Pessoa;
 
 import java.util.List;
 import java.util.Optional;
 
-public class PessoaRepositorio implements IRepositorio<Pessoa> {
+public class PessoaRepositorio implements IRepositorio<Pessoa>, IGeradorId {
     @Override
     public void inserir(Pessoa object) {
 
@@ -40,6 +41,6 @@ public class PessoaRepositorio implements IRepositorio<Pessoa> {
     @Override
     public int geraProximoId() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+        return 0;
     }
 }

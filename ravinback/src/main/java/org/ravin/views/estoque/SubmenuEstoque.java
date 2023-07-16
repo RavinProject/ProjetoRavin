@@ -1,11 +1,17 @@
-package views.estoque;
+package org.ravin.views.estoque;
 
-import controllers.EstoqueController;
-import controllers.ProdutoController;
-import models.Estoque;
-import models.Produto;
-import utils.enums.TipoProduto;
-import views.View;
+import org.ravin.controllers.EstoqueController;
+import org.ravin.controllers.ProdutoController;
+import org.ravin.controllers.interfaces.IEstoqueController;
+import org.ravin.controllers.interfaces.IProdutoController;
+import org.ravin.models.Estoque;
+import org.ravin.models.Produto;
+import org.ravin.services.EstoqueService;
+import org.ravin.services.ProdutoService;
+import org.ravin.services.interfaces.IEstoqueService;
+import org.ravin.services.interfaces.IProdutoService;
+import org.ravin.utils.enums.TipoProduto;
+import org.ravin.views.View;
 
 import javax.swing.*;
 import java.util.Date;
@@ -14,15 +20,22 @@ import java.util.List;
 public class SubmenuEstoque extends View {
 
     public static void menu() {
+        // Injeção de Dependência
+        IEstoqueService estoqueService = new EstoqueService();
+        IEstoqueController estoqueController = new EstoqueController(estoqueService);
+
+        IProdutoService produtoService = new ProdutoService();
+        IProdutoController produtoController = new ProdutoController(produtoService);
+
         boolean exec = true;
         while (exec) {
             String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
-                case "1" -> cadastrar();
-                case "2" -> atualizar();
-                case "3" -> listarEstoque();
-                case "4" -> pesquisarEstoque();
-                case "5" -> excluirProdutoEmEstoque();
+                case "1" -> cadastrar(estoqueController, produtoController);
+                case "2" -> atualizar(estoqueController, produtoController);
+                case "3" -> listarEstoque(estoqueController);
+                case "4" -> pesquisarEstoque(estoqueController);
+                case "5" -> excluirProdutoEmEstoque(estoqueController);
                 case "x" -> exec = false;
                 default -> exibeDialogo("Opção inválida! Voltando...");
             }
@@ -44,13 +57,12 @@ public class SubmenuEstoque extends View {
         return builder.toString();
     }
 
-    private static void cadastrar() {
-        EstoqueController estoqueController = new EstoqueController();
-        ProdutoController produtoController = new ProdutoController();
+    private static void cadastrar(IEstoqueController estoqueController, IProdutoController produtoController) {
+
         String codigoProduto = solicitaEntradaDeDado("Informe o código do produto:");
         if(estoqueController.recuperarPorCodigo(codigoProduto) != null){
             if(confirmaAcao("Já existe um produto com esse código! Clique em SIM para abrir a edição do produto ou NÃO para retornar.") == 1){
-                atualizar();
+                atualizar(estoqueController, produtoController);
             }else{
                 return;
             }
@@ -91,9 +103,7 @@ public class SubmenuEstoque extends View {
         
     }
 
-    private static void atualizar(){
-        EstoqueController estoqueController = new EstoqueController();
-        ProdutoController produtoController = new ProdutoController();
+    private static void atualizar(IEstoqueController estoqueController, IProdutoController produtoController){
         String codigo = solicitaEntradaDeDado("Informe o código do produto que deseja alterar: ");
         Estoque estoque = estoqueController.recuperarPorCodigo(codigo);
         if (estoque != null) {
@@ -130,8 +140,7 @@ public class SubmenuEstoque extends View {
         }
     }
 
-    private static void pesquisarEstoque() {
-        EstoqueController estoqueController = new EstoqueController();
+    private static void pesquisarEstoque(IEstoqueController estoqueController) {
 
         String produtoCodigo = solicitaEntradaDeDado("Informe o código do produto que deseja excluir: ");
         Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
@@ -142,7 +151,7 @@ public class SubmenuEstoque extends View {
         }
     }
 
-    private static void imprimeProdutoEmEstoque(Estoque estoque) {
+    static void imprimeProdutoEmEstoque(Estoque estoque) {
         String estoqueDados = "ESTOQUE ID: " + estoque.getId() +
                         "\nQuantidade: " + estoque.getQuantidade() +
                         "\n======== PRODUTO ========" +
@@ -160,8 +169,7 @@ public class SubmenuEstoque extends View {
         exibeDialogo(estoqueDados);
     }
 
-    private static void listarEstoque() {
-        EstoqueController estoqueController = new EstoqueController();
+    private static void listarEstoque(IEstoqueController estoqueController) {
         String texto = "";
         List <Estoque> listaEstoque = estoqueController.pegarLista();
         if(listaEstoque.size() > 0){
@@ -174,8 +182,7 @@ public class SubmenuEstoque extends View {
         exibeDialogo(texto);
     }
 
-    private static void excluirProdutoEmEstoque() {
-        EstoqueController estoqueController = new EstoqueController();
+    private static void excluirProdutoEmEstoque(IEstoqueController estoqueController) {
         String produtoCodigo = solicitaEntradaDeDado("Informe o código do produto que deseja excluir: ");
         Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
         if(estoque != null){

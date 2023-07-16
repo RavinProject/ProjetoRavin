@@ -1,6 +1,6 @@
-package org.backend.models;
+package org.ravin.models;
 
-import utils.enums.Categorias;
+import org.ravin.utils.enums.Categorias;
 
 import java.util.ArrayList;
 import java.util.Date;

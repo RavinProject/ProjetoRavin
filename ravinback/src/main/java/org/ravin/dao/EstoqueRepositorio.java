@@ -1,8 +1,8 @@
-package org.backend.dao;
+package org.ravin.dao;
 
-import dao.interfaces.IEstoqueRepositorio;
-import dao.interfaces.IProdutoRepositorio;
-import models.Estoque;
+import org.ravin.dao.interfaces.IEstoqueRepositorio;
+import org.ravin.dao.interfaces.IProdutoRepositorio;
+import org.ravin.models.Estoque;
 
 import java.util.List;
 import java.util.Optional;

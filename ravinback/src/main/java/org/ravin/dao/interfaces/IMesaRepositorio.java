@@ -1,6 +1,6 @@
-package org.backend.dao.interfaces;
+package org.ravin.dao.interfaces;
 
-import models.Mesa;
+import org.ravin.models.Mesa;
 
-public interface IMesaRepositorio extends IRepositorio<Mesa>{
+public interface IMesaRepositorio extends IRepositorio<Mesa>, IGeradorId{
 }

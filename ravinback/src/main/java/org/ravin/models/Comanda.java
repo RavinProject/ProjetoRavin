@@ -1,6 +1,6 @@
-package org.backend.models;
+package org.ravin.models;
 
-import utils.enums.StatusComanda;
+import org.ravin.utils.enums.StatusComanda;
 
 import java.util.ArrayList;
 import java.util.Date;

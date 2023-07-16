@@ -1,8 +1,8 @@
-package org.backend.dao;
+package org.ravin.dao;
 
-import dao.dados.*;
-import dao.interfaces.*;
-import models.*;
+import org.ravin.dao.dados.*;
+import org.ravin.dao.interfaces.*;
+import org.ravin.models.*;
 
 import java.util.List;
 

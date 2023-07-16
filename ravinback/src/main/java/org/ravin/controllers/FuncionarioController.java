@@ -1,8 +1,8 @@
-package org.backend.controllers;
+package org.ravin.controllers;
 
-import org.backend.controllers.interfaces.IFuncionarioController;
-import models.Funcionario;
-import models.Pessoa;
+import org.ravin.controllers.interfaces.IFuncionarioController;
+import org.ravin.models.Funcionario;
+import org.ravin.models.Pessoa;
 
 import java.util.List;
 

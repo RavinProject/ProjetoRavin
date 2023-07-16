@@ -1,6 +1,6 @@
-package org.backend.models;
+package org.ravin.models;
 
-import utils.enums.TipoProduto;
+import org.ravin.utils.enums.TipoProduto;
 
 import java.util.Date;
 

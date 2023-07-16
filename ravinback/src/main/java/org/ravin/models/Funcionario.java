@@ -1,9 +1,9 @@
-package org.backend.models;
+package org.ravin.models;
 
-import utils.enums.Cargo;
-import utils.enums.Disponibilidade;
-import utils.enums.Escolaridade;
-import utils.enums.EstadoCivil;
+import org.ravin.utils.enums.Cargo;
+import org.ravin.utils.enums.Disponibilidade;
+import org.ravin.utils.enums.Escolaridade;
+import org.ravin.utils.enums.EstadoCivil;
 
 import java.util.Date;
 

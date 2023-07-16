@@ -1,6 +1,6 @@
-package views.mesa;
+package org.ravin.views.mesa;
 
-import views.View;
+import org.ravin.views.View;
 
 public class SubmenuMesa extends View{
 

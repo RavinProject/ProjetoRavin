@@ -1,7 +1,7 @@
-package org.backend.dao.dados;
+package org.ravin.dao.dados;
 
-import models.Produto;
-import utils.enums.TipoProduto;
+import org.ravin.models.Produto;
+import org.ravin.utils.enums.TipoProduto;
 
 import java.util.ArrayList;
 import java.util.List;

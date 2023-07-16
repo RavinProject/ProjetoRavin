@@ -1,9 +1,12 @@
-import views.cardapio.SubmenuCardapio;
-import views.cliente.SubmenuCliente;
-import views.comanda.SubmenuComanda;
-import views.estoque.SubmenuEstoque;
-import views.funcionario.SubmenuFuncionario;
-import views.mesa.SubmenuMesa;
+package org.ravin;
+
+import org.ravin.views.cardapio.SubmenuCardapio;
+import org.ravin.views.cliente.SubmenuCliente;
+import org.ravin.views.comanda.SubmenuComanda;
+import org.ravin.views.estoque.SubmenuEstoque;
+import org.ravin.views.funcionario.SubmenuFuncionario;
+import org.ravin.views.mesa.SubmenuMesa;
+import static org.ravin.views.View.*;
 
 public class App {
 
@@ -24,7 +27,7 @@ public class App {
     private static void mainMenu() {
         boolean exec = true;
         while (exec) {
-            String opcao = views.View.solicitaEntradaDeDado(menuInicial());
+            String opcao = solicitaEntradaDeDado(menuInicial());
             if(opcao == null){
                 continue;
             }

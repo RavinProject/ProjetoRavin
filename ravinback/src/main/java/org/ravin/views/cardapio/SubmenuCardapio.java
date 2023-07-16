@@ -1,6 +1,6 @@
-package views.cardapio;
+package org.ravin.views.cardapio;
 
-import views.View;
+import org.ravin.views.View;
 
 public class SubmenuCardapio extends View{
 

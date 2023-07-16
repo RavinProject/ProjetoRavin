@@ -1,8 +1,8 @@
-package org.backend.services;
+package org.ravin.services;
 
-import dao.PedidoRepositorio;
-import models.Pedido;
-import models.Produto;
+import org.ravin.dao.PedidoRepositorio;
+import org.ravin.models.Pedido;
+import org.ravin.models.Produto;
 
 import java.sql.Timestamp;
 import java.util.Date;

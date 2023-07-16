@@ -1,16 +1,16 @@
-package views.estoque;
+package org.ravin.views.estoque;
 
-import controllers.interfaces.IEstoqueController;
-import models.Estoque;
-import models.Produto;
-import utils.enums.TipoProduto;
+import org.ravin.controllers.interfaces.IEstoqueController;
+import org.ravin.models.Estoque;
+import org.ravin.models.Produto;
+import org.ravin.utils.enums.TipoProduto;
 
 import java.util.Date;
 import java.util.NoSuchElementException;
 
-import static views.View.exibeDialogo;
-import static views.View.solicitaEntradaDeDado;
-import static views.estoque.SubmenuEstoque.imprimeProdutoEmEstoque;
+import static org.ravin.views.View.exibeDialogo;
+import static org.ravin.views.View.solicitaEntradaDeDado;
+import static org.ravin.views.estoque.SubmenuEstoque.imprimeProdutoEmEstoque;
 
 public class AtualizarEstoqueView {
 

@@ -1,11 +1,11 @@
-package views.cliente;
+package org.ravin.views.cliente;
 
-import controllers.interfaces.IClienteController;
-import models.Cliente;
+import org.ravin.controllers.interfaces.IClienteController;
+import org.ravin.models.Cliente;
 
 import javax.swing.*;
 
-import static views.View.*;
+import static org.ravin.views.View.*;
 
 public class ExcluirClienteView {
     static void excluirCliente(IClienteController clienteController) {

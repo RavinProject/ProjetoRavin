@@ -1,7 +1,7 @@
-package org.backend.dao;
+package org.ravin.dao;
 
-import dao.interfaces.IComandaRepositorio;
-import models.Comanda;
+import org.ravin.dao.interfaces.IComandaRepositorio;
+import org.ravin.models.Comanda;
 
 import java.util.List;
 import java.util.Optional;

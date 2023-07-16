@@ -1,6 +1,6 @@
-package org.backend.services.interfaces;
+package org.ravin.services.interfaces;
 
-import models.Cliente;
+import org.ravin.models.Cliente;
 
 import java.util.Optional;
 

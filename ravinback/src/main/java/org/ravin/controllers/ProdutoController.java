@@ -1,8 +1,8 @@
-package org.backend.controllers;
+package org.ravin.controllers;
 
-import org.backend.controllers.interfaces.IProdutoController;
-import dao.interfaces.IProdutoRepositorio;
-import models.Produto;
+import org.ravin.controllers.interfaces.IProdutoController;
+import org.ravin.models.Produto;
+import org.ravin.services.interfaces.IProdutoService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -10,31 +10,31 @@ import java.util.Optional;
 
 public class ProdutoController implements IProdutoController {
 
-    private final IProdutoRepositorio produtoRepositorio;
+    private final IProdutoService produtoService;
 
-    public ProdutoController(IProdutoRepositorio produtoRepositorio){
-        this.produtoRepositorio = produtoRepositorio;
+    public ProdutoController(IProdutoService produtoService){
+        this.produtoService = produtoService;
     }
 
     @Override
     public void atualizar(Produto produto) {
-        produtoRepositorio.atualizar(produto);
+        produtoService.atualizar(produto);
     }
 
     @Override
     public boolean remover(Produto produto) {
-        produtoRepositorio.remover(produto);
+        produtoService.remover(produto);
         return true;
     }
 
     @Override
     public void inserir(Produto produto) {
-        produtoRepositorio.inserir(produto);
+        produtoService.inserir(produto);
     }
 
     @Override
     public Produto recuperarPorId(int id) throws NoSuchElementException{
-        Optional<Produto> produto = produtoRepositorio.recuperarPorId(id);
+        Optional<Produto> produto = produtoService.recuperarPorId(id);
         if (produto.isPresent()) {
             return produto.get();
         } else {
@@ -44,7 +44,7 @@ public class ProdutoController implements IProdutoController {
 
     @Override
     public Produto recuperarPorCodigo(String codigo) throws NoSuchElementException{
-        Optional<Produto> produto = produtoRepositorio.recuperarPorCodigo(codigo);
+        Optional<Produto> produto = produtoService.recuperarPorCodigo(codigo);
         if (produto.isPresent()) {
             return produto.get();
         } else {
@@ -54,7 +54,7 @@ public class ProdutoController implements IProdutoController {
 
     @Override
     public List<Produto> pegarLista() {
-        return produtoRepositorio.pegarLista();
+        return produtoService.pegarLista();
     }
     
 }

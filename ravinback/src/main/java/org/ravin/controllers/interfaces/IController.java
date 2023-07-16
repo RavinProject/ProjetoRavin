@@ -1,4 +1,4 @@
-package org.backend.controllers.interfaces;
+package org.ravin.controllers.interfaces;
 
 import java.util.List;
 

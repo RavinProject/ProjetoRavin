@@ -1,9 +1,9 @@
-package org.backend.dao.interfaces;
+package org.ravin.dao.interfaces;
 
-import models.Estoque;
+import org.ravin.models.Estoque;
 
 import java.util.Optional;
 
-public interface IEstoqueRepositorio extends IRepositorio<Estoque> {
+public interface IEstoqueRepositorio extends IRepositorio<Estoque>, IGeradorId {
     Optional<Estoque> recuperarPorCodigo(String codigo) ;
 }

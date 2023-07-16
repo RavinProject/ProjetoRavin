@@ -1,7 +1,7 @@
-package org.backend.dao;
+package org.ravin.dao;
 
-import dao.interfaces.IProdutoRepositorio;
-import models.Produto;
+import org.ravin.dao.interfaces.IProdutoRepositorio;
+import org.ravin.models.Produto;
 
 import java.util.List;
 import java.util.Optional;

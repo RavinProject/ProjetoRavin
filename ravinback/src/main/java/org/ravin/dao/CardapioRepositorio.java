@@ -1,7 +1,7 @@
-package org.backend.dao;
+package org.ravin.dao;
 
-import dao.interfaces.ICardapioRepositorio;
-import models.Cardapio;
+import org.ravin.dao.interfaces.ICardapioRepositorio;
+import org.ravin.models.Cardapio;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,9 +37,8 @@ public class CardapioRepositorio implements ICardapioRepositorio {
 
     }
 
-    @Override
     public int geraProximoId() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+        return 0;
     }
 }

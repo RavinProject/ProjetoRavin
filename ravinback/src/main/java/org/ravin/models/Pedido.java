@@ -1,6 +1,6 @@
-package org.backend.models;
+package org.ravin.models;
 
-import utils.enums.StatusPreparo;
+import org.ravin.utils.enums.StatusPreparo;
 
 import java.sql.Timestamp;
 import java.time.Duration;

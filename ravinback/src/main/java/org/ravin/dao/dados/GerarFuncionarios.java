@@ -1,9 +1,9 @@
-package org.backend.dao.dados;
+package org.ravin.dao.dados;
 
 
-import models.Funcionario;
-import utils.enums.Cargo;
-import utils.enums.Escolaridade;
+import org.ravin.models.Funcionario;
+import org.ravin.utils.enums.Cargo;
+import org.ravin.utils.enums.Escolaridade;
 
 import java.util.ArrayList;
 import java.util.Date;

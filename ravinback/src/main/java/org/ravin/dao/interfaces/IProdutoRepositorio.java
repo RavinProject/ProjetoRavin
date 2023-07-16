@@ -1,9 +1,9 @@
-package org.backend.dao.interfaces;
+package org.ravin.dao.interfaces;
 
-import models.Produto;
+import org.ravin.models.Produto;
 
 import java.util.Optional;
 
-public interface IProdutoRepositorio extends IRepositorio<Produto> {
+public interface IProdutoRepositorio extends IRepositorio<Produto>, IGeradorId {
     Optional<Produto> recuperarPorCodigo(String codigo) ;
 }

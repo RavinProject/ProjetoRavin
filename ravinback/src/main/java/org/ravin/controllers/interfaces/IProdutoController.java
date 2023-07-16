@@ -1,6 +1,6 @@
-package org.backend.controllers.interfaces;
+package org.ravin.controllers.interfaces;
 
-import models.Produto;
+import org.ravin.models.Produto;
 
 import java.util.NoSuchElementException;
 

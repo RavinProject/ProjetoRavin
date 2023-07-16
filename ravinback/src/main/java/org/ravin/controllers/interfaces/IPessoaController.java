@@ -1,6 +1,6 @@
-package org.backend.controllers.interfaces;
+package org.ravin.controllers.interfaces;
 
-import models.Pessoa;
+import org.ravin.models.Pessoa;
 
 public interface IPessoaController extends IController<Pessoa> {
 }

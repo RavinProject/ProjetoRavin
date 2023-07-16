@@ -1,7 +1,7 @@
-package org.backend.dao.dados;
+package org.ravin.dao.dados;
 
-import models.Estoque;
-import models.Produto;
+import org.ravin.models.Estoque;
+import org.ravin.models.Produto;
 
 import java.util.ArrayList;
 import java.util.List;

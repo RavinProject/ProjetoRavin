@@ -1,6 +1,6 @@
-package org.backend.dao.interfaces;
+package org.ravin.dao.interfaces;
 
-import models.Cliente;
+import org.ravin.models.Cliente;
 
 import java.util.Optional;
 

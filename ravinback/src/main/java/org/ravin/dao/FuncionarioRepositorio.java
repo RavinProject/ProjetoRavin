@@ -1,7 +1,7 @@
-package org.backend.dao;
+package org.ravin.dao;
 
-import dao.interfaces.IFuncionarioRepositorio;
-import models.Funcionario;
+import org.ravin.dao.interfaces.IFuncionarioRepositorio;
+import org.ravin.models.Funcionario;
 
 import java.util.List;
 import java.util.Optional;

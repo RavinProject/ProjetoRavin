@@ -1,6 +1,6 @@
-package org.backend.controllers.interfaces;
+package org.ravin.controllers.interfaces;
 
-import models.Estoque;
+import org.ravin.models.Estoque;
 
 import java.util.NoSuchElementException;
 

@@ -1,6 +1,7 @@
-package org.backend.dao.interfaces;
+package org.ravin.dao.interfaces;
 
-import models.Cardapio;
+import org.ravin.models.Cardapio;
 
-public interface ICardapioRepositorio extends IRepositorio<Cardapio> {
+public interface ICardapioRepositorio extends IRepositorio<Cardapio>, IGeradorId {
+
 }

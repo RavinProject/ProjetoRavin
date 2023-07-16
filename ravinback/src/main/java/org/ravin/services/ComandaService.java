@@ -1,8 +1,8 @@
-package org.backend.services;
+package org.ravin.services;
 
-import dao.ComandaRepositorio;
-import models.Comanda;
-import utils.enums.StatusComanda;
+import org.ravin.dao.ComandaRepositorio;
+import org.ravin.models.Comanda;
+import org.ravin.utils.enums.StatusComanda;
 
 public class ComandaService {
     private final ComandaRepositorio comandaRepository;

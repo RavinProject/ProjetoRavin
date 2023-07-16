@@ -1,4 +1,4 @@
-package org.backend.models;
+package org.ravin.models;
 
 import java.util.Date;
 

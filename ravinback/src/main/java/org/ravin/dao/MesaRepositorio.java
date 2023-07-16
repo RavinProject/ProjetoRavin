@@ -1,7 +1,7 @@
-package org.backend.dao;
+package org.ravin.dao;
 
-import dao.interfaces.IMesaRepositorio;
-import models.Mesa;
+import org.ravin.dao.interfaces.IMesaRepositorio;
+import org.ravin.models.Mesa;
 
 import java.util.List;
 import java.util.Optional;

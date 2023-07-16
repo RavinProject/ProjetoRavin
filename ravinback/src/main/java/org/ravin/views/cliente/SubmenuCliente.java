@@ -1,17 +1,17 @@
-package views.cliente;
+package org.ravin.views.cliente;
 
-import controllers.ClienteController;
-import models.Cliente;
-import services.ClienteService;
-import services.interfaces.IClienteService;
-import utils.DateUtils;
-import views.View;
+import org.ravin.controllers.ClienteController;
+import org.ravin.models.Cliente;
+import org.ravin.services.ClienteService;
+import org.ravin.services.interfaces.IClienteService;
+import org.ravin.utils.DateUtils;
+import org.ravin.views.View;
 
-import static views.cliente.AtualizarClienteView.atualizar;
-import static views.cliente.CadastrarClienteView.cadastrar;
-import static views.cliente.ExcluirClienteView.excluirCliente;
-import static views.cliente.RecuperarClienteView.listarClientes;
-import static views.cliente.RecuperarClienteView.pesquisarClientePorCpf;
+import static org.ravin.views.cliente.AtualizarClienteView.atualizar;
+import static org.ravin.views.cliente.CadastrarClienteView.cadastrar;
+import static org.ravin.views.cliente.ExcluirClienteView.excluirCliente;
+import static org.ravin.views.cliente.RecuperarClienteView.listarClientes;
+import static org.ravin.views.cliente.RecuperarClienteView.pesquisarClientePorCpf;
 
 public class SubmenuCliente extends View{
     public static void menu() {

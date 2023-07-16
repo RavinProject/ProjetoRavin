@@ -1,6 +1,6 @@
-package org.backend.dao.interfaces;
+package org.ravin.dao.interfaces;
 
-import models.Pedido;
+import org.ravin.models.Pedido;
 
-public interface IPedidoRepositorio extends IRepositorio<Pedido> {
+public interface IPedidoRepositorio extends IRepositorio<Pedido>, IGeradorId {
 }

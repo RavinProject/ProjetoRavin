@@ -1,6 +1,6 @@
-package org.backend.models;
+package org.ravin.models;
 
-import utils.enums.StatusMesa;
+import org.ravin.utils.enums.StatusMesa;
 
 import java.util.Date;
 import java.util.List;

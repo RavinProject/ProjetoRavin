@@ -1,6 +1,6 @@
-package views.comanda;
+package org.ravin.views.comanda;
 
-import views.View;
+import org.ravin.views.View;
 
 public class SubmenuComanda extends View{
 

@@ -1,8 +1,9 @@
-package org.backend.controllers;
+package org.ravin.controllers;
 
-import org.backend.controllers.interfaces.IEstoqueController;
-import dao.interfaces.IEstoqueRepositorio;
-import models.Estoque;
+import org.ravin.controllers.interfaces.IEstoqueController;
+import org.ravin.dao.interfaces.IEstoqueRepositorio;
+import org.ravin.models.Estoque;
+import org.ravin.services.interfaces.IEstoqueService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -10,14 +11,14 @@ import java.util.Optional;
 
 public class EstoqueController implements IEstoqueController {
 
-    private final IEstoqueRepositorio estoqueRepositorio;
+    private final IEstoqueService estoqueService;
 
-    public EstoqueController(IEstoqueRepositorio estoqueRepositorio){
-        this.estoqueRepositorio = estoqueRepositorio;
+    public EstoqueController(IEstoqueService estoqueService){
+        this.estoqueService = estoqueService;
     }
 
     public boolean estoqueJaCadastrado(String codigo){
-        Optional<Estoque> estoque = estoqueRepositorio.recuperarPorCodigo(codigo);
+        Optional<Estoque> estoque = estoqueService.recuperarPorCodigo(codigo);
         if (estoque.isPresent()) {
             return true;
         } else {
@@ -27,12 +28,12 @@ public class EstoqueController implements IEstoqueController {
 
     @Override
     public void inserir(Estoque objeto) {
-        estoqueRepositorio.inserir(objeto);
+        estoqueService.inserir(objeto);
     }
 
     @Override
     public Estoque recuperarPorId(int id) throws NoSuchElementException{
-        Optional<Estoque> estoque = estoqueRepositorio.recuperarPorId(id);
+        Optional<Estoque> estoque = estoqueService.recuperarPorId(id);
         if (estoque.isPresent()) {
             return estoque.get();
         } else {
@@ -42,23 +43,23 @@ public class EstoqueController implements IEstoqueController {
 
     @Override
     public List<Estoque> pegarLista() {
-        return estoqueRepositorio.pegarLista();
+        return estoqueService.pegarLista();
     }
 
     @Override
     public void atualizar(Estoque estoque) {
-        estoqueRepositorio.atualizar(estoque);
+        estoqueService.atualizar(estoque);
     }
 
     @Override
     public boolean remover(Estoque estoque) {
-        estoqueRepositorio.remover(estoque);
+        estoqueService.remover(estoque);
         return true;
     }
 
     @Override
     public Estoque recuperarPorCodigo(String codigo) throws NoSuchElementException{
-        Optional<Estoque> estoque = estoqueRepositorio.recuperarPorCodigo(codigo);
+        Optional<Estoque> estoque = estoqueService.recuperarPorCodigo(codigo);
         if (estoque.isPresent()) {
             return estoque.get();
         } else {

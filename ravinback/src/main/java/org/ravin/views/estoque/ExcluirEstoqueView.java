@@ -1,12 +1,12 @@
-package views.estoque;
+package org.ravin.views.estoque;
 
-import controllers.interfaces.IEstoqueController;
-import models.Estoque;
+import org.ravin.controllers.interfaces.IEstoqueController;
+import org.ravin.models.Estoque;
 
 import javax.swing.*;
 import java.util.NoSuchElementException;
 
-import static views.View.*;
+import static org.ravin.views.View.*;
 
 public class ExcluirEstoqueView {
     static void excluirEstoque(IEstoqueController estoqueController) {

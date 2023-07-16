@@ -1,6 +1,6 @@
-package org.backend.dao.interfaces;
+package org.ravin.dao.interfaces;
 
-import models.Funcionario;
+import org.ravin.models.Funcionario;
 
-public interface IFuncionarioRepositorio extends IRepositorio<Funcionario> {
+public interface IFuncionarioRepositorio extends IRepositorio<Funcionario>, IGeradorId {
 }

@@ -1,7 +1,7 @@
-package org.backend.dao;
+package org.ravin.dao;
 
-import dao.interfaces.IPedidoRepositorio;
-import models.Pedido;
+import org.ravin.dao.interfaces.IPedidoRepositorio;
+import org.ravin.models.Pedido;
 
 import java.util.ArrayList;
 import java.util.List;

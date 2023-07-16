@@ -1,14 +1,14 @@
-package views.cliente;
+package org.ravin.views.cliente;
 
-import controllers.interfaces.IClienteController;
-import models.Cliente;
-import utils.DateUtils;
+import org.ravin.controllers.interfaces.IClienteController;
+import org.ravin.models.Cliente;
+import org.ravin.utils.DateUtils;
 
 import java.util.Date;
 
-import static views.View.exibeDialogo;
-import static views.View.solicitaEntradaDeDado;
-import static views.cliente.SubmenuCliente.imprimeCliente;
+import static org.ravin.views.View.exibeDialogo;
+import static org.ravin.views.View.solicitaEntradaDeDado;
+import static org.ravin.views.cliente.SubmenuCliente.imprimeCliente;
 
 public class AtualizarClienteView {
     static void atualizar(IClienteController clienteController) {

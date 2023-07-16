@@ -1,6 +1,6 @@
-package org.backend.dao.dados;
+package org.ravin.dao.dados;
 
-import models.Cliente;
+import org.ravin.models.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;

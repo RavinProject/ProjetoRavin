@@ -1,8 +1,8 @@
-package org.backend.controllers;
+package org.ravin.controllers;
 
-import org.backend.controllers.interfaces.IClienteController;
-import models.Cliente;
-import services.interfaces.IClienteService;
+import org.ravin.controllers.interfaces.IClienteController;
+import org.ravin.models.Cliente;
+import org.ravin.services.interfaces.IClienteService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
