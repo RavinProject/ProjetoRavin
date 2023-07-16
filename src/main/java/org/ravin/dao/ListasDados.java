@@ -16,21 +16,26 @@ public class ListasDados {
     private List<Funcionario> funcionariosList;
     private List<Estoque> estoqueList;
     private List<Produto> produtosList;
-
-    private IClienteRepositorio clienteRepo;
-    private IFuncionarioRepositorio funcionarioRepo;
-    private IEstoqueRepositorio estoqueRepo;
-    private IProdutoRepositorio produtoRepo;
+    private List<Mesa> mesaList;
+    private List<Pedido> pedidoList;
+    private List<Comanda> comandaList;
+    private final IClienteRepositorio clienteRepo;
+    private final IFuncionarioRepositorio funcionarioRepo;
+    private final IEstoqueRepositorio estoqueRepo;
+    private final IProdutoRepositorio produtoRepo;
+    private final IPedidoRepositorio pedidoRepo;
+    private final IMesaRepositorio mesaRepo;
+    private final IComandaRepositorio comandaRepo;
 
     private ListasDados() {
 
         // Gerador de lista de clientes
-        List<Cliente> clientesGerados = GerarClientes.montaLista();
-        clienteRepo = new ClienteRepositorio(clientesGerados);
+        clientesList = GerarClientes.montaLista();
+        clienteRepo = new ClienteRepositorio(clientesList);
 
         // Gerador de lista de funcionarios
-        List<Funcionario> funcionariosGerados = GerarFuncionarios.montaLista();
-        funcionarioRepo = new FuncionarioRepositorio(funcionariosGerados);
+        funcionariosList = GerarFuncionarios.montaLista();
+        funcionarioRepo = new FuncionarioRepositorio(funcionariosList);
 
         // Gerador de lista de produtos
         produtosList = GerarProdutos.montaLista();
@@ -40,6 +45,18 @@ public class ListasDados {
         GerarEstoque gerarEstoque = new GerarEstoque(produtosList);
         estoqueList = gerarEstoque.generateEstoqueList();
         estoqueRepo = new EstoqueRepositorio(estoqueList);
+
+        // Gerador de lista de Pedidos
+        pedidoList = GerarPedidos.montaLista();
+        pedidoRepo = new PedidoRepositorio(pedidoList);
+
+        // Gerador de lista de Comandas
+        comandaList = GerarComandas.montaLista(clientesList, pedidoList);
+        comandaRepo = new ComandaRepositorio(comandaList);
+
+        // Gerador de lista de Mesa
+        mesaList = GerarMesas.montaLista(funcionariosList, comandaList);
+        mesaRepo = new MesaRepositorio();
 
         // Atualizando as listas após as inserções
         clientesList = clienteRepo.pegarLista();
@@ -53,36 +70,38 @@ public class ListasDados {
         return instancia;
     }
 
+    // get Listas
     public List<Cliente> getClientList() {
         return clientesList;
     }
-
     public List<Funcionario> getFuncionariosList() {
         return funcionariosList;
     }
-
     public List<Estoque> getEstoqueList() {
         return estoqueList;
     }
-
     public List<Produto> getProdutosList() {
         return produtosList;
     }
+    public List<Mesa> getMesaList() { return mesaList; }
+    public List<Comanda> getComandaList() { return comandaList; }
+    public List<Pedido> getPedidoList() {return pedidoList; }
 
+    // get Repositorios
     public IClienteRepositorio getClienteRepositorio() {
         return clienteRepo;
     }
-
     public IFuncionarioRepositorio getFuncionarioRepositorio() {
         return funcionarioRepo;
     }
-
     public IEstoqueRepositorio getEstoqueRepositorio() {
         return estoqueRepo;
     }
-
     public IProdutoRepositorio getProdutoRepositorio() {
         return produtoRepo;
     }
+    public IComandaRepositorio getComandaRepositorio() { return comandaRepo; }
+    public IMesaRepositorio getMesaRepositorio() { return mesaRepo; }
+    public IPedidoRepositorio gerPedidoRepositorio() { return pedidoRepo; }
 
 }
