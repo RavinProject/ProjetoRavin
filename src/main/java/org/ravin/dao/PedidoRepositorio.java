@@ -1,6 +1,7 @@
 package org.ravin.dao;
 
 import org.ravin.dao.interfaces.IPedidoRepositorio;
+import org.ravin.models.Funcionario;
 import org.ravin.models.Pedido;
 
 import java.util.ArrayList;
@@ -8,19 +9,19 @@ import java.util.List;
 import java.util.Optional;
 
 public class PedidoRepositorio implements IPedidoRepositorio {
-    private List<Pedido> pedidos;
+    private List<Pedido> listaPedidos;
 
-    public PedidoRepositorio(){
-        this.pedidos = new ArrayList<>();
+    public PedidoRepositorio(List<Pedido> listaPedidos){
+        this.listaPedidos = listaPedidos;
     }
 
     public void inserir(Pedido pedido){
-        this.pedidos.add(pedido);
+        this.listaPedidos.add(pedido);
     }
 
     @Override
     public List<Pedido> pegarLista() {
-        return this.pedidos;
+        return this.listaPedidos;
     }
 
     @Override

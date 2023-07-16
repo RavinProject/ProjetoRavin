@@ -1,8 +1,8 @@
-package strategy;
+package org.ravin.strategy;
 
-import models.Cliente;
-import strategy.interfaces.IDescontoAniversariante;
-import strategy.interfaces.IDescontoFactory;
+import org.ravin.models.Cliente;
+import org.ravin.strategy.interfaces.IDescontoAniversariante;
+import org.ravin.strategy.interfaces.IDescontoFactory;
 
 public class DescontoFactory implements IDescontoFactory {
     @Override

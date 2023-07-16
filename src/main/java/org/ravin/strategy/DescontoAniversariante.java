@@ -1,7 +1,7 @@
-package strategy;
+package org.ravin.strategy;
 
-import models.Cliente;
-import strategy.interfaces.IDescontoAniversariante;
+import org.ravin.models.Cliente;
+import org.ravin.strategy.interfaces.IDescontoAniversariante;
 
 import java.util.Calendar;
 
@@ -21,12 +21,20 @@ public class DescontoAniversariante implements IDescontoAniversariante {
         }
     }
 
+    protected Calendar getCurrentDate() {
+        return Calendar.getInstance();
+    }
+
     private boolean isAniversariante() {
         Calendar agora = Calendar.getInstance();
         Calendar dataNascimento = Calendar.getInstance();
-        dataNascimento.setTime(cliente.getNascimento());
 
-        // Compara o mês atual com o mês de nascimento
-        return agora.get(Calendar.MONTH) == dataNascimento.get(Calendar.MONTH);
+        if (cliente != null && cliente.getNascimento() != null) {
+            dataNascimento.setTime(cliente.getNascimento());
+
+            // Compara o mês atual com o mês de nascimento
+            return agora.get(Calendar.MONTH) == dataNascimento.get(Calendar.MONTH);
+        }
+        return false;
     }
 }

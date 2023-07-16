@@ -1,6 +1,7 @@
 package org.ravin.dao;
 
 import org.ravin.dao.interfaces.IComandaRepositorio;
+import org.ravin.models.Cliente;
 import org.ravin.models.Comanda;
 
 import java.util.List;
@@ -8,14 +9,22 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class ComandaRepositorio implements IComandaRepositorio {
-    @Override
-    public void inserir(Comanda object) {
+    private final List<Comanda> listaComanda;
 
+    public ComandaRepositorio(List<Comanda> listaComanda) {
+
+        this.listaComanda = listaComanda;
+    }
+
+    @Override
+    public void inserir(Comanda comanda) {
+
+        pegarLista().add(comanda); // Adiciona a cliente na lista
     }
 
     @Override
     public List<Comanda> pegarLista() {
-        return null;
+        return listaComanda;
     }
 
     @Override
@@ -24,8 +33,13 @@ public class ComandaRepositorio implements IComandaRepositorio {
     }
 
     @Override
-    public void atualizar(Comanda object) {
-
+    public void atualizar(Comanda comandaAtualizada) {
+        for (int i = 0; i < pegarLista().size(); i++) {
+            if (pegarLista().get(i).getId() == comandaAtualizada.getId()) {
+                pegarLista().set(i, comandaAtualizada);
+                break;
+            }
+        }
     }
 
     @Override
@@ -40,9 +54,7 @@ public class ComandaRepositorio implements IComandaRepositorio {
 
     @Override
     public Optional<Comanda> getComandaPorCodigo(String codigo) {
-        List<Comanda> comandas = this.pegarLista();
-
-        for (Comanda comanda : comandas) {
+        for (Comanda comanda : listaComanda) {
             if (Objects.equals(comanda.getCodigo(), codigo)) {
                 return Optional.of(comanda);
             }

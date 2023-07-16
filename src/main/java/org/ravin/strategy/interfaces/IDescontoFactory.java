@@ -1,6 +1,6 @@
-package strategy.interfaces;
+package org.ravin.strategy.interfaces;
 
-import models.Cliente;
+import org.ravin.models.Cliente;
 
 public interface IDescontoFactory {
     IDescontoAniversariante criarDescontoAniversariante(Cliente cliente);

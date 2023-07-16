@@ -1,31 +1,44 @@
-package org.ravin.services;
+package org.ravin.services.comanda;
 
 import org.ravin.dao.ComandaRepositorio;
+import org.ravin.dao.ListasDados;
+import org.ravin.dao.interfaces.IClienteRepositorio;
+import org.ravin.dao.interfaces.IComandaRepositorio;
 import org.ravin.models.Comanda;
-import org.ravin.utils.enums.StatusComanda;
+import org.ravin.services.comanda.interfaces.IComandaService;
 
-public class ComandaService {
-    private final ComandaRepositorio comandaRepository;
+import java.util.List;
+import java.util.Optional;
 
-    public ComandaService(ComandaRepositorio comandaRepository) {
-        this.comandaRepository = comandaRepository;
+public class ComandaService implements IComandaService {
+    private final IComandaRepositorio comandaRepository;
+
+    public ComandaService() {
+        this.comandaRepository = ListasDados.getInstance().getComandaRepositorio();
     }
 
-    /**
-     * Fecha a comanda com o código fornecido.
-     *
-     * @param codigo O codigo da comanda a ser fechada
-     * @return true se bem-sucedido
-     * @throws IllegalArgumentException Se a comanda com o código fornecido não for encontrada.
-     */
-    public boolean fecharComanda (String codigo) {
-        Comanda comanda = comandaRepository.getComandaPorCodigo(codigo);
-        if(comanda != null) {
-            comanda.setStatusComanda(StatusComanda.FECHADA);
-            comandaRepository.inserir(comanda);
-            return true;
-        } else {
-            throw new IllegalArgumentException("Comanda com o código " + codigo + " não encontrada.");
-        }
+    @Override
+    public void inserir(Comanda objeto) {
+
+    }
+
+    @Override
+    public Optional<Comanda> recuperarPorId(int id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Comanda> pegarLista() {
+        return null;
+    }
+
+    @Override
+    public void atualizar(Comanda objeto) {
+
+    }
+
+    @Override
+    public boolean remover(Comanda objeto) {
+        return false;
     }
 }

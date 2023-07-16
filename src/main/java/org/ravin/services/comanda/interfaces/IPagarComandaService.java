@@ -1,4 +1,4 @@
-package org.ravin.services.comanda;
+package org.ravin.services.comanda.interfaces;
 
 import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 

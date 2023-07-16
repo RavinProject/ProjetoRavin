@@ -19,12 +19,14 @@ public class Comanda {
     private String criadoPor;
     private Date alteradoEm;
     private String alteradoPor;
+
+    public Comanda(){};
     
     public Comanda(Cliente cliente, String codigo) {
         this.cliente = cliente;
         this.codigo = codigo;
-        this.pedidos = new ArrayList<>();
         this.statusComanda = StatusComanda.ABERTA;
+        this.pedidos = new ArrayList<>();
     }
 
     public void adicionarPedido(Pedido pedido){
@@ -102,7 +104,7 @@ public class Comanda {
 
     public double getValorTotalFinal() { return this.valorTotalFinal; }
 
-    public void setValorTotalFinal(double valorTotalFinal) { this.valorTotalProdutos = valorTotalFinal; }
+    public void setValorTotalFinal(double valorTotalFinal) { this.valorTotalFinal = valorTotalFinal; }
 
     public Date getCriadoEm() {
         return criadoEm;

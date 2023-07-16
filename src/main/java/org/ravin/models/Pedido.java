@@ -26,6 +26,12 @@ public class Pedido {
         this.quantidade = quantidade;
     }
 
+    public Pedido(Produto produto, int quantidade, StatusPreparo statusPreparo){
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.statusPreparo = statusPreparo;
+    }
+
     public void adicionarQuantidadePedido(int quantidade){
         this.quantidade += quantidade;
     }
