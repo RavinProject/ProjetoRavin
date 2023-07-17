@@ -13,29 +13,44 @@ public class Comanda {
     private String codigo;
     private String observacoes;
     private StatusComanda statusComanda;
+    private double valorTotalProdutos;
+    private double valorTotalFinal;
     private Date criadoEm;
     private String criadoPor;
     private Date alteradoEm;
     private String alteradoPor;
+
+    public Comanda(){};
     
     public Comanda(Cliente cliente, String codigo) {
         this.cliente = cliente;
         this.codigo = codigo;
-        this.pedidos = new ArrayList<>();
         this.statusComanda = StatusComanda.ABERTA;
+        this.pedidos = new ArrayList<>();
     }
 
     public void adicionarPedido(Pedido pedido){
-
+        this.pedidos.add(pedido);
+        this.valorTotalProdutos = calcularTotal();
     }
 
     public boolean removerPedido(String codigo){
-        return false;
+        Pedido pedido = this.pedidos.stream()
+                .filter(p -> p.getCodigo().equals(codigo))
+                .findFirst()
+                .orElse(null);
+        if(pedido == null){
+            return false;
+        } else {
+            this.pedidos.remove(pedido);
+            this.valorTotalProdutos = calcularTotal();
+            return true;
+        }
     }
 
-    public double calcularTotal(){
+    private double calcularTotal(){
         return pedidos.stream().mapToDouble(Pedido::getTotal).sum();
-    }
+    } // TODO
 
     public int getId() {
         return id;
@@ -84,6 +99,12 @@ public class Comanda {
     public void setStatusComanda(StatusComanda statusComanda) {
         this.statusComanda = statusComanda;
     }
+
+    public double getValorTotalProdutos() { return calcularTotal(); }
+
+    public double getValorTotalFinal() { return this.valorTotalFinal; }
+
+    public void setValorTotalFinal(double valorTotalFinal) { this.valorTotalFinal = valorTotalFinal; }
 
     public Date getCriadoEm() {
         return criadoEm;

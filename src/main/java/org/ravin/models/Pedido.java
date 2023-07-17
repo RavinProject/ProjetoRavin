@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Pedido {
     private int id;
+    private String codigo;
     private Produto produto;
     private Timestamp dataHoraSolicitacao;
     private Timestamp dataHoraInicioPreparo;
@@ -25,12 +26,26 @@ public class Pedido {
         this.quantidade = quantidade;
     }
 
+    public Pedido(Produto produto, int quantidade, StatusPreparo statusPreparo){
+        this.produto = produto;
+        this.quantidade = quantidade;
+        this.statusPreparo = statusPreparo;
+    }
+
     public void adicionarQuantidadePedido(int quantidade){
         this.quantidade += quantidade;
     }
 
     public void reduzirQuantidadePedido(int quantidade){
         this.quantidade -= quantidade;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo){
+        return;
     }
 
     public double getTotal() {
