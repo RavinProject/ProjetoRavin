@@ -26,18 +26,6 @@ public class Mesa {
         this.quantidadeMaxima = quantidadeMaxima;
     }
 
-    public boolean reservarMesa(){
-        return false;
-    }
-
-    public boolean liberarMesa(){
-        return false;
-    }
-
-    public boolean ocuparMesa(int qtdPessoas){
-        return false;
-    }
-
     public void alocarFuncionario(Funcionario funcionario){
 
     }
@@ -140,6 +128,9 @@ public class Mesa {
 
     public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
+    }
+    public Reserva reservarPara(Cliente cliente, Date data) {
+        return new Reserva(cliente, this, data);
     }
 
 }

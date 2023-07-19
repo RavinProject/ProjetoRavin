@@ -2,11 +2,18 @@ package org.ravin.dao;
 
 import org.ravin.dao.interfaces.IMesaRepositorio;
 import org.ravin.models.Mesa;
+import org.ravin.models.Reserva;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MesaRepositorio implements IMesaRepositorio {
+    private final List<Mesa> listaMesas;
+
+    public MesaRepositorio(List<Mesa> listaMesas) {
+        this.listaMesas = listaMesas;
+    }
+
     @Override
     public void inserir(Mesa object) {
 

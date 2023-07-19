@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class ProdutoRepositorio implements IProdutoRepositorio {
 
-    private List<Produto> listaProdutos;
+    private final List<Produto> listaProdutos;
 
     public ProdutoRepositorio(List<Produto> listaProdutos) {
         this.listaProdutos = listaProdutos;

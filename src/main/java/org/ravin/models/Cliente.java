@@ -69,4 +69,8 @@ public class Cliente extends Pessoa {
         this.alteradoPor = alteradoPor;
     }
 
+    public Reserva reservarMesa(Mesa mesa, Date data) {
+        return new Reserva(this, mesa, data);
+    }
+
 }
