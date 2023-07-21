@@ -9,7 +9,7 @@ import static views.View.solicitaEntradaDeDado;
 import static views.funcionario.SubmenuFuncionarioView.imprimeFuncionario;
 
 public class RecuperarFuncionarioView {
-    static void pesquisarClientePorCpf(IFuncionarioController funcionarioController) {
+    static void pesquisarFuncionarioPorCpf(IFuncionarioController funcionarioController) {
 
         String cpf = solicitaEntradaDeDado("Informe o CPF do funcioanrio que deseja alterar:");
         Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
@@ -23,7 +23,7 @@ public class RecuperarFuncionarioView {
 
 
 
-    static void listarfuncionarios(IFuncionarioController funcionarioController) {
+    static void listarFuncionarios(IFuncionarioController funcionarioController) {
         StringBuilder texto = new StringBuilder();
         for (Pessoa funcionario : funcionarioController.pegarLista()) {
             if(funcionario instanceof Funcionario){

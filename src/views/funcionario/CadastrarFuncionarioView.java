@@ -18,7 +18,7 @@ import static views.funcionario.SubmenuFuncionarioView.imprimeFuncionario;;
 
 public class CadastrarFuncionarioView{
 
-    static void cadastrar(IFuncionarioController funcionarioController) {
+    static void cadastrarFuncionario(IFuncionarioController funcionarioController) {
         Funcionario funcionario = new Funcionario();
         try {   
         funcionario.setSenha(solicitaEntradaDeDado("(obrigatório) Cadastre sua senha: "));
