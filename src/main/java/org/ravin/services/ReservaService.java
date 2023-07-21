@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class ReservaService implements IReservaService {
-    private final IReservaRepositorio reservaRepository;
 
-    public ReservaService () {this.reservaRepository = ListasDados.getInstance().getReservaRepositorio();
-    }
+    // Injeção de dependência parcial - lista por Singleton
+    private final IReservaRepositorio reservaRepository;
+    public ReservaService () { this.reservaRepository = ListasDados.getInstance().getReservaRepositorio(); }
 
     @Override
     public void reservarMesa(Cliente cliente, Mesa mesa, Date data) {

@@ -7,6 +7,9 @@ import org.ravin.views.comanda.SubmenuComanda;
 import org.ravin.views.estoque.SubmenuEstoque;
 import org.ravin.views.funcionario.SubmenuFuncionario;
 import org.ravin.views.mesa.SubmenuMesa;
+import org.ravin.views.reserva.SubmenuReserva;
+
+import static org.ravin.views.View.*;
 
 import static org.ravin.views.View.solicitaEntradaDeDado;
 

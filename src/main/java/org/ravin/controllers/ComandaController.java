@@ -9,8 +9,8 @@ import java.util.List;
 
 public class ComandaController implements IComandaController {
 
+    // Injeção de dependência
     private final IPagarComandaService comandaService;
-
     public ComandaController(IPagarComandaService comandaService) {
         this.comandaService = comandaService;
     }

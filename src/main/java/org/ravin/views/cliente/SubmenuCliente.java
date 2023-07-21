@@ -1,6 +1,7 @@
 package org.ravin.views.cliente;
 
 import org.ravin.controllers.ClienteController;
+import org.ravin.controllers.interfaces.IClienteController;
 import org.ravin.models.Cliente;
 import org.ravin.services.ClienteService;
 import org.ravin.services.interfaces.IClienteService;
@@ -17,7 +18,7 @@ public class SubmenuCliente extends View{
     public static void menuCliente() {
         // Injeção de Dependência
         IClienteService clienteServico = new ClienteService();
-        ClienteController clienteController = new ClienteController(clienteServico);
+        IClienteController clienteController = new ClienteController(clienteServico);
 
         boolean exec = true;
         while (exec) {

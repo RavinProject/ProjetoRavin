@@ -10,8 +10,8 @@ import java.util.Optional;
 
 public class EstoqueController implements IEstoqueController {
 
+    // Injeção de dependência
     private final IEstoqueService estoqueService;
-
     public EstoqueController(IEstoqueService estoqueService){
         this.estoqueService = estoqueService;
     }

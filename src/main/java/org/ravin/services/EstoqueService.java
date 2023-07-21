@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public class EstoqueService implements IEstoqueService {
 
+    // Injeção de dependência parcial - lista por Singleton
     private final IEstoqueRepositorio estoqueRepositorio;
     public EstoqueService(){
         estoqueRepositorio = ListasDados.getInstance().getEstoqueRepositorio();
