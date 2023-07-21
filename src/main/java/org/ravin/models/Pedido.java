@@ -147,5 +147,23 @@ public class Pedido {
     public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                ", codigo='" + codigo + '\'' +
+                ", produto=" + produto +
+                ", dataHoraSolicitacao=" + dataHoraSolicitacao +
+                ", dataHoraInicioPreparo=" + dataHoraInicioPreparo +
+                ", tempoPreparoRestante=" + tempoPreparoRestante +
+                ", statusPreparo=" + statusPreparo +
+                ", observacao='" + observacao + '\'' +
+                ", quantidade=" + quantidade +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
+    }
 }

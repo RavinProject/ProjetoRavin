@@ -73,4 +73,15 @@ public class Cliente extends Pessoa {
         return new Reserva(this, mesa, data);
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "alergias='" + alergias + '\'' +
+                ", vip=" + vip +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
+    }
 }

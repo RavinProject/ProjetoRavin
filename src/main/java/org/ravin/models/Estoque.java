@@ -76,5 +76,17 @@ public class Estoque {
     public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Estoque{" +
+                "id=" + id +
+                ", produto=" + produto +
+                ", quantidade=" + quantidade +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
+    }
 }

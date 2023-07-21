@@ -137,5 +137,22 @@ public class Comanda {
     public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Comanda{" +
+                "id=" + id +
+                ", cliente=" + cliente +
+                ", pedidos=" + pedidos +
+                ", codigo='" + codigo + '\'' +
+                ", observacoes='" + observacoes + '\'' +
+                ", statusComanda=" + statusComanda +
+                ", valorTotalProdutos=" + valorTotalProdutos +
+                ", valorTotalFinal=" + valorTotalFinal +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
+    }
 }

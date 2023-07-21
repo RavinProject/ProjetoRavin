@@ -204,6 +204,24 @@ public class Funcionario extends Pessoa {
         this.alteradoPor = alteradoPor;
     }
 
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                "rg='" + rg + '\'' +
+                ", estadoCivil=" + estadoCivil +
+                ", escolaridade=" + escolaridade +
+                ", cargo=" + cargo +
+                ", pis='" + pis + '\'' +
+                ", senha='" + senha + '\'' +
+                ", dataAdmissao=" + dataAdmissao +
+                ", dataDemissao=" + dataDemissao +
+                ", disponibilidade=" + disponibilidade +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
+    }
 }
 
 
