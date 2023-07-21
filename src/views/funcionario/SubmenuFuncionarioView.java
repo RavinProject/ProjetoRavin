@@ -4,14 +4,14 @@ import controllers.FuncionarioController;
 import dao.ListasDados;
 import dao.interfaces.IFuncionarioRepositorio;
 import models.Funcionario;
-//import utils.DateUtils;
+
 
 import javax.swing.*;
 
 import static views.View.exibeDialogo;
-import static views.funcionario.CadastrarFuncionarioView.cadastrarFuncionario;
+import static views.funcionario.AtualizarFuncionarioView.*;
+import static views.funcionario.CadastrarFuncionarioView.*;
 import static views.funcionario.ExcluirFuncionarioView.excluirFuncionario;
-// import static views.funcionario.AtualizarFuncionarioView.;
 import static views.funcionario.RecuperarFuncionarioView.listarFuncionarios;
 import static views.funcionario.RecuperarFuncionarioView.pesquisarFuncionarioPorCpf;
 
@@ -27,7 +27,7 @@ public class SubmenuFuncionarioView {
             String opcao = JOptionPane.showInputDialog(menuInicial());
             switch (opcao) {
                 case "1" -> cadastrarFuncionario(funcionarioController);
-              //case "2" -> atualizar(funcionarioController);
+                case "2" -> atualizar(funcionarioController);
                 case "3" -> listarFuncionarios(funcionarioController);
                 case "4" -> pesquisarFuncionarioPorCpf(funcionarioController);
                 case "5" -> excluirFuncionario(funcionarioController);
