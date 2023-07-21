@@ -8,12 +8,13 @@ import java.util.Optional;
 
 public class FuncionarioRepositorio implements IFuncionarioRepositorio {
 
-    private List<Funcionario> listaFuncionarios;
+    private final List<Funcionario> listaFuncionarios;
 
     public FuncionarioRepositorio(List<Funcionario> listaFuncionarios) {
         this.listaFuncionarios = listaFuncionarios;
     }
 
+    //1
     @Override
     public void inserir(Funcionario funcionario) {
         if (funcionario.getId() == 0) {
@@ -24,8 +25,8 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
 
     @Override
     public List<Funcionario> pegarLista() {
-        return listaFuncionarios;
-    }
+        return listaFuncionarios; // Retornar a lista de funcionario
+    }   
 
     @Override
     public Optional<Funcionario> recuperarPorId(int id) {
@@ -36,6 +37,17 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
             }
         }
         return Optional.empty(); // Retorna um Optional vazio se não encontrar
+    }
+    
+    @Override
+    public int geraProximoId() {
+        int maiorId = 0;
+        for (Funcionario funcionario : pegarLista()) {
+            if (funcionario.getId() > maiorId) {
+                maiorId = funcionario.getId();
+            }
+        }
+        return maiorId + 1;
     }
 
     @Override
@@ -49,6 +61,7 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
         }
     }
 
+
     @Override
     public void remover(Funcionario funcionario) {
         pegarLista().remove(funcionario); // Remove o cliente da lista
@@ -60,14 +73,15 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
         pegarLista().removeIf(funcionario -> funcionario.getId() == id);
     }
 
-    @Override
-    public int geraProximoId() {
-        int maiorId = 0;
+     @Override
+    public Optional<Funcionario> buscarPorCpf(String cpf) {
+        // Itera pela lista e tenta encontrar um cliente com o CPF fornecido
         for (Funcionario funcionario : pegarLista()) {
-            if (funcionario.getId() > maiorId) {
-                maiorId = funcionario.getId();
+            if (funcionario.getCpf().equals(cpf)) {
+                return Optional.of(funcionario);
             }
         }
-        return maiorId + 1;
+        return Optional.empty(); // Retorna um Optional vazio se não encontrar
     }
+
 }
