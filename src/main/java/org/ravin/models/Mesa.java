@@ -133,4 +133,21 @@ public class Mesa {
         return new Reserva(cliente, this, data);
     }
 
+    @Override
+    public String toString() {
+        return "Mesa{" +
+                "id=" + id +
+                ", funcionario=" + funcionario +
+                ", comandas=" + comandas +
+                ", nome='" + nome + '\'' +
+                ", codigo='" + codigo + '\'' +
+                ", numero=" + numero +
+                ", quantidadeMaxima=" + quantidadeMaxima +
+                ", statusMesa=" + statusMesa +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
+    }
 }
