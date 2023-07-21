@@ -2,6 +2,7 @@ package org.ravin.views.cliente;
 
 import org.ravin.controllers.interfaces.IClienteController;
 import org.ravin.models.Cliente;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import javax.swing.*;
 
@@ -30,7 +31,7 @@ public class ExcluirClienteView {
             } else {
                 exibeDialogo("Cliente não encontrado com o cpf informado!");
             }
-        } catch (Exception e) {
+        } catch (Exception | EntidadeNaoEncontradaException e) {
             exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
             e.printStackTrace();
         }

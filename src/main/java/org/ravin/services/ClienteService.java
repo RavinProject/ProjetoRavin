@@ -10,8 +10,8 @@ import java.util.Optional;
 
 public class ClienteService implements IClienteService{
 
+    // Injeção de dependência parcial - lista por Singleton
     private final IClienteRepositorio clienteRepositorio;
-
     public ClienteService(){
         clienteRepositorio = ListasDados.getInstance().getClienteRepositorio();
     }

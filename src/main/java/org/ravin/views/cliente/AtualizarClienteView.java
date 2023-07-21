@@ -3,6 +3,7 @@ package org.ravin.views.cliente;
 import org.ravin.controllers.interfaces.IClienteController;
 import org.ravin.models.Cliente;
 import org.ravin.utils.DateUtils;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.Date;
 
@@ -27,9 +28,9 @@ public class AtualizarClienteView {
                 cliente.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy", DateUtils.dateToString(cliente.getNascimento()))));
                 cliente.setObservacao(solicitaEntradaDeDado("Observação", cliente.getObservacao()));
                 cliente.setAlergias(solicitaEntradaDeDado("Alergias: ", cliente.getAlergias()));
-                boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim", cliente.isVip() ? "1" : "0").equals("1") ? true : false;
+                boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim", cliente.isVip() ? "1" : "0").equals("1");
                 cliente.setVip(vip);
-                boolean ativo = solicitaEntradaDeDado("Ativo?\n 0 - Não \n 1 - Sim", cliente.getAtivo() ? "1" : "0").equals("1") ? true : false;
+                boolean ativo = solicitaEntradaDeDado("Ativo?\n 0 - Não \n 1 - Sim", cliente.getAtivo() ? "1" : "0").equals("1");
                 cliente.setAtivo(ativo);
                 cliente.setAlteradoEm(new Date());
                 cliente.setAlteradoPor(null);
@@ -39,7 +40,7 @@ public class AtualizarClienteView {
             } else {
                 exibeDialogo("Cliente não encontrado!");
             }
-        } catch (Exception e) {
+        } catch (Exception | EntidadeNaoEncontradaException e) {
             exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
             e.printStackTrace();
         }

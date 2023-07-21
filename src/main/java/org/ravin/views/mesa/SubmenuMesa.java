@@ -1,9 +1,13 @@
 package org.ravin.views.mesa;
 
 import org.ravin.controllers.ClienteController;
+import org.ravin.controllers.MesaController;
+import org.ravin.controllers.interfaces.IMesaController;
 import org.ravin.dao.interfaces.IMesaRepositorio;
 import org.ravin.services.ClienteService;
+import org.ravin.services.MesaService;
 import org.ravin.services.interfaces.IClienteService;
+import org.ravin.services.interfaces.IMesaService;
 import org.ravin.views.View;
 
 public class SubmenuMesa extends View{
@@ -11,13 +15,15 @@ public class SubmenuMesa extends View{
     public static void menu(){
         
         // Injeção de Dependência
+        IMesaService mesaService = new MesaService();
+        IMesaController mesaController = new MesaController(mesaService);
 
         // TODO
         boolean exec = true;
         while (exec) {
             String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
-                case "1" -> exibeDialogo("Criar Mesa: implementar...");
+                case "1" -> cadastrar(mesaController);
                 case "2" -> exibeDialogo("Alterar Mesa: implementar...");
                 case "3" -> exibeDialogo("Excluir Mesa: implementar...");
                 case "4" -> exibeDialogo("Listar Mesas: implementar...");

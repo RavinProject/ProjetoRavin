@@ -9,9 +9,9 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class ClienteController implements IClienteController {
-    
-    private final IClienteService clienteService;
 
+    // Injeção de dependência
+    private final IClienteService clienteService;
     public ClienteController(IClienteService clienteService) {
         this.clienteService = clienteService;
     }

@@ -23,7 +23,7 @@ public class CadastrarClienteView {
             cliente.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy")));
             cliente.setObservacao(solicitaEntradaDeDado("Informe uma observação ou tecle enter para continuar:"));
             cliente.setAlergias(solicitaEntradaDeDado("Alergias: "));
-            boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim").equals("1") ? true : false;
+            boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim").equals("1");
             cliente.setVip(vip);
             cliente.setAtivo(true);
             cliente.setCriadoEm(new Date());

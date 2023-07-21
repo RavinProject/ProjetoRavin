@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class ProdutoService implements IProdutoService {
+
+    // Injeção de dependência parcial - lista por Singleton
     private final IProdutoRepositorio produtoRepositorio;
     public ProdutoService(){
         produtoRepositorio = ListasDados.getInstance().getProdutoRepositorio();

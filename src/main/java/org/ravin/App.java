@@ -6,6 +6,8 @@ import org.ravin.views.comanda.SubmenuComanda;
 import org.ravin.views.estoque.SubmenuEstoque;
 import org.ravin.views.funcionario.SubmenuFuncionario;
 import org.ravin.views.mesa.SubmenuMesa;
+import org.ravin.views.reserva.SubmenuReserva;
+
 import static org.ravin.views.View.*;
 
 public class App {
@@ -38,6 +40,7 @@ public class App {
                 case "4" -> SubmenuMesa.menu();
                 case "5" -> SubmenuComanda.menu();
                 case "6" -> SubmenuCardapio.menu();
+                case "7" -> SubmenuReserva.menu();
                 case "x" -> exec = false;
                 default -> System.out.println("Opção inválida!");
             }
