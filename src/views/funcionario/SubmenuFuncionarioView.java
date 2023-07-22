@@ -9,7 +9,7 @@ import models.Funcionario;
 import javax.swing.*;
 
 import static views.View.exibeDialogo;
-import static views.funcionario.AtualizarFuncionarioView.*;
+import static views.funcionario.AtualizarFuncionarioView.atualizar;
 import static views.funcionario.CadastrarFuncionarioView.*;
 import static views.funcionario.ExcluirFuncionarioView.excluirFuncionario;
 import static views.funcionario.RecuperarFuncionarioView.listarFuncionarios;

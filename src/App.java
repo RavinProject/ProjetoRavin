@@ -2,7 +2,7 @@ import javax.swing.JOptionPane;
 
 import views.cliente.SubmenuCliente;
 import views.estoque.CadastroEstoqueView;
-import views.funcionario.CadastrarFuncionarioView;
+import views.funcionario.SubmenuFuncionarioView;
 
 public class App {
 
@@ -29,7 +29,7 @@ public class App {
             }
             switch (opcao) {
                 case "1" -> SubmenuCliente.menu();
-                case "2" -> CadastrarFuncionarioView.menu();
+                case "2" -> SubmenuFuncionarioView.menu();
                 case "3" -> CadastroEstoqueView.menu();
                 case "x" -> exec = false;
                 default -> System.out.println("Opção inválida!");
@@ -47,7 +47,7 @@ public class App {
 		builder.append("3 - Estoque \n");
 		// builder.append("4 - Mesas \n");
 		// builder.append("5 - Mesas \n");
-		// builder.append("6 - Pedidos \n");
+		// builder.append("6 - Pedidos \n");1
 		builder.append("x - Sair");
         return builder.toString();
     }
