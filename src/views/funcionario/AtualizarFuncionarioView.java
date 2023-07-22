@@ -12,7 +12,7 @@ import java.util.Date;
 
 import static views.View.exibeDialogo;
 import static views.View.solicitaEntradaDeDado;
-import static views.funcionario.SubmenuFuncionarioView.imprimeFuncionario;;
+import static views.funcionario.SubmenuFuncionarioView.imprimeFuncionario;
 
 public class AtualizarFuncionarioView {
     static void atualizar(IFuncionarioController funcionarioController) {
@@ -75,7 +75,7 @@ public class AtualizarFuncionarioView {
                 exibeDialogo("Funcionario atualizado com sucesso!");
                 imprimeFuncionario(funcionarioController.buscaPorCpf(funcionario.getCpf()));
             } else {
-                exibeDialogo("Funcionario não encontrado!");
+            exibeDialogo("Funcionario não encontrado!");
             }
         } catch (Exception e) {
             exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
