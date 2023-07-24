@@ -1,18 +1,18 @@
-package views.funcionario;
+package org.ravin.views.funcionario;
 
 import java.util.Date;
 import java.util.InputMismatchException;
 
-import controllers.interfaces.IFuncionarioController;
-import models.Funcionario;
-import utils.DateUtils;
-import utils.enums.Escolaridade;
-import utils.enums.Cargo;
-import utils.enums.Disponibilidade;
-import utils.enums.EstadoCivil;
+import org.ravin.controllers.interfaces.IFuncionarioController;
+import org.ravin.models.Funcionario;
+import org.ravin.utils.DateUtils;
+import org.ravin.utils.enums.Escolaridade;
+import org.ravin.utils.enums.Cargo;
+import org.ravin.utils.enums.Disponibilidade;
+import org.ravin.utils.enums.EstadoCivil;
 
-import static views.View.*;
-import static views.funcionario.SubmenuFuncionarioView.imprimeFuncionario;;
+import static org.ravin.views.View.*;
+import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;;
 
 
 
@@ -48,6 +48,7 @@ public class CadastrarFuncionarioView{
         funcionario.setEndereco(solicitaEntradaDeDado("Endereço: "));
         funcionario.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy")));
         funcionario.setDataAdmissao(DateUtils.stringToDate(solicitaEntradaDeDado("Data de admissão: \nFormato: dd/mm/yyyy")));
+        funcionario.setAtivo(true);
         funcionario.setCriadoEm(new Date());
         funcionario.setCriadoPor(null);
         funcionario.setAlteradoEm(new Date());

@@ -33,7 +33,7 @@ public class App {
             }
             switch (opcao) {
                 case "1" -> SubmenuCliente.menu();
-                case "2" -> SubmenuFuncionarioView.menu();
+                case "2" -> SubmenuFuncionario.menu();
                 case "3" -> SubmenuEstoque.menu();
                 case "4" -> SubmenuMesa.menu();
                 case "5" -> SubmenuComanda.menu();

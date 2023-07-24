@@ -1,12 +1,12 @@
-package views.funcionario;
+package org.ravin.views.funcionario;
 
-import controllers.interfaces.IFuncionarioController;
-import models.Funcionario;
+import org.ravin.controllers.interfaces.IFuncionarioController;
+import org.ravin.models.Funcionario;
 
 import javax.swing.*;
 
-import static views.View.*;
-import static views.View.exibeDialogo;
+import static org.ravin.views.View.*;
+import static org.ravin.views.View.exibeDialogo;
 
 public class ExcluirFuncionarioView {
      static void excluirFuncionario(IFuncionarioController funcionarioController) {

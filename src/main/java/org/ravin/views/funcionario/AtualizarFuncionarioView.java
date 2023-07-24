@@ -1,18 +1,18 @@
-package views.funcionario;
+package org.ravin.views.funcionario;
 
-import controllers.interfaces.IFuncionarioController;
-import models.Funcionario;
-import utils.DateUtils;
-import utils.enums.Cargo;
-import utils.enums.Disponibilidade;
-import utils.enums.Escolaridade;
-import utils.enums.EstadoCivil;
+import org.ravin.controllers.interfaces.IFuncionarioController;
+import org.ravin.models.Funcionario;
+import org.ravin.utils.DateUtils;
+import org.ravin.utils.enums.Cargo;
+import org.ravin.utils.enums.Disponibilidade;
+import org.ravin.utils.enums.Escolaridade;
+import org.ravin.utils.enums.EstadoCivil;
 
 import java.util.Date;
 
-import static views.View.exibeDialogo;
-import static views.View.solicitaEntradaDeDado;
-import static views.funcionario.SubmenuFuncionarioView.imprimeFuncionario;
+import static org.ravin.views.View.exibeDialogo;
+import static org.ravin.views.View.solicitaEntradaDeDado;
+import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;
 
 public class AtualizarFuncionarioView {
     static void atualizar(IFuncionarioController funcionarioController) {
@@ -58,7 +58,7 @@ public class AtualizarFuncionarioView {
                 String stringDisponibilidade = 
                 "Selecione a disponibilidade do funcionario:  \n1 Ocupado \n2 Diponível";
                 String stringAtualizarDisponibilidade = solicitaEntradaDeDado(stringDisponibilidade,
-                        (funcionario.getEscolaridade().ordinal() + 1) + "");
+                        (funcionario.getDisponibilidade().ordinal() + 1) + "");
                 funcionario.setDisponibilidade(Disponibilidade.values()[Integer.parseInt(stringAtualizarDisponibilidade) - 1]);
 
                 //Criando String para Estado Civil

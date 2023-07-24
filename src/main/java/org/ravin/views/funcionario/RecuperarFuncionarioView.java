@@ -1,12 +1,12 @@
-package views.funcionario;
+package org.ravin.views.funcionario;
 
-import controllers.interfaces.IFuncionarioController;
-import models.Funcionario;
-import models.Pessoa;
+import org.ravin.controllers.interfaces.IFuncionarioController;
+import org.ravin.models.Funcionario;
+import org.ravin.models.Pessoa;
 
-import static views.View.exibeDialogo;
-import static views.View.solicitaEntradaDeDado;
-import static views.funcionario.SubmenuFuncionarioView.imprimeFuncionario;
+import static org.ravin.views.View.exibeDialogo;
+import static org.ravin.views.View.solicitaEntradaDeDado;
+import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;
 
 public class RecuperarFuncionarioView {
     static void pesquisarFuncionarioPorCpf(IFuncionarioController funcionarioController) {
