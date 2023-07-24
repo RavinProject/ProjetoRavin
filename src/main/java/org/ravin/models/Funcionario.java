@@ -116,8 +116,8 @@ public class Funcionario extends Pessoa {
         return stringCargo;
     }
 
-    public void setCargo(Cargo cargo) {
-        this.cargo = cargo;
+    public void setCargo(Cargo string) {
+        this.cargo = string;
     }
 
     public String getPis() {

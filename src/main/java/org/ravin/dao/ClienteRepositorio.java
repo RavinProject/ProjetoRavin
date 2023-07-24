@@ -13,17 +13,12 @@ public class ClienteRepositorio implements IClienteRepositorio {
     public ClienteRepositorio(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
-
+    
     @Override
     public void inserir(Cliente cliente) {
         pegarLista().add(cliente); // Adiciona o cliente na lista
     }
-
-    @Override
-    public List<Cliente> pegarLista() {
-        return listaClientes; // Retorna a lista de clientes
-    }
-
+        
     @Override
     public Optional<Cliente> recuperarPorId(int id) {
         // Itera pela lista e tenta encontrar um cliente com o ID fornecido
@@ -34,6 +29,12 @@ public class ClienteRepositorio implements IClienteRepositorio {
         }
         return Optional.empty(); // Retorna um Optional vazio se não encontrar
     }
+
+    @Override
+    public List<Cliente> pegarLista() {
+        return listaClientes; // Retorna a lista de clientes
+    }
+
 
     @Override
     public void atualizar(Cliente clienteAtualizado) {
