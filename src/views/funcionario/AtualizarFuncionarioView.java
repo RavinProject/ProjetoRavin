@@ -42,32 +42,31 @@ public class AtualizarFuncionarioView {
                 funcionario.setAtivo(ativo);
 
                 // Criando String para cargos
-                String stringCargos = 
-                "Selecione o cargo:\n1 - Auxiliar de Cozinha \n2 - Balconista \n3 - Bartender \n4 - Cheff \n5 - Garçon \n6 - Gerente \n7 - Recepcionista";
+                String stringCargos = "Selecione o cargo:\n1 - Auxiliar de Cozinha \n2 - Balconista \n3 - Bartender \n4 - Cheff \n5 - Garçon \n6 - Gerente \n7 - Recepcionista";
                 String stringAtualizarCargo = solicitaEntradaDeDado(stringCargos,
-                        funcionario.getCargo().ordinal() + "");
-                funcionario.setCargo(Cargo.values()[Integer.parseInt(stringAtualizarCargo) + 1]);
+                        (funcionario.getCargo().ordinal() + 1) + "");
+                funcionario.setCargo(Cargo.values()[Integer.parseInt(stringAtualizarCargo) - 1]);
 
                 //Criando String para Escolaridade
                 String stringEscolaridade = 
                 "Selecione a escolaridade: \n1 Ensino fundamental \n2 Ensino médio \n3 Ensino superior";
                 String stringAtualizarEscolaridade = solicitaEntradaDeDado(stringEscolaridade,
-                        funcionario.getEscolaridade().ordinal() + "");
-                funcionario.setEscolaridade(Escolaridade.values()[Integer.parseInt(stringAtualizarEscolaridade) + 1]);
+                        (funcionario.getEscolaridade().ordinal() + 1) + "");
+                funcionario.setEscolaridade(Escolaridade.values()[Integer.parseInt(stringAtualizarEscolaridade) - 1]);
 
                 //Criando String para Disponibilidade 
                 String stringDisponibilidade = 
                 "Selecione a disponibilidade do funcionario:  \n1 Ocupado \n2 Diponível";
                 String stringAtualizarDisponibilidade = solicitaEntradaDeDado(stringDisponibilidade,
-                        funcionario.getEscolaridade().ordinal() + "");
-                funcionario.setDisponibilidade(Disponibilidade.values()[Integer.parseInt(stringAtualizarDisponibilidade) + 1]);
+                        (funcionario.getEscolaridade().ordinal() + 1) + "");
+                funcionario.setDisponibilidade(Disponibilidade.values()[Integer.parseInt(stringAtualizarDisponibilidade) - 1]);
 
                 //Criando String para Estado Civil
                 String stringEstadoCivil = 
                 "Selecione o estado civil:  \n1 Solteiro \n2 Casado \n3 Separado \n4 Divorciado \n5 Viuvo";
                 String stringAtualizarEsatdoCivil = solicitaEntradaDeDado(stringEstadoCivil,
-                        funcionario.getEstadoCivil().ordinal() + "");
-                funcionario.setEstadoCivil(EstadoCivil.values()[Integer.parseInt(stringAtualizarEsatdoCivil) + 1]);
+                        (funcionario.getEstadoCivil().ordinal() + 1) + "");
+                funcionario.setEstadoCivil(EstadoCivil.values()[Integer.parseInt(stringAtualizarEsatdoCivil) - 1]);
 
                 funcionario.setAlteradoEm(new Date());
                 funcionario.setAlteradoPor(null);

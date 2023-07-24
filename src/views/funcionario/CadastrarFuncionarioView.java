@@ -48,7 +48,6 @@ public class CadastrarFuncionarioView{
         funcionario.setEndereco(solicitaEntradaDeDado("Endereço: "));
         funcionario.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy")));
         funcionario.setDataAdmissao(DateUtils.stringToDate(solicitaEntradaDeDado("Data de admissão: \nFormato: dd/mm/yyyy")));
-        funcionario.setDataDemissao(DateUtils.stringToDate(solicitaEntradaDeDado("Data de demissão:  \nFormato: dd/mm/yyyy")));
         funcionario.setCriadoEm(new Date());
         funcionario.setCriadoPor(null);
         funcionario.setAlteradoEm(new Date());
