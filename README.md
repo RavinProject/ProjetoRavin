@@ -14,6 +14,8 @@
 | Pessoa       | 🚧 | 🚧 | 🚧 | 🚧 |
 | Produto      | ✔️ | ✔️ | ✔️ | ✔️ |
 
+---
+
 ### Conceitos aplicados
 - Padrão MVCS, desacoplando a parte visual, entidades, regra de negócios e dados;
 - Padrão Singleton para a classe ListaDados.java, a qual monta as listas de dados fictícios ao iniciar o programa;
@@ -25,7 +27,11 @@
 - Interfaces individualizadas (SIP)
 - ...
 
-  
+---
+
+### Arquitetura Utilizada
+![](https://github.com/RavinProject/ProjetoRavin/assets/118540708/68680d3b-41c9-4593-a852-f9519f8ea876)
+
 ---
 
 ### Diagrama de Classe
