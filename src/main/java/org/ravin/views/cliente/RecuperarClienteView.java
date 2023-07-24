@@ -21,8 +21,6 @@ public class RecuperarClienteView {
         }
     }
 
-
-
     static void listarClientes(IClienteController clienteController) {
         StringBuilder texto = new StringBuilder();
         for (Pessoa cliente : clienteController.pegarLista()) {
