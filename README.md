@@ -12,7 +12,7 @@
 | Mesa         | 🚧 | 🚧 | 🚧 | 🚧 |
 | Pedido       | 🚧 | 🚧 | 🚧 | 🚧 |
 | Pessoa       | 🚧 | 🚧 | 🚧 | 🚧 |
-| Produto      | ✔️ | 🚧 | 🚧 | 🚧 |
+| Produto      | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ### Conceitos aplicados
 - Padrão MVCS, desacoplando a parte visual, entidades, regra de negócios e dados;
