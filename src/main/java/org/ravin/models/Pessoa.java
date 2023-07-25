@@ -95,8 +95,8 @@ public abstract class Pessoa {
         return ativo;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setStatusAtivo(boolean status) {
+        this.ativo = status;
     }
 
     public Date getCriadoEm() {

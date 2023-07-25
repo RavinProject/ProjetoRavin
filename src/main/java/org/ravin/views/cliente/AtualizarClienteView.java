@@ -13,10 +13,9 @@ import static org.ravin.views.cliente.SubmenuCliente.imprimeCliente;
 public class AtualizarClienteView {
     static void atualizar(IClienteController clienteController) {
 
-        // TODO ver se existe alguma maneira mais simples de mostrar submenus
-
         try {
             String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+            if (cpf == null) return;
             Cliente cliente = clienteController.recuperarPorCpf(cpf);
 
             if (cliente != null) {
@@ -30,7 +29,7 @@ public class AtualizarClienteView {
                 boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim", cliente.isVip() ? "1" : "0").equals("1") ? true : false;
                 cliente.setVip(vip);
                 boolean ativo = solicitaEntradaDeDado("Ativo?\n 0 - Não \n 1 - Sim", cliente.getAtivo() ? "1" : "0").equals("1") ? true : false;
-                cliente.setAtivo(ativo);
+                cliente.setStatusAtivo(ativo);
                 cliente.setAlteradoEm(new Date());
                 cliente.setAlteradoPor(null);
                 clienteController.atualizar(cliente);

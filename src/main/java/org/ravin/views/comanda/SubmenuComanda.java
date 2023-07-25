@@ -43,7 +43,6 @@ public class SubmenuComanda extends View{
 
     public static void menuPedido() {
 
-        // TODO
         boolean exec = true;
         while (exec) {
             String opcao = solicitaEntradaDeDado(textMenuPedido());

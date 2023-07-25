@@ -12,6 +12,7 @@ public class RecuperarClienteView {
     static void pesquisarClientePorCpf(IClienteController clienteController) {
 
         String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+        if (cpf == null) return;
         Cliente cliente = clienteController.recuperarPorCpf(cpf);
 
         if (cliente != null) {

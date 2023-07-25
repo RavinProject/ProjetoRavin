@@ -25,7 +25,7 @@ public class CadastrarClienteView {
             cliente.setAlergias(solicitaEntradaDeDado("Alergias: "));
             boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim").equals("1") ? true : false;
             cliente.setVip(vip);
-            cliente.setAtivo(true);
+            cliente.setStatusAtivo(true);
             cliente.setCriadoEm(new Date());
             cliente.setCriadoPor(null);
             cliente.setAlteradoEm(new Date());

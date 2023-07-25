@@ -11,6 +11,7 @@ public class ExcluirClienteView {
     static void excluirCliente(IClienteController clienteController) {
         try {
             String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+            if (cpf == null) return;
             Cliente cliente = clienteController.recuperarPorCpf(cpf);
 
             if (cliente != null) {
