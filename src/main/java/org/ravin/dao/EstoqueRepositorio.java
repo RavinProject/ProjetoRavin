@@ -67,6 +67,16 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
     }
 
     @Override
+    public Optional<Estoque> recuperarComandaPorCodigo(String codigo) {
+        for (Estoque estoque : pegarLista()) {
+            if (estoque.getProduto().getCodigo().toLowerCase().equals(codigo.toLowerCase())) {
+                return Optional.of(estoque);
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override
     public int geraProximoId() {
         int maiorId = 0;
         for (Estoque estoque : pegarLista()) {
@@ -75,15 +85,5 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
             }
         }
         return maiorId + 1;
-    }
-
-    @Override
-    public Optional<Estoque> recuperarComandaPorCodigo(String codigo) {
-        for (Estoque estoque : pegarLista()) {
-            if (estoque.getProduto().getCodigo().toLowerCase().equals(codigo.toLowerCase())) {
-                return Optional.of(estoque);
-            }
-        }
-        return Optional.empty();
     }
 }

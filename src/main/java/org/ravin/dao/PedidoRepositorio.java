@@ -46,7 +46,12 @@ public class PedidoRepositorio implements IPedidoRepositorio {
 
     @Override
     public int geraProximoId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+        int maiorId = 0;
+        for (Pedido pedido : pegarLista()) {
+            if (pedido.getId() > maiorId) {
+                maiorId = pedido.getId();
+            }
+        }
+        return maiorId + 1;
     }
 }

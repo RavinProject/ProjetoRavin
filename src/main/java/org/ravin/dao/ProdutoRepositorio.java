@@ -28,6 +28,16 @@ public class ProdutoRepositorio implements IProdutoRepositorio {
     }
 
     @Override
+    public int getId(Produto produto) {
+        return produto.getId();
+    }
+
+    @Override
+    public int geraProximoId() {
+        return IProdutoRepositorio.super.geraProximoId();
+    }
+
+    @Override
     public Optional<Produto> recuperarPorId(int id) {
         for (Produto produto : pegarLista()) {
             if (produto.getId() == id) {
@@ -55,17 +65,6 @@ public class ProdutoRepositorio implements IProdutoRepositorio {
     @Override
     public void removerPorId(int id) {
         pegarLista().removeIf(produto -> produto.getId() == id);
-    }
-
-    @Override
-    public int geraProximoId() {
-        int maiorId = 0;
-        for (Produto produto : pegarLista()) {
-            if (produto.getId() > maiorId) {
-                maiorId = produto.getId();
-            }
-        }
-        return maiorId + 1;
     }
 
     @Override

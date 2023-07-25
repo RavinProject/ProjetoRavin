@@ -2,6 +2,7 @@ package org.ravin.dao;
 
 import org.ravin.dao.interfaces.IComandaRepositorio;
 import org.ravin.models.Comanda;
+import org.ravin.models.Estoque;
 
 import java.util.List;
 import java.util.Objects;
@@ -61,8 +62,14 @@ public class ComandaRepositorio implements IComandaRepositorio {
         return Optional.empty();
     }
 
+    @Override
     public int geraProximoId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+        int maiorId = 0;
+        for (Comanda comanda : pegarLista()) {
+            if (comanda.getId() > maiorId) {
+                maiorId = comanda.getId();
+            }
+        }
+        return maiorId + 1;
     }
 }

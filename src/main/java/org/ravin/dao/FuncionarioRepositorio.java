@@ -38,17 +38,6 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
         }
         return Optional.empty(); // Retorna um Optional vazio se não encontrar
     }
-    
-    @Override
-    public int geraProximoId() {
-        int maiorId = 0;
-        for (Funcionario funcionario : pegarLista()) {
-            if (funcionario.getId() > maiorId) {
-                maiorId = funcionario.getId();
-            }
-        }
-        return maiorId + 1;
-    }
 
     @Override
     public void atualizar(Funcionario funcionarioAtualizado) {
@@ -82,5 +71,16 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
             }
         }
         return Optional.empty(); // Retorna um Optional vazio se não encontrar
+    }
+
+    @Override
+    public int geraProximoId() {
+        int maiorId = 0;
+        for (Funcionario funcionario : pegarLista()) {
+            if (funcionario.getId() > maiorId) {
+                maiorId = funcionario.getId();
+            }
+        }
+        return maiorId + 1;
     }
 }
