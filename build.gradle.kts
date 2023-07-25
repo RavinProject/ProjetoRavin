@@ -6,7 +6,7 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_15
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 group = "org.ravin"
