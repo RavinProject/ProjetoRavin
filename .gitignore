@@ -1,4 +1,71 @@
-.vscode
+# Build files
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# IntelliJ IDEA
+.idea/
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/usage.statistics.xml
+.idea/**/tasks.xml
+.idea/**/shelf/
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+# Mongo Explorer plugin
+.idea/**/mongoSettings.xml
+# Cursive Clojure plugin
+.idea/replstate.xml
+# Editor-based Rest Client
+.idea/httpRequests/
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser
+*.iws
+*.iml
+*.ipr
+
+# Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
 *.class
-*.asta.lock
 *.bak
+
+# Operating system
+### Mac OS ###
+.DS_Store
+
+# Other
+# Astah
+*.asta.lock
