@@ -7,6 +7,7 @@ import org.ravin.utils.enums.Cargo;
 import org.ravin.utils.enums.Disponibilidade;
 import org.ravin.utils.enums.Escolaridade;
 import org.ravin.utils.enums.EstadoCivil;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -19,31 +20,31 @@ import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;
 public class AtualizarFuncionarioView {
     static void atualizar(IFuncionarioController funcionarioController) {
         try {
-            String cpf = solicitaEntradaDeDadoValida("Informe o CPF do Funcionario que deseja alterar:");
-            if (cpf == null) return;
+            String cpf = solicitaEntradaDeDadoValida("Informe o CPF do Funcionário que deseja alterar:");
             Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
-
-            if (funcionario != null) {
-                funcionario.setNome(solicitaEntradaDeDado("Nome:", funcionario.getNome()));
-                funcionario.setTelefone(solicitaEntradaDeDado("Telefone:", funcionario.getTelefone()));
-                funcionario.setEndereco(solicitaEntradaDeDado("Endereço: ", funcionario.getEndereco()));
-                funcionario.setCpf(solicitaEntradaDeDado("CPF:", funcionario.getCpf()));
-                funcionario.setPis(solicitaEntradaDeDado("PIS", funcionario.getPis()));
-                funcionario.setSenha(solicitaEntradaDeDado("Senha",funcionario.getSenha()));
-                funcionario.setNascimento(solicitaData("Data de nascimento: ", funcionario.getNascimento()));
-                funcionario.setStatusAtivo(solicitaBoolean("Ativo?\n 0 - Não \n 1 - Sim", funcionario.getAtivo()));
-                funcionario.setCargo(solicitaEnum("Selecione o cargo:", Cargo.values(), funcionario.getCargo()));
-                funcionario.setEscolaridade(solicitaEnum("Selecione a escolaridade:", Escolaridade.values(), funcionario.getEscolaridade()));
-                funcionario.setDisponibilidade(solicitaEnum("Selecione a disponibilidade do funcionario:", Disponibilidade.values(), funcionario.getDisponibilidade()));
-                funcionario.setEstadoCivil(solicitaEnum("Selecione o estado civil:", EstadoCivil.values(), funcionario.getEstadoCivil()));
-                funcionario.setAlteradoEm(new Date());
-                funcionario.setAlteradoPor(null);
-                funcionarioController.atualizar(funcionario);
-                exibeDialogo("Funcionario atualizado com sucesso!");
-                imprimeFuncionario(funcionarioController.buscaPorCpf(funcionario.getCpf()));
-            } else {
-                exibeDialogo("Funcionario não encontrado!");
-            }
+            funcionario.setNome(solicitaEntradaDeDado("Nome:", funcionario.getNome()));
+            funcionario.setTelefone(solicitaEntradaDeDado("Telefone:", funcionario.getTelefone()));
+            funcionario.setEndereco(solicitaEntradaDeDado("Endereço: ", funcionario.getEndereco()));
+            funcionario.setCpf(solicitaEntradaDeDado("CPF:", funcionario.getCpf()));
+            funcionario.setPis(solicitaEntradaDeDado("PIS", funcionario.getPis()));
+            funcionario.setSenha(solicitaEntradaDeDado("Senha", funcionario.getSenha()));
+            funcionario.setNascimento(solicitaData("Data de nascimento: ", funcionario.getNascimento()));
+            funcionario.setStatusAtivo(solicitaBoolean("Ativo?\n 0 - Não \n 1 - Sim", funcionario.getAtivo()));
+            funcionario.setCargo(solicitaEnum("Selecione o cargo:", Cargo.values(), funcionario.getCargo()));
+            funcionario.setEscolaridade(solicitaEnum("Selecione a escolaridade:", Escolaridade.values(),
+                    funcionario.getEscolaridade()));
+            funcionario.setDisponibilidade(solicitaEnum("Selecione a disponibilidade do funcionario:",
+                    Disponibilidade.values(), funcionario.getDisponibilidade()));
+            funcionario.setEstadoCivil(
+                    solicitaEnum("Selecione o estado civil:", EstadoCivil.values(), funcionario.getEstadoCivil()));
+            funcionario.setAlteradoEm(new Date());
+            funcionario.setAlteradoPor(null);
+            funcionarioController.atualizar(funcionario);
+            exibeDialogo("Funcionario atualizado com sucesso!");
+            imprimeFuncionario(funcionarioController.buscaPorCpf(funcionario.getCpf()));
+        
+        } catch (EntidadeNaoEncontradaException e) {
+            exibeDialogo(e.getMessage());
         } catch (Exception e) {
             exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
             e.printStackTrace();
@@ -75,7 +76,8 @@ public class AtualizarFuncionarioView {
         String stringOpcoes = IntStream.range(0, values.length)
                 .mapToObj(i -> (i + 1) + " - " + values[i].name())
                 .collect(Collectors.joining("\n"));
-        String entrada = solicitaEntradaDeDado(mensagem + "\n" + stringOpcoes, String.valueOf(valorAtual.ordinal() + 1));
+        String entrada = solicitaEntradaDeDado(mensagem + "\n" + stringOpcoes,
+                String.valueOf(valorAtual.ordinal() + 1));
         return values[Integer.parseInt(entrada) - 1];
     }
 }

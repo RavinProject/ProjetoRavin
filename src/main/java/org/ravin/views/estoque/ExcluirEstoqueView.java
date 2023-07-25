@@ -2,6 +2,7 @@ package org.ravin.views.estoque;
 
 import org.ravin.controllers.interfaces.IEstoqueController;
 import org.ravin.models.Estoque;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import javax.swing.*;
 
@@ -11,8 +12,8 @@ public class ExcluirEstoqueView {
     static void excluirProdutoEmEstoque(IEstoqueController estoqueController) {
         String produtoCodigo = solicitaEntradaDeDado("Informe o código do produto que deseja excluir: ");
         if (produtoCodigo == null) return;
-        Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
-        if(estoque != null){
+        try{
+            Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
             String estoqueDados = "ESTOQUE ID: " + estoque.getId() +
                     "\nQuantidade: " + estoque.getQuantidade() +
                     "\n======== PRODUTO ========" +
@@ -33,7 +34,7 @@ public class ExcluirEstoqueView {
             }else{
                 exibeDialogo("Nada foi alterado!");
             }
-        }else{
+        }catch(EntidadeNaoEncontradaException e){
             exibeDialogo("Produto não encontrado com o código informado!");
         }
     }

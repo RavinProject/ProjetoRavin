@@ -3,22 +3,22 @@ package org.ravin.views.funcionario;
 import org.ravin.controllers.interfaces.IFuncionarioController;
 import org.ravin.models.Funcionario;
 import org.ravin.models.Pessoa;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import static org.ravin.views.View.exibeDialogo;
 import static org.ravin.views.View.solicitaEntradaDeDado;
 import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;
 
+
 public class RecuperarFuncionarioView {
     static void pesquisarFuncionarioPorCpf(IFuncionarioController funcionarioController) {
 
-        String cpf = solicitaEntradaDeDado("Informe o CPF do funcioanrio que deseja alterar:");
-        if (cpf == null) return;
-        Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
-
-        if (funcionario != null) {
+        String cpf = solicitaEntradaDeDado("Informe o CPF do funcionário que deseja visualizar:");
+        try{
+            Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
             imprimeFuncionario(funcionario);
-        } else {
-            exibeDialogo("funcionario não encontrado com o cpf informado!");
+        }catch(EntidadeNaoEncontradaException e){
+            exibeDialogo(e.getMessage());
         }
     }
 

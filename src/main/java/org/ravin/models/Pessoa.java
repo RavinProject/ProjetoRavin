@@ -20,6 +20,7 @@ public abstract class Pessoa {
     public Pessoa() {
     }
 
+    // construtor utilizado pela lista autogerada
     public Pessoa(int id, String nome, String telefone, String cpf, boolean ativo) {
         this.id = id;
         this.nome = nome;
@@ -129,6 +130,10 @@ public abstract class Pessoa {
 
     public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
+    }
+
+    public void setAlteradoEm(Date alteradoEm) {
+        this.alteradoEm = alteradoEm;
     }
 
     public String getAlteradoPor() {

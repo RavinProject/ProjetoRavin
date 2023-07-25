@@ -19,8 +19,13 @@ public class Funcionario extends Pessoa {
     
     public Funcionario(){ }
 
-    public Funcionario(String nome, String telefone, String cpf, boolean ativo) {
-        super(nome, telefone, cpf, ativo);
+    // construtor utilizado pela lista autogerada
+    public Funcionario(int id, String nome, String telefone, String cpf, Escolaridade escolaridade, String pis, Date dataAdmissao, Cargo cargo, boolean ativo) {
+        super(id, nome, telefone, cpf, ativo);
+        this.escolaridade = escolaridade;
+        this.cargo = cargo;
+        this.pis = pis;
+        this.dataAdmissao = dataAdmissao;
     }
 
     public Funcionario(String nome, String telefone, String endereco, String cpf, Date nascimento, String observacao, boolean ativo, Date criadoEm, Date alteradoEm, EstadoCivil estadoCivil, Escolaridade escolaridade, Cargo cargo, String pis, String senha, Date dataAdmissao, Date dataDemissao, Disponibilidade disponibilidade) {

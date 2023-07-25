@@ -26,8 +26,8 @@ public class ComandaController implements IComandaController {
     }
 
     @Override
-    public Comanda recuperarPorId(int id) {
-        return null;
+    public Comanda recuperarPorId(int id) throws EntidadeNaoEncontradaException {
+        throw new EntidadeNaoEncontradaException("ComandaController::recuperPorID(int id) NÃO IMPLEMENTADA");
     }
 
     @Override

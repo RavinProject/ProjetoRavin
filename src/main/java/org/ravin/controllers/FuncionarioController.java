@@ -3,10 +3,10 @@ package org.ravin.controllers;
 import org.ravin.controllers.interfaces.IFuncionarioController;
 import org.ravin.dao.interfaces.IFuncionarioRepositorio;
 import org.ravin.models.Funcionario;
-import org.ravin.models.Pessoa;
+
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class FuncionarioController implements IFuncionarioController {
@@ -33,12 +33,12 @@ public class FuncionarioController implements IFuncionarioController {
     }
 
     @Override
-        public Funcionario recuperarPorId(int id) {
+        public Funcionario recuperarPorId(int id) throws EntidadeNaoEncontradaException{
             Optional<Funcionario> funcionario = funcionarioRepositorio.recuperarPorId(id);
             if (funcionario.isPresent()) {
                 return funcionario.get();
             } else {
-                throw new NoSuchElementException("Funcionario não encontrado para o ID: " + id);
+                throw new EntidadeNaoEncontradaException("Funcionário não encontrado para o ID: " + id);
             }
         }
 
@@ -48,13 +48,13 @@ public class FuncionarioController implements IFuncionarioController {
     }
 
     @Override
-    public Funcionario buscaPorCpf(String cpf) {
-        for (Pessoa pessoa : pegarLista()) {
-            if (pessoa.getCpf().equals(cpf) && pessoa instanceof Funcionario) {
-                return (Funcionario) pessoa;
-            }
+    public Funcionario buscaPorCpf(String cpf) throws EntidadeNaoEncontradaException{
+        Optional<Funcionario> funcionario = funcionarioRepositorio.recuperarFuncionarioPorCpf(cpf);
+        if (funcionario.isPresent()) {
+            return funcionario.get();
+        } else {
+            throw new EntidadeNaoEncontradaException("Funcionário não encontrado com o CPF: " + cpf);
         }
-        return null;
     }
     
 }

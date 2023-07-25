@@ -2,9 +2,9 @@ package org.ravin.views.estoque;
 
 import org.ravin.controllers.interfaces.IEstoqueController;
 import org.ravin.models.Estoque;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.ravin.views.View.exibeDialogo;
 import static org.ravin.views.View.solicitaEntradaDeDado;
@@ -18,7 +18,7 @@ public class RecuperarEstoqueView {
         try{
             Estoque estoque = estoqueController.recuperarPorCodigo(produtoCodigo);
             imprimeProdutoEmEstoque(estoque);
-        }catch(NoSuchElementException e){
+        }catch(EntidadeNaoEncontradaException e){
             exibeDialogo(e.getMessage());
         }
     }

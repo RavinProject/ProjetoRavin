@@ -5,6 +5,7 @@ import org.ravin.controllers.interfaces.IProdutoController;
 import org.ravin.models.Estoque;
 import org.ravin.models.Produto;
 import org.ravin.utils.enums.TipoProduto;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.Date;
 
@@ -17,16 +18,16 @@ public class AtualizarEstoqueView {
     static void atualizarEstoque(IEstoqueController estoqueController, IProdutoController produtoController) {
         String codigo = solicitaEntradaDeDado("Informe o código do produto que deseja alterar: ");
         if (codigo == null) return;
-        Estoque estoque = estoqueController.recuperarPorCodigo(codigo);
-        if (estoque != null) {
+        try{
+            Estoque estoque = estoqueController.recuperarPorCodigo(codigo);
             Produto produto = estoque.getProduto();
             atualizarProduto(produto);
             produtoController.atualizar(produto);
             atualizarQuantidadeEstoque(estoque);
             estoqueController.atualizar(estoque);
             imprimeProdutoEmEstoque(estoque);
-        } else {
-            exibeDialogo("Produto não encontrado com o código informado!");
+        }catch(EntidadeNaoEncontradaException e){
+            exibeDialogo(e.getMessage());
         }
     }
 
