@@ -1,6 +1,7 @@
 package org.ravin.views.estoque;
 
 import org.ravin.controllers.interfaces.IEstoqueController;
+import org.ravin.controllers.interfaces.IProdutoController;
 import org.ravin.models.Estoque;
 import org.ravin.models.Produto;
 import org.ravin.utils.enums.TipoProduto;
@@ -15,7 +16,7 @@ import static org.ravin.views.estoque.AtualizarEstoqueView.atualizarProduto;
 import static org.ravin.views.estoque.SubmenuEstoque.imprimeProdutoEmEstoque;
 
 public class CadastrarEstoqueView {
-    static void cadastrar(IEstoqueController estoqueController) {
+    static void cadastrarEstoque(IEstoqueController estoqueController, IProdutoController produtoController) {
         
         String codigoProduto = solicitaEntradaDeDado("Informe o código do produto:");
         Estoque estoque = new Estoque();
