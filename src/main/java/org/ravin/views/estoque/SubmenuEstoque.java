@@ -5,17 +5,11 @@ import org.ravin.controllers.ProdutoController;
 import org.ravin.controllers.interfaces.IEstoqueController;
 import org.ravin.controllers.interfaces.IProdutoController;
 import org.ravin.models.Estoque;
-import org.ravin.models.Produto;
 import org.ravin.services.EstoqueService;
 import org.ravin.services.ProdutoService;
 import org.ravin.services.interfaces.IEstoqueService;
 import org.ravin.services.interfaces.IProdutoService;
-import org.ravin.utils.enums.TipoProduto;
 import org.ravin.views.View;
-
-import javax.swing.*;
-import java.util.Date;
-import java.util.List;
 
 import static org.ravin.views.estoque.AtualizarEstoqueView.atualizarEstoque;
 import static org.ravin.views.estoque.CadastrarEstoqueView.cadastrarEstoque;
@@ -49,18 +43,16 @@ public class SubmenuEstoque extends View {
     }
 
     private static String menuInicial(){
-        StringBuilder builder = new StringBuilder();
-        builder.append("""
-            ==================== RAVIN ====================
-            ESTOQUE:
-            1 - Cadastrar Produto
-            2 - Alterar Produto
-            3 - Listar Produtos em Estoque
-            4 - Visualizar Produto em Estoque
-            5 - Excluir Produto
-            x - voltar
-            """);
-        return builder.toString();
+        return """
+                ==================== RAVIN ====================
+                ESTOQUE:
+                1 - Cadastrar Produto
+                2 - Alterar Produto
+                3 - Listar Produtos em Estoque
+                4 - Visualizar Produto em Estoque
+                5 - Excluir Produto
+                x - voltar
+                """;
     }
 
     static void imprimeProdutoEmEstoque(Estoque estoque) {
@@ -76,8 +68,7 @@ public class SubmenuEstoque extends View {
                         (estoque.getProduto().getTempoPreparo().equals("") ? "" : "\nTempo de Preparo: " + estoque.getProduto().getId()) +
                         "\nObservações: " + estoque.getProduto().getObservacoes() +
                         "\nTipo do Produto: " + estoque.getProduto().getTipoProduto() +
-                        "\nAtivo: " + (estoque.getProduto().isAtivo() ? "Sim" : "Não") +
-                        "";
+                        "\nAtivo: " + (estoque.getProduto().isAtivo() ? "Sim" : "Não");
         exibeDialogo(estoqueDados);
     }
 }

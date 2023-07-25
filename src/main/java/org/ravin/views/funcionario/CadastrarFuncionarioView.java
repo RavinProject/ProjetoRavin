@@ -1,18 +1,19 @@
 package org.ravin.views.funcionario;
 
-import java.util.Date;
-import java.util.InputMismatchException;
-
 import org.ravin.controllers.interfaces.IFuncionarioController;
 import org.ravin.models.Funcionario;
 import org.ravin.utils.DateUtils;
-import org.ravin.utils.enums.Escolaridade;
 import org.ravin.utils.enums.Cargo;
 import org.ravin.utils.enums.Disponibilidade;
+import org.ravin.utils.enums.Escolaridade;
 import org.ravin.utils.enums.EstadoCivil;
 
-import static org.ravin.views.View.*;
-import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;;
+import java.util.Date;
+import java.util.InputMismatchException;
+
+import static org.ravin.views.View.exibeDialogo;
+import static org.ravin.views.View.solicitaEntradaDeDado;
+import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;
 
 public class CadastrarFuncionarioView {
 

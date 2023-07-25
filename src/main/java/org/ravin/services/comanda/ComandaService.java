@@ -1,8 +1,6 @@
 package org.ravin.services.comanda;
 
-import org.ravin.dao.ComandaRepositorio;
 import org.ravin.dao.ListasDados;
-import org.ravin.dao.interfaces.IClienteRepositorio;
 import org.ravin.dao.interfaces.IComandaRepositorio;
 import org.ravin.models.Comanda;
 import org.ravin.services.comanda.interfaces.IComandaService;

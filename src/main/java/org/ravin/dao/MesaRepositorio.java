@@ -1,7 +1,6 @@
 package org.ravin.dao;
 
 import org.ravin.dao.interfaces.IMesaRepositorio;
-import org.ravin.models.Funcionario;
 import org.ravin.models.Mesa;
 
 import java.util.List;

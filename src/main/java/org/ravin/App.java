@@ -7,7 +7,8 @@ import org.ravin.views.comanda.SubmenuComanda;
 import org.ravin.views.estoque.SubmenuEstoque;
 import org.ravin.views.funcionario.SubmenuFuncionario;
 import org.ravin.views.mesa.SubmenuMesa;
-import static org.ravin.views.View.*;
+
+import static org.ravin.views.View.solicitaEntradaDeDado;
 
 public class App {
 
@@ -74,8 +75,7 @@ public class App {
         }
     }
     public static String menuInicial(){
-        StringBuilder builder = new StringBuilder();
-        builder.append("""
+        return """
                 ==================== RAVIN ====================
                 HOME:
                 1 - Clientes
@@ -85,7 +85,6 @@ public class App {
                 5 - Comandas
                 6 - Cardápio
                 x - voltar
-                """);
-        return builder.toString();
+                """;
     }
 }

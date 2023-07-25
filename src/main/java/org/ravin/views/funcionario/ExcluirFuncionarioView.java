@@ -6,7 +6,6 @@ import org.ravin.models.Funcionario;
 import javax.swing.*;
 
 import static org.ravin.views.View.*;
-import static org.ravin.views.View.exibeDialogo;
 
 public class ExcluirFuncionarioView {
      static void excluirFuncionario(IFuncionarioController funcionarioController) {
