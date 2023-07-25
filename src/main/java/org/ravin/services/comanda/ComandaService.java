@@ -33,6 +33,16 @@ public class ComandaService implements IComandaService {
     }
 
     @Override
+    public int getId(Comanda comanda) {
+        return comanda.getId();
+    }
+
+    @Override
+    public int geraProximoId() {
+        return IComandaService.super.geraProximoId();
+    }
+
+    @Override
     public void atualizar(Comanda objeto) {
 
     }

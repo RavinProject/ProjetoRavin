@@ -30,6 +30,16 @@ public class ProdutoService implements IProdutoService {
     }
 
     @Override
+    public int getId(Produto produto) {
+        return produto.getId();
+    }
+
+    @Override
+    public int geraProximoId() {
+        return IProdutoService.super.geraProximoId();
+    }
+
+    @Override
     public void atualizar(Produto objeto) {
 
     }

@@ -2,6 +2,7 @@ package org.ravin.services;
 
 import org.ravin.dao.ListasDados;
 import org.ravin.dao.interfaces.IEstoqueRepositorio;
+import org.ravin.models.Cliente;
 import org.ravin.models.Estoque;
 import org.ravin.services.interfaces.IEstoqueService;
 
@@ -16,32 +17,51 @@ public class EstoqueService implements IEstoqueService {
     }
 
     @Override
-    public void inserir(Estoque objeto) {
-
+    public void inserir(Estoque estoque) {
+        if (estoque.getId() == 0) {
+            estoque.setId(geraProximoId());
+        }
+        estoqueRepositorio.inserir(estoque);
     }
 
     @Override
     public Optional<Estoque> recuperarPorId(int id) {
-        return Optional.empty();
+        return estoqueRepositorio.recuperarPorId(id);
     }
 
     @Override
     public List<Estoque> pegarLista() {
-        return null;
+
+        return estoqueRepositorio.pegarLista();
     }
 
     @Override
-    public void atualizar(Estoque objeto) {
-
+    public int getId(Estoque estoque) {
+        return estoque.getId();
     }
 
     @Override
-    public boolean remover(Estoque objeto) {
-        return false;
+    public int geraProximoId() {
+        return IEstoqueService.super.geraProximoId();
+    }
+
+    @Override
+    public void atualizar(Estoque estoque) {
+        estoqueRepositorio.atualizar(estoque);
+    }
+
+    @Override
+    public boolean remover(Estoque estoque) {
+        try{
+            estoqueRepositorio.remover(estoque);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public Optional<Estoque> recuperarPorCodigo(String codigo) {
-        return Optional.empty();
+        return estoqueRepositorio.recuperarComandaPorCodigo(codigo);
     }
 }
