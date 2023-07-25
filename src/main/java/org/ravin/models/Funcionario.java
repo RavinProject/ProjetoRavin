@@ -8,7 +8,6 @@ import org.ravin.utils.enums.EstadoCivil;
 import java.util.Date;
 
 public class Funcionario extends Pessoa {
-    private String rg;
     private EstadoCivil estadoCivil;
     private Escolaridade escolaridade;
     private Cargo cargo;
@@ -17,35 +16,23 @@ public class Funcionario extends Pessoa {
     private Date dataAdmissao;
     private Date dataDemissao;
     private Disponibilidade disponibilidade;
-    private Date criadoEm;
-    private String criadoPor;
-    private Date alteradoEm;
-    private String alteradoPor;
     
-    public Funcionario(){
-
-    }
+    public Funcionario(){ }
 
     public Funcionario(String nome, String telefone, String cpf, boolean ativo) {
         super(nome, telefone, cpf, ativo);
     }
 
-    public Funcionario(int id, String nome, String telefone, String cpf, Escolaridade escolaridade, String pis, Date dataAdmissao, Cargo cargo, boolean ativo) {
-        super(id, nome, telefone, cpf, ativo);
+    public Funcionario(String nome, String telefone, String endereco, String cpf, Date nascimento, String observacao, boolean ativo, Date criadoEm, Date alteradoEm, EstadoCivil estadoCivil, Escolaridade escolaridade, Cargo cargo, String pis, String senha, Date dataAdmissao, Date dataDemissao, Disponibilidade disponibilidade) {
+        super(nome, telefone, endereco, cpf, nascimento, observacao, ativo, criadoEm, alteradoEm);
+        this.estadoCivil = estadoCivil;
         this.escolaridade = escolaridade;
         this.cargo = cargo;
         this.pis = pis;
+        this.senha = senha;
         this.dataAdmissao = dataAdmissao;
-        this.cargo = cargo;
-        
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
+        this.dataDemissao = dataDemissao;
+        this.disponibilidade = disponibilidade;
     }
 
     public EstadoCivil getEstadoCivil() {
@@ -56,16 +43,14 @@ public class Funcionario extends Pessoa {
         if(this.estadoCivil == null){
             return "(não informado)";
         }
-        String stringEstadoCivil = "";
-        switch(this.estadoCivil){
-            case SOLTEIRO : stringEstadoCivil = "Solteiro"; break;
-            case CASADO : stringEstadoCivil = "Casado"; break;
-            case SEPARADO : stringEstadoCivil = "Separado"; break;
-            case DIVORCIADO : stringEstadoCivil = "Divorciado"; break;
-            case VIUVO : stringEstadoCivil = "Viúvo"; break;
-            default : stringEstadoCivil = "não informado";
-        }
-        return stringEstadoCivil;
+        return switch (this.estadoCivil) {
+            case SOLTEIRO -> "Solteiro";
+            case CASADO -> "Casado";
+            case SEPARADO -> "Separado";
+            case DIVORCIADO -> "Divorciado";
+            case VIUVO -> "Viúvo";
+            default -> "não informado";
+        };
     }
 
     public void setEstadoCivil(EstadoCivil estadoCivil) {
@@ -80,14 +65,12 @@ public class Funcionario extends Pessoa {
         if(this.escolaridade == null){
             return "(não informada)";
         }
-        String stringEscolaridade = "";
-        switch(this.escolaridade){
-            case FUNDAMENTAL : stringEscolaridade = "Fundamental"; break;
-            case MEDIO : stringEscolaridade = "Médio"; break;
-            case SUPERIOR : stringEscolaridade = "Superior"; break;
-            default : stringEscolaridade = "não informado";
-        }
-        return stringEscolaridade;
+        return switch (this.escolaridade) {
+            case FUNDAMENTAL -> "Fundamental";
+            case MEDIO -> "Médio";
+            case SUPERIOR -> "Superior";
+            default -> "não informado";
+        };
     }
 
     public void setEscolaridade(Escolaridade escolaridade) {
@@ -102,18 +85,16 @@ public class Funcionario extends Pessoa {
         if(this.cargo == null){
             return "(não informado)";
         }
-        String stringCargo = "";
-        switch(this.cargo){
-            case AUXILARCOZINHA : stringCargo = "Auxiliar de Cozinha"; break;
-            case BALCONISTA : stringCargo = "Balconista"; break;
-            case BARTENDER : stringCargo = "Bartender"; break;
-            case CHEFF : stringCargo = "Cheff"; break;
-            case GARCON : stringCargo = "Garçon"; break;
-            case GERENTE : stringCargo = "Gerente"; break;
-            case RECEPCIONISTA : stringCargo = "Recepcionista"; break;
-            default : stringCargo = "não informado";
-        }
-        return stringCargo;
+        return switch (this.cargo) {
+            case AUXILARCOZINHA -> "Auxiliar de Cozinha";
+            case BALCONISTA -> "Balconista";
+            case BARTENDER -> "Bartender";
+            case CHEFF -> "Cheff";
+            case GARCON -> "Garçon";
+            case GERENTE -> "Gerente";
+            case RECEPCIONISTA -> "Recepcionista";
+            default -> "não informado";
+        };
     }
 
     public void setCargo(Cargo string) {
@@ -172,38 +153,44 @@ public class Funcionario extends Pessoa {
         this.disponibilidade = disponibilidade;
     }
 
-    public Date getCriadoEm() {
-        return criadoEm;
-    }
-
     public void setCriadoEm(Date criadoEm) {
-        this.criadoEm = criadoEm;
+        super.setCriadoEm(criadoEm);
     }
 
-    public String getCriadoPor() {
-        return criadoPor;
+    public Date getCriadoEm() {
+        return super.getCriadoEm();
     }
 
     public void setCriadoPor(String criadoPor) {
-        this.criadoPor = criadoPor;
+        super.setCriadoPor(criadoPor);
     }
 
-    public Date getAlteradoEm() {
-        return alteradoEm;
-    }
-
-    public void setAlteradoEm(Date alteradoEm) {
-        this.alteradoEm = alteradoEm;
-    }
-
-    public String getAlteradoPor() {
-        return alteradoPor;
+    public String getCriadoPor() {
+        return super.getCriadoPor();
     }
 
     public void setAlteradoPor(String alteradoPor) {
-        this.alteradoPor = alteradoPor;
+        super.setAlteradoPor(alteradoPor);
     }
 
+    public String getAlteradoPor() {
+        return super.getAlteradoPor();
+    }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" +
+                super.toString() +
+                "estadoCivil=" + estadoCivil +
+                ", escolaridade=" + escolaridade +
+                ", cargo=" + cargo +
+                ", pis='" + pis + '\'' +
+                ", senha='" + senha + '\'' +
+                ", dataAdmissao=" + dataAdmissao +
+                ", dataDemissao=" + dataDemissao +
+                ", disponibilidade=" + disponibilidade +
+                '}';
+    }
 }
 
 

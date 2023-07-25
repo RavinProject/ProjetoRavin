@@ -35,6 +35,18 @@ public abstract class Pessoa {
         this.ativo = ativo;
     }
 
+    public Pessoa(String nome, String telefone, String endereco, String cpf, Date nascimento, String observacao, boolean ativo, Date criadoEm, Date alteradoEm) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.cpf = cpf;
+        this.nascimento = nascimento;
+        this.observacao = observacao;
+        this.ativo = ativo;
+        this.criadoEm = criadoEm;
+        this.alteradoEm = alteradoEm;
+    }
+
     public int getId() {
         return id;
     }
@@ -100,35 +112,44 @@ public abstract class Pessoa {
     }
 
     public Date getCriadoEm() {
-        return criadoEm;
+        return this.criadoEm;
     }
 
     public void setCriadoEm(Date criadoEm) {
         this.criadoEm = criadoEm;
     }
 
-    public String getCriadoPor() {
-        return criadoPor;
-    }
-
     public void setCriadoPor(String criadoPor) {
         this.criadoPor = criadoPor;
     }
 
-    public Date getAlteradoEm() {
-        return alteradoEm;
-    }
-
-    public void setAlteradoEm(Date alteradoEm) {
-        this.alteradoEm = alteradoEm;
-    }
-
-    public String getAlteradoPor() {
-        return alteradoPor;
+    public String getCriadoPor() {
+        return this.criadoPor;
     }
 
     public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
     }
 
+    public String getAlteradoPor() {
+        return this.alteradoPor;
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", nascimento=" + nascimento +
+                ", observacao='" + observacao + '\'' +
+                ", ativo=" + ativo +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
+    }
 }

@@ -19,24 +19,22 @@ public class CadastrarFuncionarioView {
 
     static void cadastrarFuncionario(IFuncionarioController funcionarioController) {
         try {
-            Funcionario funcionario = new Funcionario();
-            funcionario.setSenha(solicitaEntradaDeDadoValida("(obrigatório) Cadastre sua senha: "));
-            funcionario.setNome(solicitaEntradaDeDado("Informe o nome do Funcionario "));
-            funcionario.setPis(solicitaEntradaDeDado("Informe o número do PIS: "));
-            funcionario.setCpf(solicitaEntradaDeDado("Informe o CPF: "));
-            funcionario.setCargo(solicitaEnum("Selecione o Cargo", Cargo.values()));
-            funcionario.setEscolaridade(solicitaEnum("Selecione a escolaridade", Escolaridade.values()));
-            funcionario.setEstadoCivil(solicitaEnum("Selecione o estado civil", EstadoCivil.values()));
-            funcionario.setDisponibilidade(solicitaEnum("Selecione a disponibilidade do funcionario", Disponibilidade.values()));
-            funcionario.setTelefone(solicitaEntradaDeDado("Informe o telefone: "));
-            funcionario.setEndereco(solicitaEntradaDeDado("Endereço: "));
-            funcionario.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy")));
-            funcionario.setDataAdmissao(DateUtils.stringToDate(solicitaEntradaDeDado("Data de admissão: \nFormato: dd/mm/yyyy")));
-            funcionario.setStatusAtivo(true);
-            funcionario.setCriadoEm(new Date());
-            funcionario.setCriadoPor(null);
-            funcionario.setAlteradoEm(new Date());
-            funcionario.setAlteradoPor(null);
+            String senha = solicitaEntradaDeDadoValida("(obrigatório) Cadastre sua senha: ");
+            String nome = solicitaEntradaDeDado("Informe o nome do Funcionario ");
+            String pis = solicitaEntradaDeDado("Informe o número do PIS: ");
+            String cpf = solicitaEntradaDeDado("Informe o CPF: ");
+            Cargo cargo = solicitaEnum("Selecione o Cargo", Cargo.values());
+            Escolaridade escolaridade = solicitaEnum("Selecione a escolaridade", Escolaridade.values());
+            EstadoCivil estadoCivil = solicitaEnum("Selecione o estado civil", EstadoCivil.values());
+            Disponibilidade disponibilidade = solicitaEnum("Selecione a disponibilidade do funcionario", Disponibilidade.values());
+            String telefone = solicitaEntradaDeDado("Informe o telefone: ");
+            String endereco = solicitaEntradaDeDado("Endereço: ");
+            Date nascimento = DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy"));
+            Date dataAdmissao = DateUtils.stringToDate(solicitaEntradaDeDado("Data de admissão: \nFormato: dd/mm/yyyy"));
+            Date agora = new Date();
+
+            Funcionario funcionario = new Funcionario(nome, telefone, endereco, cpf, nascimento, "", true, agora, agora, estadoCivil, escolaridade, cargo, pis, senha, dataAdmissao, null, disponibilidade);
+
             funcionarioController.inserir(funcionario);
             exibeDialogo("Funcionario cadastrado com sucesso!");
             imprimeFuncionario(funcionarioController.buscaPorCpf(funcionario.getCpf()));
