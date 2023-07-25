@@ -12,6 +12,7 @@ public class RecuperarFuncionarioView {
     static void pesquisarFuncionarioPorCpf(IFuncionarioController funcionarioController) {
 
         String cpf = solicitaEntradaDeDado("Informe o CPF do funcioanrio que deseja alterar:");
+        if (cpf == null) return;
         Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
 
         if (funcionario != null) {
@@ -20,7 +21,6 @@ public class RecuperarFuncionarioView {
             exibeDialogo("funcionario não encontrado com o cpf informado!");
         }
     }
-
 
 
     static void listarFuncionarios(IFuncionarioController funcionarioController) {

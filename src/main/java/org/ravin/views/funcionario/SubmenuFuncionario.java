@@ -37,7 +37,7 @@ public class SubmenuFuncionario {
         }
     }
 
-    private static String menuInicial(){
+    private static String menuInicial() {
         StringBuilder builder = new StringBuilder();
         builder.append(" ==================== RAVIN ==================== ");
         builder.append("\n");
@@ -51,22 +51,20 @@ public class SubmenuFuncionario {
     }
 
     static void imprimeFuncionario(Funcionario funcionario) {
-        String funcionarioDados = 
+        String funcionarioDados =
                 "ID: " + funcionario.getId() +
-                "\n Nome: " + funcionario.getNome() +
-                "\n CPF: " + funcionario.getCpf() +
-                "\n Data Nascimento: " + funcionario.getNascimento() +
-                "\n Telefone: " + funcionario.getTelefone() +
-                "\n Endereco: " + funcionario.getEndereco() +
-                "\n Estado Civil: " + funcionario.getEstadoCivilString() +
-                "\n Escolaridade: " + funcionario.getEscolaridadeString() +
-                "\n Cargo: " + funcionario.getCargoString() +
-                "\n Disponibilidade: " + funcionario.getDisponibilidadeString() +
-                "\n Data de Admissão: " + funcionario.getDataAdmissao() +
-                "\n Data de Demissão: " + funcionario.getDataDemissao();   
+                        "\n Nome: " + funcionario.getNome() +
+                        "\n CPF: " + funcionario.getCpf() +
+                        "\n Data Nascimento: " + funcionario.getNascimento() +
+                        "\n Telefone: " + funcionario.getTelefone() +
+                        "\n Endereco: " + funcionario.getEndereco() +
+                        "\n Estado Civil: " + funcionario.getEstadoCivilString() +
+                        "\n Escolaridade: " + funcionario.getEscolaridadeString() +
+                        "\n Cargo: " + funcionario.getCargoString() +
+                        "\n Disponibilidade: " + funcionario.getDisponibilidadeString() +
+                        "\n Data de Admissão: " + funcionario.getDataAdmissao() +
+                        "\n Data de Demissão: " + funcionario.getDataDemissao();
 
-                exibeDialogo(funcionarioDados);
-
-    
-            }
+        exibeDialogo(funcionarioDados);
+    }
 }

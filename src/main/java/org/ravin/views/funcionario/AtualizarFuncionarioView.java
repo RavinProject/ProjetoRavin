@@ -9,6 +9,8 @@ import org.ravin.utils.enums.Escolaridade;
 import org.ravin.utils.enums.EstadoCivil;
 
 import java.util.Date;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.ravin.views.View.exibeDialogo;
 import static org.ravin.views.View.solicitaEntradaDeDado;
@@ -16,11 +18,9 @@ import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;
 
 public class AtualizarFuncionarioView {
     static void atualizar(IFuncionarioController funcionarioController) {
-
-        // TODO ver se existe alguma maneira mais simples de mostrar submenus
-
         try {
-            String cpf = solicitaEntradaDeDado("Informe o CPF do Funcionario que deseja alterar:");
+            String cpf = solicitaEntradaDeDadoValida("Informe o CPF do Funcionario que deseja alterar:");
+            if (cpf == null) return;
             Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
 
             if (funcionario != null) {
@@ -30,55 +30,52 @@ public class AtualizarFuncionarioView {
                 funcionario.setCpf(solicitaEntradaDeDado("CPF:", funcionario.getCpf()));
                 funcionario.setPis(solicitaEntradaDeDado("PIS", funcionario.getPis()));
                 funcionario.setSenha(solicitaEntradaDeDado("Senha",funcionario.getSenha()));
-              
-                //função para datas de nascimento
-                funcionario.setNascimento(
-                        DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy",
-                                DateUtils.dateToString(funcionario.getNascimento()))));
-
-                //função booleana para ativo 
-                boolean ativo = solicitaEntradaDeDado("Ativo?\n 0 - Não \n 1 - Sim", funcionario.getAtivo() ? "1" : "0")
-                        .equals("1") ? true : false;
-                funcionario.setAtivo(ativo);
-
-                // Criando String para cargos
-                String stringCargos = "Selecione o cargo:\n1 - Auxiliar de Cozinha \n2 - Balconista \n3 - Bartender \n4 - Cheff \n5 - Garçon \n6 - Gerente \n7 - Recepcionista";
-                String stringAtualizarCargo = solicitaEntradaDeDado(stringCargos,
-                        (funcionario.getCargo().ordinal() + 1) + "");
-                funcionario.setCargo(Cargo.values()[Integer.parseInt(stringAtualizarCargo) - 1]);
-
-                //Criando String para Escolaridade
-                String stringEscolaridade = 
-                "Selecione a escolaridade: \n1 Ensino fundamental \n2 Ensino médio \n3 Ensino superior";
-                String stringAtualizarEscolaridade = solicitaEntradaDeDado(stringEscolaridade,
-                        (funcionario.getEscolaridade().ordinal() + 1) + "");
-                funcionario.setEscolaridade(Escolaridade.values()[Integer.parseInt(stringAtualizarEscolaridade) - 1]);
-
-                //Criando String para Disponibilidade 
-                String stringDisponibilidade = 
-                "Selecione a disponibilidade do funcionario:  \n1 Ocupado \n2 Diponível";
-                String stringAtualizarDisponibilidade = solicitaEntradaDeDado(stringDisponibilidade,
-                        (funcionario.getDisponibilidade().ordinal() + 1) + "");
-                funcionario.setDisponibilidade(Disponibilidade.values()[Integer.parseInt(stringAtualizarDisponibilidade) - 1]);
-
-                //Criando String para Estado Civil
-                String stringEstadoCivil = 
-                "Selecione o estado civil:  \n1 Solteiro \n2 Casado \n3 Separado \n4 Divorciado \n5 Viuvo";
-                String stringAtualizarEsatdoCivil = solicitaEntradaDeDado(stringEstadoCivil,
-                        (funcionario.getEstadoCivil().ordinal() + 1) + "");
-                funcionario.setEstadoCivil(EstadoCivil.values()[Integer.parseInt(stringAtualizarEsatdoCivil) - 1]);
-
+                funcionario.setNascimento(solicitaData("Data de nascimento: ", funcionario.getNascimento()));
+                funcionario.setStatusAtivo(solicitaBoolean("Ativo?\n 0 - Não \n 1 - Sim", funcionario.getAtivo()));
+                funcionario.setCargo(solicitaEnum("Selecione o cargo:", Cargo.values(), funcionario.getCargo()));
+                funcionario.setEscolaridade(solicitaEnum("Selecione a escolaridade:", Escolaridade.values(), funcionario.getEscolaridade()));
+                funcionario.setDisponibilidade(solicitaEnum("Selecione a disponibilidade do funcionario:", Disponibilidade.values(), funcionario.getDisponibilidade()));
+                funcionario.setEstadoCivil(solicitaEnum("Selecione o estado civil:", EstadoCivil.values(), funcionario.getEstadoCivil()));
                 funcionario.setAlteradoEm(new Date());
                 funcionario.setAlteradoPor(null);
                 funcionarioController.atualizar(funcionario);
                 exibeDialogo("Funcionario atualizado com sucesso!");
                 imprimeFuncionario(funcionarioController.buscaPorCpf(funcionario.getCpf()));
             } else {
-            exibeDialogo("Funcionario não encontrado!");
+                exibeDialogo("Funcionario não encontrado!");
             }
         } catch (Exception e) {
             exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
             e.printStackTrace();
         }
+    }
+
+    static String solicitaEntradaDeDadoValida(String mensagem) {
+        String entrada;
+        do {
+            entrada = solicitaEntradaDeDado(mensagem);
+            if (entrada == null || entrada.trim().isEmpty()) {
+                exibeDialogo("Entrada inválida. Por favor, tente novamente.");
+            }
+        } while (entrada == null || entrada.trim().isEmpty());
+        return entrada;
+    }
+
+    static Date solicitaData(String mensagem, Date dataAtual) {
+        String entrada = solicitaEntradaDeDado(mensagem, DateUtils.dateToString(dataAtual));
+        return DateUtils.stringToDate(entrada);
+    }
+
+    static boolean solicitaBoolean(String mensagem, boolean valorAtual) {
+        String entrada = solicitaEntradaDeDado(mensagem, valorAtual ? "1" : "0");
+        return entrada.equals("1");
+    }
+
+    static <E extends Enum<E>> E solicitaEnum(String mensagem, E[] values, E valorAtual) {
+        String stringOpcoes = IntStream.range(0, values.length)
+                .mapToObj(i -> (i + 1) + " - " + values[i].name())
+                .collect(Collectors.joining("\n"));
+        String entrada = solicitaEntradaDeDado(mensagem + "\n" + stringOpcoes, String.valueOf(valorAtual.ordinal() + 1));
+        return values[Integer.parseInt(entrada) - 1];
     }
 }
