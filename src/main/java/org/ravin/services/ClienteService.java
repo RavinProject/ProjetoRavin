@@ -57,7 +57,7 @@ public class ClienteService implements IClienteService{
 
     @Override
     public Optional<Cliente> recuperarPorCpf(String cpf) {
-        return clienteRepositorio.recuperarPorCpf(cpf);
+        return clienteRepositorio.recuperarClientePorCpf(cpf);
     }
     
 }

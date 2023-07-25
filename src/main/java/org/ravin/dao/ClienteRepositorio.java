@@ -59,7 +59,7 @@ public class ClienteRepositorio implements IClienteRepositorio {
     }
 
     @Override
-    public Optional<Cliente> recuperarPorCpf(String cpf) {
+    public Optional<Cliente> recuperarClientePorCpf(String cpf) {
         // Itera pela lista e tenta encontrar um cliente com o CPF fornecido
         for (Cliente cliente : pegarLista()) {
             if (cliente.getCpf().equals(cpf)) {

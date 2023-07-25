@@ -14,7 +14,7 @@ import static org.ravin.views.cliente.RecuperarClienteView.listarClientes;
 import static org.ravin.views.cliente.RecuperarClienteView.pesquisarClientePorCpf;
 
 public class SubmenuCliente extends View{
-    public static void menu() {
+    public static void menuCliente() {
         // Injeção de Dependência
         IClienteService clienteServico = new ClienteService();
         ClienteController clienteController = new ClienteController(clienteServico);

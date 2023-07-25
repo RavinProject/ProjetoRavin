@@ -16,7 +16,7 @@ import static org.ravin.views.funcionario.RecuperarFuncionarioView.listarFuncion
 import static org.ravin.views.funcionario.RecuperarFuncionarioView.pesquisarFuncionarioPorCpf;
 
 public class SubmenuFuncionario {
-    public static void menu() {
+    public static void menuFuncionario() {
 
         // Injeção de Dependência
         IFuncionarioRepositorio funcionarioRepo = ListasDados.getInstance().getFuncionarioRepositorio();

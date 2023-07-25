@@ -52,7 +52,7 @@ public class ComandaRepositorio implements IComandaRepositorio {
     }
 
     @Override
-    public Optional<Comanda> getComandaPorCodigo(String codigo) {
+    public Optional<Comanda> recuperarComandaPorCodigo(String codigo) {
         for (Comanda comanda : listaComanda) {
             if (Objects.equals(comanda.getCodigo(), codigo)) {
                 return Optional.of(comanda);

@@ -4,7 +4,7 @@ import org.ravin.views.View;
 
 public class SubmenuCardapio extends View{
 
-    public static void menu() {
+    public static void menuCardapio() {
 
         // Injeção de Dependência
 

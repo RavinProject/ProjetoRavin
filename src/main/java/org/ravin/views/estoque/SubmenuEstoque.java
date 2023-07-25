@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SubmenuEstoque extends View {
 
-    public static void menu() {
+    public static void menuEstoque() {
         // Injeção de Dependência
         IEstoqueService estoqueService = new EstoqueService();
         IEstoqueController estoqueController = new EstoqueController(estoqueService);

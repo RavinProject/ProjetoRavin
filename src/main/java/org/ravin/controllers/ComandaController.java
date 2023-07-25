@@ -1,9 +1,9 @@
-package controllers;
+package org.ravin.controllers;
 
-import controllers.interfaces.IComandaController;
-import models.Comanda;
-import services.comanda.IPagarComandaService;
-import utils.exceptions.EntidadeNaoEncontradaException;
+import org.ravin.controllers.interfaces.IComandaController;
+import org.ravin.models.Comanda;
+import org.ravin.services.comanda.interfaces.IPagarComandaService;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.List;
 

@@ -73,8 +73,8 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
         pegarLista().removeIf(funcionario -> funcionario.getId() == id);
     }
 
-     @Override
-    public Optional<Funcionario> buscarPorCpf(String cpf) {
+    @Override
+    public Optional<Funcionario> recuperarFuncionarioPorCpf(String cpf) {
         // Itera pela lista e tenta encontrar um cliente com o CPF fornecido
         for (Funcionario funcionario : pegarLista()) {
             if (funcionario.getCpf().equals(cpf)) {
@@ -83,5 +83,4 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
         }
         return Optional.empty(); // Retorna um Optional vazio se não encontrar
     }
-
 }

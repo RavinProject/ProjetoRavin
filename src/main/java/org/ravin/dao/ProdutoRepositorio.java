@@ -69,7 +69,7 @@ public class ProdutoRepositorio implements IProdutoRepositorio {
     }
 
     @Override
-    public Optional<Produto> recuperarPorCodigo(String codigo) {
+    public Optional<Produto> recuperarProdutoPorCodigo(String codigo) {
         for (Produto produto : pegarLista()) {
             if (produto.getCodigo().equals(codigo)) {
                 return Optional.of(produto);

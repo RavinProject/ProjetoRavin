@@ -4,7 +4,7 @@ import org.ravin.views.View;
 
 public class SubmenuMesa extends View{
 
-    public static void menu(){
+    public static void menuMesa(){
         
         // Injeção de Dependência
 
