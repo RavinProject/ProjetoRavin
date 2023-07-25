@@ -2,7 +2,6 @@ package org.ravin.services;
 
 import org.ravin.dao.ListasDados;
 import org.ravin.dao.interfaces.IEstoqueRepositorio;
-import org.ravin.models.Cliente;
 import org.ravin.models.Estoque;
 import org.ravin.services.interfaces.IEstoqueService;
 
@@ -62,6 +61,6 @@ public class EstoqueService implements IEstoqueService {
 
     @Override
     public Optional<Estoque> recuperarPorCodigo(String codigo) {
-        return estoqueRepositorio.recuperarComandaPorCodigo(codigo);
+        return estoqueRepositorio.recuperarEstoquePorCodigo(codigo);
     }
 }

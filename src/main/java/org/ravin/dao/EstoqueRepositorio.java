@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class EstoqueRepositorio implements IEstoqueRepositorio {
 
-    private List<Estoque> listaEstoque;
+    private final List<Estoque> listaEstoque;
 
     public EstoqueRepositorio(List<Estoque> listaEstoque) {
         this.listaEstoque = listaEstoque;
@@ -69,7 +69,7 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
     @Override
     public Optional<Estoque> recuperarEstoquePorCodigo(String codigo) {
         for (Estoque estoque : pegarLista()) {
-            if (estoque.getProduto().getCodigo().toLowerCase().equals(codigo.toLowerCase())) {
+            if (estoque.getProduto().getCodigo().equalsIgnoreCase(codigo)) {
                 return Optional.of(estoque);
             }
         }
@@ -85,5 +85,10 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
             }
         }
         return maiorId + 1;
+    }
+
+    @Override
+    public int getId(Estoque estoque) {
+        return IEstoqueRepositorio.super.getId(estoque);
     }
 }
