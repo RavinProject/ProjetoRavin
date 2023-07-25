@@ -67,7 +67,7 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
     }
 
     @Override
-    public Optional<Estoque> recuperarComandaPorCodigo(String codigo) {
+    public Optional<Estoque> recuperarEstoquePorCodigo(String codigo) {
         for (Estoque estoque : pegarLista()) {
             if (estoque.getProduto().getCodigo().toLowerCase().equals(codigo.toLowerCase())) {
                 return Optional.of(estoque);
