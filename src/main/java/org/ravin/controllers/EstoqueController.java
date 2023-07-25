@@ -3,9 +3,9 @@ package org.ravin.controllers;
 import org.ravin.controllers.interfaces.IEstoqueController;
 import org.ravin.models.Estoque;
 import org.ravin.services.interfaces.IEstoqueService;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class EstoqueController implements IEstoqueController {
@@ -31,12 +31,12 @@ public class EstoqueController implements IEstoqueController {
     }
 
     @Override
-    public Estoque recuperarPorId(int id) throws NoSuchElementException{
+    public Estoque recuperarPorId(int id) throws EntidadeNaoEncontradaException{
         Optional<Estoque> estoque = estoqueService.recuperarPorId(id);
         if (estoque.isPresent()) {
             return estoque.get();
         } else {
-            throw new NoSuchElementException("Estoque não encontrado para o ID: " + id);
+            throw new EntidadeNaoEncontradaException("Estoque não encontrado para o ID: " + id);
         }
     }
 
@@ -57,12 +57,12 @@ public class EstoqueController implements IEstoqueController {
     }
 
     @Override
-    public Estoque recuperarPorCodigo(String codigo) throws NoSuchElementException{
+    public Estoque recuperarPorCodigo(String codigo) throws EntidadeNaoEncontradaException{
         Optional<Estoque> estoque = estoqueService.recuperarPorCodigo(codigo);
         if (estoque.isPresent()) {
             return estoque.get();
         } else {
-            throw new NoSuchElementException("Estoque não encontrado para o Produto com código: " + codigo);
+            throw new EntidadeNaoEncontradaException("Estoque não encontrado para o Produto com código: " + codigo);
         }
     }
 

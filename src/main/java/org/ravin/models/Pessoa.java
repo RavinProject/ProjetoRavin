@@ -20,6 +20,7 @@ public abstract class Pessoa {
     public Pessoa() {
     }
 
+    // construtor utilizado pela lista autogerada
     public Pessoa(int id, String nome, String telefone, String cpf, boolean ativo) {
         this.id = id;
         this.nome = nome;
@@ -33,6 +34,18 @@ public abstract class Pessoa {
         this.telefone = telefone;
         this.cpf = cpf;
         this.ativo = ativo;
+    }
+
+    public Pessoa(String nome, String telefone, String endereco, String cpf, Date nascimento, String observacao, boolean ativo, Date criadoEm, Date alteradoEm) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.cpf = cpf;
+        this.nascimento = nascimento;
+        this.observacao = observacao;
+        this.ativo = ativo;
+        this.criadoEm = criadoEm;
+        this.alteradoEm = alteradoEm;
     }
 
     public int getId() {
@@ -95,28 +108,28 @@ public abstract class Pessoa {
         return ativo;
     }
 
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
+    public void setStatusAtivo(boolean status) {
+        this.ativo = status;
     }
 
     public Date getCriadoEm() {
-        return criadoEm;
+        return this.criadoEm;
     }
 
     public void setCriadoEm(Date criadoEm) {
         this.criadoEm = criadoEm;
     }
 
-    public String getCriadoPor() {
-        return criadoPor;
-    }
-
     public void setCriadoPor(String criadoPor) {
         this.criadoPor = criadoPor;
     }
 
-    public Date getAlteradoEm() {
-        return alteradoEm;
+    public String getCriadoPor() {
+        return this.criadoPor;
+    }
+
+    public void setAlteradoPor(String alteradoPor) {
+        this.alteradoPor = alteradoPor;
     }
 
     public void setAlteradoEm(Date alteradoEm) {
@@ -124,11 +137,24 @@ public abstract class Pessoa {
     }
 
     public String getAlteradoPor() {
-        return alteradoPor;
+        return this.alteradoPor;
     }
 
-    public void setAlteradoPor(String alteradoPor) {
-        this.alteradoPor = alteradoPor;
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", nascimento=" + nascimento +
+                ", observacao='" + observacao + '\'' +
+                ", ativo=" + ativo +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
     }
-
 }

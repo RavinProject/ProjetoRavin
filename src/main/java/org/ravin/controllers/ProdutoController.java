@@ -3,6 +3,7 @@ package org.ravin.controllers;
 import org.ravin.controllers.interfaces.IProdutoController;
 import org.ravin.models.Produto;
 import org.ravin.services.interfaces.IProdutoService;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -43,12 +44,12 @@ public class ProdutoController implements IProdutoController {
     }
 
     @Override
-    public Produto recuperarPorCodigo(String codigo) throws NoSuchElementException{
+    public Produto recuperarPorCodigo(String codigo) throws EntidadeNaoEncontradaException{
         Optional<Produto> produto = produtoService.recuperarPorCodigo(codigo);
         if (produto.isPresent()) {
             return produto.get();
         } else {
-            throw new NoSuchElementException("Produto não encontrado com o Código: " + codigo);
+            throw new EntidadeNaoEncontradaException("Produto não encontrado com o Código: " + codigo);
         }
     }
 

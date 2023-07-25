@@ -1,8 +1,6 @@
 package org.ravin.services.comanda;
 
-import org.ravin.dao.ComandaRepositorio;
 import org.ravin.dao.ListasDados;
-import org.ravin.dao.interfaces.IClienteRepositorio;
 import org.ravin.dao.interfaces.IComandaRepositorio;
 import org.ravin.models.Comanda;
 import org.ravin.services.comanda.interfaces.IComandaService;
@@ -30,6 +28,16 @@ public class ComandaService implements IComandaService {
     @Override
     public List<Comanda> pegarLista() {
         return null;
+    }
+
+    @Override
+    public int getId(Comanda comanda) {
+        return comanda.getId();
+    }
+
+    @Override
+    public int geraProximoId() {
+        return IComandaService.super.geraProximoId();
     }
 
     @Override

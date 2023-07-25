@@ -7,14 +7,11 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.ravin.dao.ListasDados;
 import org.ravin.dao.interfaces.IComandaRepositorio;
 import org.ravin.models.Cliente;
 import org.ravin.models.Comanda;
 import org.ravin.models.Pedido;
 import org.ravin.models.Produto;
-import org.ravin.strategy.DescontoAniversariante;
-import org.ravin.strategy.DescontoFactory;
 import org.ravin.strategy.interfaces.IDescontoAniversariante;
 import org.ravin.strategy.interfaces.IDescontoFactory;
 import org.ravin.utils.enums.StatusComanda;
@@ -56,7 +53,7 @@ public class PagarComandaServiceTest {
         comanda = new Comanda(mockCliente, codigo);
         comanda.setPedidos(pedidos);
 
-        when(comandaRepository.getComandaPorCodigo(codigo)).thenReturn(Optional.of(comanda));
+        when(comandaRepository.recuperarComandaPorCodigo(codigo)).thenReturn(Optional.of(comanda));
         when(descontoFactory.criarDescontoAniversariante(any(Cliente.class))).thenReturn(descontoAniversariante);
         when(descontoAniversariante.aplicarDesconto(anyDouble())).thenReturn(100.0);
     }

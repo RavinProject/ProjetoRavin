@@ -45,19 +45,29 @@ public class ClienteService implements IClienteService{
     }
 
     @Override
+    public int getId(Cliente cliente) {
+        return cliente.getId();
+    }
+
+    @Override
     public void atualizar(Cliente cliente) {
+
         clienteRepositorio.atualizar(cliente);
     }
 
     @Override
     public boolean remover(Cliente cliente) {
-        clienteRepositorio.remover(cliente);
-        return true;
+        try{
+            clienteRepositorio.remover(cliente);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public Optional<Cliente> recuperarPorCpf(String cpf) {
-        return clienteRepositorio.recuperarPorCpf(cpf);
+        return clienteRepositorio.recuperarClientePorCpf(cpf);
     }
     
 }

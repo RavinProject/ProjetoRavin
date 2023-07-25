@@ -34,11 +34,5 @@ public class CardapioRepositorio implements ICardapioRepositorio {
 
     @Override
     public void removerPorId(int id) {
-
-    }
-
-    public int geraProximoId() {
-        // TODO Auto-generated method stub
-        return 0;
     }
 }

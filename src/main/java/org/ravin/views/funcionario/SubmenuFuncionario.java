@@ -5,18 +5,17 @@ import org.ravin.dao.ListasDados;
 import org.ravin.dao.interfaces.IFuncionarioRepositorio;
 import org.ravin.models.Funcionario;
 
-
 import javax.swing.*;
 
 import static org.ravin.views.View.exibeDialogo;
-import static org.ravin.views.funcionario.CadastrarFuncionarioView.cadastrarFuncionario;
 import static org.ravin.views.funcionario.AtualizarFuncionarioView.atualizar;
+import static org.ravin.views.funcionario.CadastrarFuncionarioView.cadastrarFuncionario;
 import static org.ravin.views.funcionario.ExcluirFuncionarioView.excluirFuncionario;
 import static org.ravin.views.funcionario.RecuperarFuncionarioView.listarFuncionarios;
 import static org.ravin.views.funcionario.RecuperarFuncionarioView.pesquisarFuncionarioPorCpf;
 
 public class SubmenuFuncionario {
-    public static void menu() {
+    public static void menuFuncionario() {
 
         // Injeção de Dependência
         IFuncionarioRepositorio funcionarioRepo = ListasDados.getInstance().getFuncionarioRepositorio();
@@ -37,36 +36,33 @@ public class SubmenuFuncionario {
         }
     }
 
-    private static String menuInicial(){
-        StringBuilder builder = new StringBuilder();
-        builder.append(" ==================== RAVIN ==================== ");
-        builder.append("\n");
-        builder.append("1 - Cadastrar Funcionario \n");
-        builder.append("2 - Alterar Funcionario \n");
-        builder.append("3 - Listar Funcionarios \n");
-        builder.append("4 - Visualizar Funcionario \n");
-        builder.append("5 - Excluir Funcionario \n");
-        builder.append("x - voltar \n");
-        return builder.toString();
+    private static String menuInicial() {
+        return """
+                 ==================== RAVIN ====================\s
+                1 - Cadastrar Funcionario\s
+                2 - Alterar Funcionario\s
+                3 - Listar Funcionarios\s
+                4 - Visualizar Funcionario\s
+                5 - Excluir Funcionario\s
+                x - voltar\s
+                """;
     }
 
     static void imprimeFuncionario(Funcionario funcionario) {
-        String funcionarioDados = 
+        String funcionarioDados =
                 "ID: " + funcionario.getId() +
-                "\n Nome: " + funcionario.getNome() +
-                "\n CPF: " + funcionario.getCpf() +
-                "\n Data Nascimento: " + funcionario.getNascimento() +
-                "\n Telefone: " + funcionario.getTelefone() +
-                "\n Endereco: " + funcionario.getEndereco() +
-                "\n Estado Civil: " + funcionario.getEstadoCivilString() +
-                "\n Escolaridade: " + funcionario.getEscolaridadeString() +
-                "\n Cargo: " + funcionario.getCargoString() +
-                "\n Disponibilidade: " + funcionario.getDisponibilidadeString() +
-                "\n Data de Admissão: " + funcionario.getDataAdmissao() +
-                "\n Data de Demissão: " + funcionario.getDataDemissao();   
+                        "\n Nome: " + funcionario.getNome() +
+                        "\n CPF: " + funcionario.getCpf() +
+                        "\n Data Nascimento: " + funcionario.getNascimento() +
+                        "\n Telefone: " + funcionario.getTelefone() +
+                        "\n Endereco: " + funcionario.getEndereco() +
+                        "\n Estado Civil: " + funcionario.getEstadoCivilString() +
+                        "\n Escolaridade: " + funcionario.getEscolaridadeString() +
+                        "\n Cargo: " + funcionario.getCargoString() +
+                        "\n Disponibilidade: " + funcionario.getDisponibilidadeString() +
+                        "\n Data de Admissão: " + funcionario.getDataAdmissao() +
+                        "\n Data de Demissão: " + funcionario.getDataDemissao();
 
-                exibeDialogo(funcionarioDados);
-
-    
-            }
+        exibeDialogo(funcionarioDados);
+    }
 }

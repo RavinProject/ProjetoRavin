@@ -4,7 +4,7 @@ import org.ravin.views.View;
 
 public class SubmenuComanda extends View{
 
-    public static void menu() {
+    public static void menuComanda() {
 
         // Injeção de Dependência
 
@@ -43,7 +43,6 @@ public class SubmenuComanda extends View{
 
     public static void menuPedido() {
 
-        // TODO
         boolean exec = true;
         while (exec) {
             String opcao = solicitaEntradaDeDado(textMenuPedido());

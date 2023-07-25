@@ -39,7 +39,12 @@ public class MesaRepositorio implements IMesaRepositorio {
 
     @Override
     public int geraProximoId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+        int maiorId = 0;
+        for (Mesa mesa : pegarLista()) {
+            if (mesa.getId() > maiorId) {
+                maiorId = mesa.getId();
+            }
+        }
+        return maiorId + 1;
     }
 }

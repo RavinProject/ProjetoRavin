@@ -1,15 +1,13 @@
 package org.ravin.dao;
 
 import org.ravin.dao.interfaces.IPedidoRepositorio;
-import org.ravin.models.Funcionario;
 import org.ravin.models.Pedido;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class PedidoRepositorio implements IPedidoRepositorio {
-    private List<Pedido> listaPedidos;
+    private final List<Pedido> listaPedidos;
 
     public PedidoRepositorio(List<Pedido> listaPedidos){
         this.listaPedidos = listaPedidos;
@@ -46,7 +44,12 @@ public class PedidoRepositorio implements IPedidoRepositorio {
 
     @Override
     public int geraProximoId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+        int maiorId = 0;
+        for (Pedido pedido : pegarLista()) {
+            if (pedido.getId() > maiorId) {
+                maiorId = pedido.getId();
+            }
+        }
+        return maiorId + 1;
     }
 }

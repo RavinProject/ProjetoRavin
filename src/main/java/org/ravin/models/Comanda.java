@@ -50,7 +50,7 @@ public class Comanda {
 
     private double calcularTotal(){
         return pedidos.stream().mapToDouble(Pedido::getTotal).sum();
-    } // TODO
+    }
 
     public int getId() {
         return id;

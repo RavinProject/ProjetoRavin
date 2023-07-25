@@ -1,15 +1,11 @@
 package org.ravin.services.comanda;
 
-import org.ravin.dao.ComandaRepositorio;
-import org.ravin.dao.ListasDados;
 import org.ravin.dao.interfaces.IComandaRepositorio;
 import org.ravin.models.Cliente;
 import org.ravin.models.Comanda;
 import org.ravin.services.comanda.interfaces.IPagarComandaService;
-import org.ravin.strategy.DescontoFactory;
 import org.ravin.strategy.interfaces.IDescontoAniversariante;
 import org.ravin.strategy.interfaces.IDescontoFactory;
-import org.ravin.utils.enums.StatusComanda;
 import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.Optional;
@@ -36,7 +32,7 @@ public class PagarComandaService implements IPagarComandaService {
      * @throws EntidadeNaoEncontradaException Se a comanda com o código fornecido não for encontrada.
      */
     public boolean pagarComanda(String codigo) throws EntidadeNaoEncontradaException {
-        Optional<Comanda> oComanda = comandaRepository.getComandaPorCodigo(codigo);
+        Optional<Comanda> oComanda = comandaRepository.recuperarComandaPorCodigo(codigo);
         if(oComanda.isPresent()) {
             Comanda comanda = oComanda.get();
             Cliente cliente = comanda.getCliente();

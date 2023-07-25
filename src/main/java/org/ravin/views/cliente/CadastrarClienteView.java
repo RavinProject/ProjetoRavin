@@ -13,23 +13,19 @@ import static org.ravin.views.cliente.SubmenuCliente.imprimeCliente;
 
 public class CadastrarClienteView {
     static void cadastrar(IClienteController clienteController) {
-        Cliente cliente = new Cliente();
         try {
-            // TODO ver se existe alguma maneira mais simples de mostrar submenus
-            cliente.setNome(solicitaEntradaDeDado("Informe o nome do cliente:"));
-            cliente.setTelefone(solicitaEntradaDeDado("Informe o telefone:"));
-            cliente.setEndereco(solicitaEntradaDeDado("Endereço: "));
-            cliente.setCpf(solicitaEntradaDeDado("Informe o CPF:"));
-            cliente.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy")));
-            cliente.setObservacao(solicitaEntradaDeDado("Informe uma observação ou tecle enter para continuar:"));
-            cliente.setAlergias(solicitaEntradaDeDado("Alergias: "));
-            boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim").equals("1") ? true : false;
-            cliente.setVip(vip);
-            cliente.setAtivo(true);
-            cliente.setCriadoEm(new Date());
-            cliente.setCriadoPor(null);
-            cliente.setAlteradoEm(new Date());
-            cliente.setAlteradoPor(null);
+            String nome = solicitaEntradaDeDado("Informe o nome do cliente:");
+            String telefone = solicitaEntradaDeDado("Informe o telefone:");
+            String endereco = solicitaEntradaDeDado("Endereço: ");
+            String cpf = solicitaEntradaDeDado("Informe o CPF:");
+            Date nascimento = DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy"));
+            String observacao = solicitaEntradaDeDado("Informe uma observação ou tecle enter para continuar:");
+            String alergias = solicitaEntradaDeDado("Alergias: ");
+            boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim").equals("1");
+            Date agora = new Date();
+
+            Cliente cliente = new Cliente(nome, telefone, endereco, cpf, nascimento, observacao, true, agora, agora, alergias, vip);
+
             clienteController.inserir(cliente);
             exibeDialogo("Cliente inserido com sucesso!");
             imprimeCliente(clienteController.recuperarPorCpf(cliente.getCpf()));

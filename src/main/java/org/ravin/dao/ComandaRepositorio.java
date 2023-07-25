@@ -52,7 +52,7 @@ public class ComandaRepositorio implements IComandaRepositorio {
     }
 
     @Override
-    public Optional<Comanda> getComandaPorCodigo(String codigo) {
+    public Optional<Comanda> recuperarComandaPorCodigo(String codigo) {
         for (Comanda comanda : listaComanda) {
             if (Objects.equals(comanda.getCodigo(), codigo)) {
                 return Optional.of(comanda);
@@ -61,8 +61,14 @@ public class ComandaRepositorio implements IComandaRepositorio {
         return Optional.empty();
     }
 
+    @Override
     public int geraProximoId() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'geraProximoId'");
+        int maiorId = 0;
+        for (Comanda comanda : pegarLista()) {
+            if (comanda.getId() > maiorId) {
+                maiorId = comanda.getId();
+            }
+        }
+        return maiorId + 1;
     }
 }

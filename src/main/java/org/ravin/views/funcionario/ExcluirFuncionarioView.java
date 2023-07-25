@@ -6,12 +6,12 @@ import org.ravin.models.Funcionario;
 import javax.swing.*;
 
 import static org.ravin.views.View.*;
-import static org.ravin.views.View.exibeDialogo;
 
 public class ExcluirFuncionarioView {
      static void excluirFuncionario(IFuncionarioController funcionarioController) {
         try {
             String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
+            if (cpf == null) return;
             Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
 
             if (funcionario != null) {
@@ -36,6 +36,4 @@ public class ExcluirFuncionarioView {
             e.printStackTrace();
         }
     }
-
-    
 }

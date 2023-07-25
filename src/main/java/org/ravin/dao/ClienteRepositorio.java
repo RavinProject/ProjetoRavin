@@ -21,24 +21,27 @@ public class ClienteRepositorio implements IClienteRepositorio {
         
     @Override
     public Optional<Cliente> recuperarPorId(int id) {
-        // Itera pela lista e tenta encontrar um cliente com o ID fornecido
         for (Cliente cliente : pegarLista()) {
             if (cliente.getId() == id) {
                 return Optional.of(cliente);
             }
         }
-        return Optional.empty(); // Retorna um Optional vazio se não encontrar
+        return Optional.empty();
     }
 
     @Override
     public List<Cliente> pegarLista() {
-        return listaClientes; // Retorna a lista de clientes
+        return listaClientes;
+    }
+
+    @Override
+    public int geraProximoId() {
+        return IClienteRepositorio.super.geraProximoId();
     }
 
 
     @Override
     public void atualizar(Cliente clienteAtualizado) {
-        // Itera pela lista e atualiza o cliente com o mesmo ID
         for (int i = 0; i < pegarLista().size(); i++) {
             if (pegarLista().get(i).getId() == clienteAtualizado.getId()) {
                 pegarLista().set(i, clienteAtualizado);
@@ -59,13 +62,13 @@ public class ClienteRepositorio implements IClienteRepositorio {
     }
 
     @Override
-    public Optional<Cliente> recuperarPorCpf(String cpf) {
+    public Optional<Cliente> recuperarClientePorCpf(String cpf) {
         // Itera pela lista e tenta encontrar um cliente com o CPF fornecido
         for (Cliente cliente : pegarLista()) {
             if (cliente.getCpf().equals(cpf)) {
                 return Optional.of(cliente);
             }
         }
-        return Optional.empty(); // Retorna um Optional vazio se não encontrar
+        return Optional.empty();
     }
 }
