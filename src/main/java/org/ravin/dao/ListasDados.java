@@ -17,6 +17,7 @@ public class ListasDados {
     private List<Estoque> estoqueList;
     private List<Produto> produtosList;
     private List<Mesa> mesaList;
+    private List<Reserva> reservaList;
     private List<Pedido> pedidoList;
     private List<Comanda> comandaList;
     private final IClienteRepositorio clienteRepo;
@@ -25,6 +26,7 @@ public class ListasDados {
     private final IProdutoRepositorio produtoRepo;
     private final IPedidoRepositorio pedidoRepo;
     private final IMesaRepositorio mesaRepo;
+    private IReservaRepositorio reservaRepo;
     private final IComandaRepositorio comandaRepo;
 
     private ListasDados() {
@@ -56,7 +58,11 @@ public class ListasDados {
 
         // Gerador de lista de Mesa
         mesaList = GerarMesas.montaLista(funcionariosList, comandaList);
-        mesaRepo = new MesaRepositorio();
+        mesaRepo = new MesaRepositorio(mesaList);
+
+        // Gerador de lista de Reservas
+        reservaList = GerarReservas.montaLista(clientesList, mesaList);
+        reservaRepo = new ReservaRepositorio(reservaList);
 
         // Atualizando as listas após as inserções
         clientesList = clienteRepo.pegarLista();
@@ -85,7 +91,8 @@ public class ListasDados {
     }
     public List<Mesa> getMesaList() { return mesaList; }
     public List<Comanda> getComandaList() { return comandaList; }
-    public List<Pedido> getPedidoList() {return pedidoList; }
+    public List<Pedido> getPedidoList() { return pedidoList; }
+    public List<Reserva> getReservaList() { return reservaList; }
 
     // get Repositorios
     public IClienteRepositorio getClienteRepositorio() {
@@ -103,5 +110,6 @@ public class ListasDados {
     public IComandaRepositorio getComandaRepositorio() { return comandaRepo; }
     public IMesaRepositorio getMesaRepositorio() { return mesaRepo; }
     public IPedidoRepositorio gerPedidoRepositorio() { return pedidoRepo; }
+    public IReservaRepositorio getReservaRepositorio() { return reservaRepo; }
 
 }

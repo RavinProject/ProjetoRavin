@@ -8,7 +8,6 @@ public class Cliente extends Pessoa {
 
     public Cliente(){ }
 
-    // construtor utilizado pela lista autogerada
     public Cliente(int id, String nome, String telefone, String cpf, boolean ativo) {
         super(id, nome, telefone, cpf, ativo);
     }
@@ -73,4 +72,10 @@ public class Cliente extends Pessoa {
                 ", vip=" + vip +
                 '}';
     }
+
+    // TODO isso está certo???
+    public Reserva reservarMesa(Mesa mesa, Date data) {
+        return new Reserva(this, mesa, data);
+    }
+
 }
