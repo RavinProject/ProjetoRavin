@@ -102,8 +102,8 @@ public class Funcionario extends Pessoa {
         };
     }
 
-    public void setCargo(Cargo string) {
-        this.cargo = string;
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
     }
 
     public String getPis() {
@@ -196,6 +196,7 @@ public class Funcionario extends Pessoa {
                 ", disponibilidade=" + disponibilidade +
                 '}';
     }
+
 }
 
 

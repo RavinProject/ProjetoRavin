@@ -3,6 +3,7 @@ package org.ravin.views.cliente;
 import org.ravin.controllers.interfaces.IClienteController;
 import org.ravin.models.Cliente;
 import org.ravin.utils.DateUtils;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.Date;
 

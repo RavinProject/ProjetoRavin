@@ -1,8 +1,8 @@
 import org.gradle.kotlin.dsl.java
 
 plugins {
-    id("java")
-    `jvm-test-suite`
+    java
+    id("jvm-test-suite")
 }
 
 java {
@@ -12,15 +12,14 @@ java {
 group = "org.ravin"
 version = "0.2.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
+repositories.mavenCentral()
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    val junitVersion = "5.9.2"
+    val mockitoVersion = "5.3.1"
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation("org.mockito:mockito-junit-jupiter:5.3.1")
-
+    testImplementation("org.mockito:mockito-junit-jupiter:$mockitoVersion")
 }
 
 testing{
