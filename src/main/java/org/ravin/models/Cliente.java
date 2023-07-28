@@ -72,9 +72,4 @@ public class Cliente extends Pessoa {
                 ", vip=" + vip +
                 '}';
     }
-
-    // TODO isso está certo???
-    public Reserva reservarMesa(Mesa mesa, Date data) {
-        return new Reserva(this, mesa, data);
-    }
 }

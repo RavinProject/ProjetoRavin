@@ -7,5 +7,6 @@ import org.ravin.models.Reserva;
 import java.util.Date;
 
 public interface IReservaService extends IService<Reserva> {
-    public void reservarMesa(Cliente cliente, Mesa mesa, Date data);
+    public void reservar(Cliente cliente, Mesa mesa, Date data);
+    public boolean estaDisponivel(Date data);
 }

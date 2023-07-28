@@ -12,28 +12,42 @@ import java.util.List;
 import java.util.Optional;
 
 public class ReservaService implements IReservaService {
-
-    // Injeção de dependência parcial - lista por Singleton
     private final IReservaRepositorio reservaRepository;
     public ReservaService () { this.reservaRepository = ListasDados.getInstance().getReservaRepositorio(); }
 
     @Override
-    public void reservarMesa(Cliente cliente, Mesa mesa, Date data) {
-        Reserva reserva = cliente.reservarMesa(mesa, data);
+    public void reservar(Cliente cliente, Mesa mesa, Date data) {
+        if (estaDisponivel(data)) { // Verifique se a mesa está disponível no momento desejado
+            Reserva reserva = new Reserva(cliente, mesa, data); // Crie uma nova reserva
+            reservaRepository.inserir(reserva); // Insira a reserva no repositório
+        } else {
+            // Lidar com o cenário em que a mesa não está disponível
+        }
+    }
+
+    @Override
+    public boolean estaDisponivel(Date data) {
+        for (Reserva reserva : reservaRepository.pegarLista()) {
+            if (reserva.getData().equals(data)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void inserir(Reserva reserva) {
         reservaRepository.inserir(reserva);
     }
 
     @Override
-    public void inserir(Reserva objeto) {  }
-
-    @Override
     public Optional<Reserva> recuperarPorId(int id) {
-        return Optional.empty();
+        return reservaRepository.recuperarPorId(id);
     }
 
     @Override
     public List<Reserva> pegarLista() {
-        return null;
+        return reservaRepository.pegarLista();
     }
 
     @Override
@@ -42,17 +56,17 @@ public class ReservaService implements IReservaService {
     }
 
     @Override
-    public int geraProximoId() {
-        return IReservaService.super.geraProximoId();
+    public void atualizar(Reserva reserva) {
+        reservaRepository.atualizar(reserva);
     }
 
     @Override
-    public void atualizar(Reserva objeto) {
-
-    }
-
-    @Override
-    public boolean remover(Reserva objeto) {
-        return false;
+    public boolean remover(Reserva reserva) {
+        try {
+            reservaRepository.remover(reserva);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

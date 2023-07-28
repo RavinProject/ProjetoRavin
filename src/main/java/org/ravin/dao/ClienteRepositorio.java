@@ -16,7 +16,10 @@ public class ClienteRepositorio implements IClienteRepositorio {
     
     @Override
     public void inserir(Cliente cliente) {
-        pegarLista().add(cliente); // Adiciona o cliente na lista
+        if (cliente.getId() == 0) {
+            cliente.setId(geraProximoId());
+        }
+        pegarLista().add(cliente);
     }
         
     @Override

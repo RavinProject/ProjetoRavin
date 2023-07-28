@@ -2,13 +2,13 @@ package org.ravin.models;
 
 import org.ravin.utils.enums.StatusMesa;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Mesa {
     private int id;
     private Funcionario funcionario;
-    private List<Comanda> comandas;
     private String nome;
     private String codigo;
     private int numero;
@@ -27,11 +27,7 @@ public class Mesa {
     }
 
     public void alocarFuncionario(Funcionario funcionario){
-
-    }
-
-    public void adicionarComanda(Comanda comanda){
-        
+        this.funcionario = funcionario;
     }
 
     public int getId() {
@@ -48,14 +44,6 @@ public class Mesa {
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
-    }
-
-    public List<Comanda> getComandas() {
-        return comandas;
-    }
-
-    public void setComandas(List<Comanda> comandas) {
-        this.comandas = comandas;
     }
 
     public String getNome() {
@@ -129,25 +117,19 @@ public class Mesa {
     public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
     }
-    public Reserva reservarPara(Cliente cliente, Date data) {
-        return new Reserva(cliente, this, data);
-    }
 
     @Override
     public String toString() {
         return "Mesa{" +
                 "id=" + id +
                 ", funcionario=" + funcionario +
-                ", comandas=" + comandas +
                 ", nome='" + nome + '\'' +
                 ", codigo='" + codigo + '\'' +
                 ", numero=" + numero +
                 ", quantidadeMaxima=" + quantidadeMaxima +
                 ", statusMesa=" + statusMesa +
                 ", criadoEm=" + criadoEm +
-                ", criadoPor='" + criadoPor + '\'' +
                 ", alteradoEm=" + alteradoEm +
-                ", alteradoPor='" + alteradoPor + '\'' +
                 '}';
     }
 }
