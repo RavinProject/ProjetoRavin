@@ -1,5 +1,15 @@
 package org.ravin.views.comanda;
 
+import org.ravin.controllers.ComandaController;
+import org.ravin.controllers.interfaces.IComandaController;
+import org.ravin.dao.ListasDados;
+import org.ravin.dao.interfaces.IComandaRepositorioLista;
+import org.ravin.services.comanda.ComandaService;
+import org.ravin.services.comanda.PagarComandaService;
+import org.ravin.services.comanda.interfaces.IComandaService;
+import org.ravin.services.comanda.interfaces.IPagarComandaService;
+import org.ravin.strategy.DescontoFactory;
+import org.ravin.strategy.interfaces.IDescontoFactory;
 import org.ravin.views.View;
 
 public class SubmenuComanda extends View{
@@ -7,6 +17,15 @@ public class SubmenuComanda extends View{
     public static void menuComanda() {
 
         // Injeção de Dependência
+        // Lista
+        IComandaRepositorioLista comandaRepository = ListasDados.getInstance().getComandaRepositorio();
+        // Fábrica de descontos
+        IDescontoFactory descontoFactory = new DescontoFactory();
+        // Services de comanda
+        IPagarComandaService pagarComandaService = new PagarComandaService(comandaRepository, descontoFactory);
+        IComandaService comandaService = new ComandaService();
+        // Controller
+        IComandaController comandaController = new ComandaController(pagarComandaService, comandaService);
 
         // TODO
         boolean exec = true;
@@ -26,8 +45,7 @@ public class SubmenuComanda extends View{
     }
 
     private static String menuInicial() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("""
+        String builder = """
                 ==================== RAVIN ====================
                 COMANDA:
                 1 - Abrir Comanda
@@ -37,8 +55,8 @@ public class SubmenuComanda extends View{
                 5 - Fechar Comanda
                 6 - Pagar Comanda
                 x - voltar
-                """);
-        return builder.toString();
+                """;
+        return builder;
     }
 
     public static void menuPedido() {
@@ -57,15 +75,13 @@ public class SubmenuComanda extends View{
     }
     
     private static String textMenuPedido() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("""
+        return """
                 ==================== RAVIN ====================
                 PEDIDO:
                 1 - Alterar Quantidade
                 2 - Alterar Produto
                 3 - Excluir Pedido
                 x - voltar
-                """);
-        return builder.toString();
+                """;
     }
 }
