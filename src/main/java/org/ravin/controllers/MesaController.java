@@ -2,31 +2,45 @@ package org.ravin.controllers;
 
 import org.ravin.controllers.interfaces.IMesaController;
 import org.ravin.models.Mesa;
-import org.ravin.services.comanda.interfaces.IPagarComandaService;
 import org.ravin.services.interfaces.IMesaService;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MesaController implements IMesaController {
-
-    // Injeção de dependência
     private final IMesaService mesaService;
     public MesaController(IMesaService mesaService) {
         this.mesaService = mesaService;
     }
     @Override
-    public void inserir(Mesa objeto) {
-
+    public void inserir(Mesa mesa) {
+        mesaService.inserir(mesa);
     }
 
     @Override
-    public Mesa recuperarPorId(int id) {
-        return null;
+    public Mesa recuperarPorId(int id) throws EntidadeNaoEncontradaException {
+        Optional<Mesa> mesa = mesaService.recuperarPorId(id);
+        if (mesa.isPresent()) {
+            return mesa.get();
+        } else {
+            throw new EntidadeNaoEncontradaException("Mesa não encontrada para o ID: " + id);
+        }
     }
 
     @Override
-    public List<Mesa> pegarLista() {
-        return null;
+    public Mesa recuperarPorCodigo(String codigo) throws EntidadeNaoEncontradaException {
+        Optional<Mesa> mesa = mesaService.recuperarPorCodigo(codigo);
+        if (mesa.isPresent()) {
+            return mesa.get();
+        } else {
+            throw new EntidadeNaoEncontradaException("Mesa não encontrada para o Codigo: " + codigo);
+        }
+    }
+
+    @Override
+    public List<Mesa> recuperarTodos() {
+        return mesaService.recuperarTodos();
     }
 
     @Override
@@ -35,7 +49,12 @@ public class MesaController implements IMesaController {
     }
 
     @Override
-    public boolean remover(Mesa objeto) {
-        return false;
+    public boolean remover(Mesa mesa) {
+        try {
+            mesaService.remover(mesa);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

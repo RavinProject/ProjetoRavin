@@ -1,34 +1,34 @@
 package org.ravin.views.mesa;
 
-import org.ravin.controllers.ClienteController;
 import org.ravin.controllers.MesaController;
 import org.ravin.controllers.interfaces.IMesaController;
-import org.ravin.dao.interfaces.IMesaRepositorio;
-import org.ravin.services.ClienteService;
+import org.ravin.models.Mesa;
 import org.ravin.services.MesaService;
-import org.ravin.services.interfaces.IClienteService;
 import org.ravin.services.interfaces.IMesaService;
 import org.ravin.views.View;
+
+import static org.ravin.views.mesa.AlterarMesaView.atualizarMesa;
+import static org.ravin.views.mesa.CadastrarMesaView.cadastrarMesa;
+import static org.ravin.views.mesa.ExcluirMesaView.excluirMesa;
+import static org.ravin.views.mesa.RecuperarMesaView.listarMesas;
+import static org.ravin.views.mesa.RecuperarMesaView.recuperarMesaPorCodigo;
 
 public class SubmenuMesa extends View{
 
     public static void menuMesa(){
-        
         // Injeção de Dependência
         IMesaService mesaService = new MesaService();
         IMesaController mesaController = new MesaController(mesaService);
 
-        // TODO
         boolean exec = true;
         while (exec) {
             String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
-                case "1" -> cadastrar(mesaController);
-                case "2" -> exibeDialogo("Alterar Mesa: implementar...");
-                case "3" -> exibeDialogo("Excluir Mesa: implementar...");
-                case "4" -> exibeDialogo("Listar Mesas: implementar...");
-                case "5" -> exibeDialogo("Exibir Mesa: implementar...");
-                case "6" -> exibeDialogo("Reservar Mesa: implementar...");
+                case "1" -> cadastrarMesa(mesaController);
+                case "2" -> atualizarMesa(mesaController);
+                case "3" -> excluirMesa(mesaController);
+                case "4" -> listarMesas(mesaController);
+                case "5" -> recuperarMesaPorCodigo(mesaController);
                 case "x" -> exec = false;
                 default -> exibeDialogo("Opção inválida! Voltando...");
             }
@@ -36,19 +36,31 @@ public class SubmenuMesa extends View{
     }
 
     private static String menuInicial(){
-        StringBuilder builder = new StringBuilder();
-        builder.append("""
-            ==================== RAVIN ====================
-            MESA:
-            1 - Criar Mesa
-            2 - Alterar Mesa
-            3 - Excluir Mesa
-            4 - Listar Mesas
-            5 - Exibir Mesa
-            6 - Reservar Mesa
-            x - voltar
-            """);
-        return builder.toString();
+        return """
+                ==================== RAVIN ====================
+                MESA:
+                1 - Criar uma Mesa
+                2 - Alterar uma Mesa
+                3 - Excluir uma Mesa
+                4 - Listar todas as Mesas
+                5 - Recuperar Mesa por Código
+                x - voltar
+                """;
     }
 
+    static void imprimeMesa(Mesa mesa) {
+        String mesaDados =
+                "ID: " + mesa.getId() +
+                        "\n Código: " + mesa.getCodigo() +
+                        "\n Número: " + mesa.getNumero() +
+                        "\n Funcionário responsável: " + mesa.getFuncionario().getNome() +
+                        "\n Quantidade Máxima: " + mesa.getQuantidadeMaxima() +
+                        "\n Status: " + mesa.getStatusMesa().toString() +
+                        "\n Criado Em: " + mesa.getCriadoEm() +
+                        "\n Criado Por: " + mesa.getCriadoPor() +
+                        "\n Alterado Em: " + mesa.getAlteradoEm() +
+                        "\n Alterado Por: " + mesa.getAlteradoPor();
+
+        exibeDialogo(mesaDados);
+    }
 }

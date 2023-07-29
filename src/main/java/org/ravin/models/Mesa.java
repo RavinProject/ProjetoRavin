@@ -2,14 +2,11 @@ package org.ravin.models;
 
 import org.ravin.utils.enums.StatusMesa;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Mesa {
     private int id;
     private Funcionario funcionario;
-    private String nome;
     private String codigo;
     private int numero;
     private int quantidadeMaxima;
@@ -18,15 +15,21 @@ public class Mesa {
     private String criadoPor;
     private Date alteradoEm;
     private String alteradoPor;
-    
-    public Mesa(String nome, String codigo, int numero, int quantidadeMaxima) {
-        this.nome = nome;
+
+    public Mesa() {}
+
+    // Construtor sem funcionário
+    public Mesa(String codigo, int numero, int quantidadeMaxima) {
         this.codigo = codigo;
         this.numero = numero;
         this.quantidadeMaxima = quantidadeMaxima;
     }
 
-    public void alocarFuncionario(Funcionario funcionario){
+    // Construtor com funcionário
+    public Mesa(String codigo, int numero, int quantidadeMaxima, Funcionario funcionario) {
+        this.codigo = codigo;
+        this.numero = numero;
+        this.quantidadeMaxima = quantidadeMaxima;
         this.funcionario = funcionario;
     }
 
@@ -44,14 +47,6 @@ public class Mesa {
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCodigo() {
@@ -123,7 +118,6 @@ public class Mesa {
         return "Mesa{" +
                 "id=" + id +
                 ", funcionario=" + funcionario +
-                ", nome='" + nome + '\'' +
                 ", codigo='" + codigo + '\'' +
                 ", numero=" + numero +
                 ", quantidadeMaxima=" + quantidadeMaxima +
