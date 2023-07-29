@@ -16,10 +16,11 @@ import org.ravin.services.interfaces.IReservaService;
 import org.ravin.utils.DateUtils;
 import org.ravin.views.View;
 
-import static org.ravin.views.reserva.CadastrarReservaView.cadastrar;
+import static org.ravin.views.reserva.CadastrarReservaView.cadastrarReserva;
+import static org.ravin.views.reserva.RecuperarReservaView.listarReservas;
 
 public class SubmenuReserva extends View {
-    public static void menu(){
+    public static void menuReserva(){
 
         // Injeção de Dependência
         IReservaService reservaService = new ReservaService();
@@ -36,10 +37,10 @@ public class SubmenuReserva extends View {
         while (exec) {
             String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
-                case "1" -> cadastrar(reservaController, clienteController, mesaController);
+                case "1" -> cadastrarReserva(reservaController, clienteController, mesaController);
                 case "2" -> exibeDialogo("Alterar Reserva: implementar...");
                 case "3" -> exibeDialogo("Excluir Reserva: implementar...");
-                case "4" -> exibeDialogo("Listar Reserva: implementar...");
+                case "4" -> listarReservas(reservaController);
                 case "5" -> exibeDialogo("Exibir Reserva: implementar...");
                 case "6" -> exibeDialogo("Reservar Reserva: implementar...");
                 case "x" -> exec = false;
@@ -49,19 +50,16 @@ public class SubmenuReserva extends View {
     }
 
     private static String menuInicial(){
-        StringBuilder builder = new StringBuilder();
-        builder.append("""
-            ==================== RAVIN ====================
-            MESA:
-            1 - Criar Mesa
-            2 - Alterar Mesa
-            3 - Excluir Mesa
-            4 - Listar Mesas
-            5 - Exibir Mesa
-            6 - Reservar Mesa
-            x - voltar
-            """);
-        return builder.toString();
+        return """
+                ==================== RAVIN ====================
+                MESA:
+                1 - Criar uma Reserva
+                2 - Alterar uma Reserva
+                3 - Excluir uma Reserva
+                4 - Listar Reservas
+                5 - Exibir uma Reserva
+                x - voltar
+                """;
     }
 
     static void imprimeReserva(Reserva reserva) {

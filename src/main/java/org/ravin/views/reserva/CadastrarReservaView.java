@@ -17,7 +17,7 @@ import static org.ravin.views.View.solicitaEntradaDeDado;
 import static org.ravin.views.reserva.SubmenuReserva.imprimeReserva;
 
 public class CadastrarReservaView {
-    static void cadastrar(IReservaController reservaController, IClienteController clienteController, IMesaController mesaController) {
+    static void cadastrarReserva(IReservaController reservaController, IClienteController clienteController, IMesaController mesaController) {
         Reserva reserva = new Reserva();
         try {
             String cpfCliente = solicitaEntradaDeDado("Informe o CPF do cliente:");
@@ -29,7 +29,7 @@ public class CadastrarReservaView {
                 return;
             }
 
-            String codigo = solicitaEntradaDeDado("Informe o ID da mesa:");
+            String codigo = solicitaEntradaDeDado("Informe o Código da mesa:");
             Mesa mesa = mesaController.recuperarPorCodigo(codigo);
             if (mesa != null) {
                 reserva.setMesa(mesa);
@@ -44,14 +44,14 @@ public class CadastrarReservaView {
             reservaController.inserir(reserva);
             exibeDialogo("Reserva inserida com sucesso!");
             imprimeReserva(reservaController.recuperarPorId(reserva.getId()));
+        } catch(EntidadeNaoEncontradaException e) {
+            throw new RuntimeException(e);
         } catch(InputMismatchException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
         } catch (Exception e) {
             exibeDialogo("Um erro ocorreu!\nCadastro não finalizado...");
             e.printStackTrace();
-        } catch (EntidadeNaoEncontradaException e) {
-            throw new RuntimeException(e);
         }
     }
 }

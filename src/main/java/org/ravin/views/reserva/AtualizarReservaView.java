@@ -7,7 +7,6 @@ import org.ravin.models.Cliente;
 import org.ravin.models.Mesa;
 import org.ravin.models.Reserva;
 import org.ravin.utils.DateUtils;
-import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.Date;
 import java.util.List;
@@ -57,7 +56,7 @@ public class AtualizarReservaView {
             } else {
                 exibeDialogo("Cliente não encontrado!");
             }
-        } catch (Exception | EntidadeNaoEncontradaException e) {
+        } catch (Exception e) {
             exibeDialogo("Dado informado inválido!\nAtualização não finalizada...");
             e.printStackTrace();
         }

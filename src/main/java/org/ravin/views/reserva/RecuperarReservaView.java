@@ -1,8 +1,8 @@
 package org.ravin.views.reserva;
 
+import org.ravin.controllers.interfaces.IClienteController;
 import org.ravin.controllers.interfaces.IMesaController;
 import org.ravin.controllers.interfaces.IReservaController;
-import org.ravin.controllers.interfaces.IClienteController;
 import org.ravin.models.Cliente;
 import org.ravin.models.Mesa;
 import org.ravin.models.Reserva;
@@ -15,23 +15,27 @@ public class RecuperarReservaView {
 
     static void listarReservas(IReservaController reservaController) {
         StringBuilder texto = new StringBuilder();
-        for (Reserva reserva : reservaController.pegarLista()) {
+        for (Reserva reserva : reservaController.recuperarTodos()) {
             texto.append(reserva.toString()).append("\n");
         }
         exibeDialogo(texto.toString());
     }
 
     static void listarReservasPorCliente(IReservaController reservaController, IClienteController clienteController) {
-        String cpf = solicitaEntradaDeDado("Informe o CPF do cliente para listar suas reservas:");
-        Cliente cliente = clienteController.recuperarPorCpf(cpf);
+        try {
+            String cpf = solicitaEntradaDeDado("Informe o CPF do cliente para listar suas reservas:");
+            Cliente cliente = clienteController.recuperarPorCpf(cpf);
 
-        if (cliente != null) {
-            StringBuilder texto = new StringBuilder();
-            for (Reserva reserva : reservaController.recuperarPorCliente(cliente)) {
-                texto.append(reserva.toString()).append("\n");
+            if (cliente != null) {
+                StringBuilder texto = new StringBuilder();
+                for (Reserva reserva : reservaController.recuperarPorCliente(cliente)) {
+                    texto.append(reserva.toString()).append("\n");
+                }
+                exibeDialogo(texto.toString());
+            } else {
+                exibeDialogo("Cliente não encontrado com o CPF informado!");
             }
-            exibeDialogo(texto.toString());
-        } else {
+        } catch (EntidadeNaoEncontradaException e) {
             exibeDialogo("Cliente não encontrado com o CPF informado!");
         }
     }

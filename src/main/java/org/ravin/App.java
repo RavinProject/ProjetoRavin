@@ -9,8 +9,6 @@ import org.ravin.views.funcionario.SubmenuFuncionario;
 import org.ravin.views.mesa.SubmenuMesa;
 import org.ravin.views.reserva.SubmenuReserva;
 
-import static org.ravin.views.View.*;
-
 import static org.ravin.views.View.solicitaEntradaDeDado;
 
 public class App {
@@ -61,10 +59,14 @@ public class App {
                 return true;
             }
             case "5" -> {
-                SubmenuComanda.menuComanda();
+                SubmenuReserva.menuReserva();
                 return true;
             }
             case "6" -> {
+                SubmenuComanda.menuComanda();
+                return true;
+            }
+            case "7" -> {
                 SubmenuCardapio.menuCardapio();
                 return true;
             }
@@ -85,8 +87,9 @@ public class App {
                 2 - Funcionários
                 3 - Estoque
                 4 - Mesas
-                5 - Comandas
-                6 - Cardápio
+                5 - Reservas
+                6 - Comandas
+                7 - Cardápio
                 x - voltar
                 """;
     }
