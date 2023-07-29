@@ -4,7 +4,6 @@ import org.ravin.controllers.interfaces.IReservaController;
 import org.ravin.models.Cliente;
 import org.ravin.models.Mesa;
 import org.ravin.models.Reserva;
-import org.ravin.services.interfaces.IMesaService;
 import org.ravin.services.interfaces.IReservaService;
 
 import java.util.Date;
@@ -18,8 +17,8 @@ public class ReservaController implements IReservaController {
         this.reservaService = reservaService;
     }
     @Override
-    public void inserir(Reserva objeto) {
-
+    public void inserir(Reserva reserva) {
+        reservaService.inserir(reserva);
     }
 
     @Override
@@ -28,8 +27,8 @@ public class ReservaController implements IReservaController {
     }
 
     @Override
-    public List<Reserva> pegarLista() {
-        return null;
+    public List<Reserva> recuperarTodos() {
+        return reservaService.recuperarTodos();
     }
 
     @Override
@@ -45,5 +44,20 @@ public class ReservaController implements IReservaController {
     @Override
     public void reservarMesa(Cliente cliente, Mesa mesa, Date data) {
 
+    }
+
+    @Override
+    public List<Reserva> recuperarPorCliente(Cliente cliente) {
+        return null;
+    }
+
+    @Override
+    public Reserva recuperarPorMesa(Mesa mesa) {
+        return null;
+    }
+
+    @Override
+    public List<Reserva> recuperarReservasPorCodigo(String codigoMesa) {
+        return null;
     }
 }

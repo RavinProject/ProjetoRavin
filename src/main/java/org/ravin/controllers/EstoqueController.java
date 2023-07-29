@@ -18,11 +18,7 @@ public class EstoqueController implements IEstoqueController {
 
     public boolean estoqueJaCadastrado(String codigo){
         Optional<Estoque> estoque = estoqueService.recuperarPorCodigo(codigo);
-        if (estoque.isPresent()) {
-            return true;
-        } else {
-            return false;
-        }
+        return estoque.isPresent();
     }
 
     @Override
@@ -41,8 +37,8 @@ public class EstoqueController implements IEstoqueController {
     }
 
     @Override
-    public List<Estoque> pegarLista() {
-        return estoqueService.pegarLista();
+    public List<Estoque> recuperarTodos() {
+        return estoqueService.recuperarTodos();
     }
 
     @Override
