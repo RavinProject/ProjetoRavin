@@ -1,12 +1,12 @@
 package org.ravin.dao;
 
-import org.ravin.dao.interfaces.ICardapioRepositorio;
+import org.ravin.dao.interfaces.ICardapioRepositorioLista;
 import org.ravin.models.Cardapio;
 
 import java.util.List;
 import java.util.Optional;
 
-public class CardapioRepositorio implements ICardapioRepositorio {
+public class CardapioRepositorioLista implements ICardapioRepositorioLista {
     @Override
     public void inserir(Cardapio object) {
 

@@ -1,31 +1,25 @@
 package org.ravin.dao;
 
-import org.ravin.dao.interfaces.IClienteRepositorio;
-import org.ravin.dao.interfaces.IReservaRepositorio;
-import org.ravin.models.*;
+import org.ravin.dao.interfaces.IReservaRepositorioLista;
+import org.ravin.models.Cliente;
+import org.ravin.models.Mesa;
+import org.ravin.models.Reserva;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ReservaRepositorio implements IReservaRepositorio {
+public class ReservaRepositorioLista implements IReservaRepositorioLista {
     private final List<Reserva> listaReservas;
 
-    public ReservaRepositorio(List<Reserva> listaReservas) {
+    public ReservaRepositorioLista(List<Reserva> listaReservas) {
         this.listaReservas = listaReservas;
-    }
-
-
-    @Override
-    public int geraProximoId() {
-        return IReservaRepositorio.super.geraProximoId();
     }
 
     @Override
     public void inserir(Reserva reserva) {
         if (reserva.getId() == 0) {
-            reserva.setId(geraProximoId());
+            reserva.setId(geraProximoId(listaReservas));
         }
         listaReservas.add(reserva);
     }
@@ -33,11 +27,6 @@ public class ReservaRepositorio implements IReservaRepositorio {
     @Override
     public List<Reserva> pegarLista() {
         return listaReservas;
-    }
-
-    @Override
-    public int getId(Reserva reserva) {
-        return reserva.getId();
     }
 
     @Override

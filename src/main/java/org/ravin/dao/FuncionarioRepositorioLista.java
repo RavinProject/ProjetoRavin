@@ -1,16 +1,16 @@
 package org.ravin.dao;
 
-import org.ravin.dao.interfaces.IFuncionarioRepositorio;
+import org.ravin.dao.interfaces.IFuncionarioRepositorioLista;
 import org.ravin.models.Funcionario;
 
 import java.util.List;
 import java.util.Optional;
 
-public class FuncionarioRepositorio implements IFuncionarioRepositorio {
+public class FuncionarioRepositorioLista implements IFuncionarioRepositorioLista {
 
     private final List<Funcionario> listaFuncionarios;
 
-    public FuncionarioRepositorio(List<Funcionario> listaFuncionarios) {
+    public FuncionarioRepositorioLista(List<Funcionario> listaFuncionarios) {
         this.listaFuncionarios = listaFuncionarios;
     }
 
@@ -18,7 +18,7 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
     @Override
     public void inserir(Funcionario funcionario) {
         if (funcionario.getId() == 0) {
-            funcionario.setId(geraProximoId());
+            funcionario.setId(geraProximoId(listaFuncionarios));
         }
         pegarLista().add(funcionario); // Adiciona o funcionario na lista
     }
@@ -63,7 +63,7 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
     }
 
     @Override
-    public Optional<Funcionario> recuperarFuncionarioPorCpf(String cpf) {
+    public Optional<Funcionario> recuperarPorCpf(String cpf) {
         // Itera pela lista e tenta encontrar um cliente com o CPF fornecido
         for (Funcionario funcionario : pegarLista()) {
             if (funcionario.getCpf().equals(cpf)) {
@@ -73,14 +73,4 @@ public class FuncionarioRepositorio implements IFuncionarioRepositorio {
         return Optional.empty(); // Retorna um Optional vazio se não encontrar
     }
 
-    @Override
-    public int geraProximoId() {
-        int maiorId = 0;
-        for (Funcionario funcionario : pegarLista()) {
-            if (funcionario.getId() > maiorId) {
-                maiorId = funcionario.getId();
-            }
-        }
-        return maiorId + 1;
-    }
 }

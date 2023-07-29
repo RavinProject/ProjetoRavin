@@ -1,16 +1,16 @@
 package org.ravin.dao;
 
-import org.ravin.dao.interfaces.IComandaRepositorio;
+import org.ravin.dao.interfaces.IComandaRepositorioLista;
 import org.ravin.models.Comanda;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ComandaRepositorio implements IComandaRepositorio {
+public class ComandaRepositorioLista implements IComandaRepositorioLista {
     private final List<Comanda> listaComanda;
 
-    public ComandaRepositorio(List<Comanda> listaComanda) {
+    public ComandaRepositorioLista(List<Comanda> listaComanda) {
 
         this.listaComanda = listaComanda;
     }
@@ -59,16 +59,5 @@ public class ComandaRepositorio implements IComandaRepositorio {
             }
         }
         return Optional.empty();
-    }
-
-    @Override
-    public int geraProximoId() {
-        int maiorId = 0;
-        for (Comanda comanda : pegarLista()) {
-            if (comanda.getId() > maiorId) {
-                maiorId = comanda.getId();
-            }
-        }
-        return maiorId + 1;
     }
 }

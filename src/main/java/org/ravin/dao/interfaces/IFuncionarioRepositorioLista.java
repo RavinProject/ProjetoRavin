@@ -5,9 +5,9 @@ import org.ravin.utils.interfaces.IGeradorId;
 
 import java.util.Optional;
 
-public interface IFuncionarioRepositorio extends IRepositorio<Funcionario>, IGeradorId<Funcionario> {
+public interface IFuncionarioRepositorioLista extends IRepositorioLista<Funcionario>, IGeradorId<Funcionario> {
     default int getId(Funcionario funcionario){
         return funcionario.getId();
     }
-    Optional<Funcionario> recuperarFuncionarioPorCpf(String cpf);
+    Optional<Funcionario> recuperarPorCpf(String cpf);
 }
