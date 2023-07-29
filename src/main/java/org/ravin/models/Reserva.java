@@ -80,8 +80,8 @@ public class Reserva {
     public String toString() {
         return "Reserva{" +
                 "id=" + id +
-                ", cliente=" + cliente +
-                ", mesa=" + mesa +
+                ", cliente=" + cliente.getNome() +
+                ", mesa=" + mesa.getCodigo() +
                 ", data=" + data +
                 ", criadoPor='" + criadoPor + '\'' +
                 ", alteradoEm=" + alteradoEm +

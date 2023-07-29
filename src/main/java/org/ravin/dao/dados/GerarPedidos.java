@@ -12,9 +12,7 @@ import java.util.List;
 
 public class GerarPedidos {
 
-    private static final List<Produto> produtos = GerarProdutos.montaLista();
-
-    public static List<Pedido> montaLista() {
+    public static List<Pedido> montaLista(List<Produto> produtos) {
         List<Pedido> listaPedidos = new ArrayList<>();
 
         StatusPreparo[] statusValues = StatusPreparo.values(); // Cria um array de ENUMS que serão percorridos no for
@@ -22,7 +20,7 @@ public class GerarPedidos {
         // for loop do tamanho do Array<Produtos>
         for (int i = 1; i <= produtos.size(); i++) {
             Produto produto = produtos.get(i - 1); // correção de índice
-            // dentro dos status possíveis, vai percorrer o array até seu tamanho máximo
+            // dentro das posições possíveis, vai percorrer o array até seu tamanho máximo
             StatusPreparo status = statusValues[i % statusValues.length];
 
             Pedido pedido = new Pedido(produto, i, status);
