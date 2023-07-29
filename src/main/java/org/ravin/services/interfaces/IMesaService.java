@@ -2,6 +2,8 @@ package org.ravin.services.interfaces;
 
 import org.ravin.models.Mesa;
 
-public interface IMesaService extends IService<Mesa>{
+import java.util.Optional;
 
+public interface IMesaService extends IService<Mesa>{
+    Optional<Mesa> recuperarPorCodigo(String codigo);
 }
