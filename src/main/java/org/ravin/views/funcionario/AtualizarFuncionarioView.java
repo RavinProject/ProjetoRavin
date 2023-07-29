@@ -18,9 +18,9 @@ import static org.ravin.views.View.solicitaEntradaDeDado;
 import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;
 
 public class AtualizarFuncionarioView {
-    static void atualizar(IFuncionarioController funcionarioController) {
+    static void atualizarFuncionario(IFuncionarioController funcionarioController) {
         try {
-            String cpf = solicitaEntradaDeDadoValida("Informe o CPF do Funcionário que deseja alterar:");
+            String cpf = solicitaEntradaDeDadoValida();
             Funcionario funcionario = funcionarioController.buscaPorCpf(cpf);
             funcionario.setNome(solicitaEntradaDeDado("Nome:", funcionario.getNome()));
             funcionario.setTelefone(solicitaEntradaDeDado("Telefone:", funcionario.getTelefone()));
@@ -28,8 +28,8 @@ public class AtualizarFuncionarioView {
             funcionario.setCpf(solicitaEntradaDeDado("CPF:", funcionario.getCpf()));
             funcionario.setPis(solicitaEntradaDeDado("PIS", funcionario.getPis()));
             funcionario.setSenha(solicitaEntradaDeDado("Senha", funcionario.getSenha()));
-            funcionario.setNascimento(solicitaData("Data de nascimento: ", funcionario.getNascimento()));
-            funcionario.setStatusAtivo(solicitaBoolean("Ativo?\n 0 - Não \n 1 - Sim", funcionario.getAtivo()));
+            funcionario.setNascimento(solicitaData(funcionario.getNascimento()));
+            funcionario.setStatusAtivo(solicitaBoolean(funcionario.getAtivo()));
             funcionario.setCargo(solicitaEnum("Selecione o cargo:", Cargo.values(), funcionario.getCargo()));
             funcionario.setEscolaridade(solicitaEnum("Selecione a escolaridade:", Escolaridade.values(),
                     funcionario.getEscolaridade()));
@@ -51,10 +51,10 @@ public class AtualizarFuncionarioView {
         }
     }
 
-    static String solicitaEntradaDeDadoValida(String mensagem) {
+    static String solicitaEntradaDeDadoValida() {
         String entrada;
         do {
-            entrada = solicitaEntradaDeDado(mensagem);
+            entrada = solicitaEntradaDeDado("Informe o CPF do Funcionário que deseja alterar:");
             if (entrada == null || entrada.trim().isEmpty()) {
                 exibeDialogo("Entrada inválida. Por favor, tente novamente.");
             }
@@ -62,13 +62,13 @@ public class AtualizarFuncionarioView {
         return entrada;
     }
 
-    static Date solicitaData(String mensagem, Date dataAtual) {
-        String entrada = solicitaEntradaDeDado(mensagem, DateUtils.dateToString(dataAtual));
+    static Date solicitaData(Date dataAtual) {
+        String entrada = solicitaEntradaDeDado("Data de nascimento: ", DateUtils.dateToString(dataAtual));
         return DateUtils.stringToDate(entrada);
     }
 
-    static boolean solicitaBoolean(String mensagem, boolean valorAtual) {
-        String entrada = solicitaEntradaDeDado(mensagem, valorAtual ? "1" : "0");
+    static boolean solicitaBoolean(boolean valorAtual) {
+        String entrada = solicitaEntradaDeDado("Ativo?\n 0 - Não \n 1 - Sim", valorAtual ? "1" : "0");
         return entrada.equals("1");
     }
 

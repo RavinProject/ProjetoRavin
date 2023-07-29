@@ -11,7 +11,7 @@ import static org.ravin.views.funcionario.SubmenuFuncionario.imprimeFuncionario;
 
 
 public class RecuperarFuncionarioView {
-    static void pesquisarFuncionarioPorCpf(IFuncionarioController funcionarioController) {
+    static void recuperarFuncionarioPorCpf(IFuncionarioController funcionarioController) {
 
         String cpf = solicitaEntradaDeDado("Informe o CPF do funcionário que deseja visualizar:");
         try{
@@ -25,7 +25,7 @@ public class RecuperarFuncionarioView {
 
     static void listarFuncionarios(IFuncionarioController funcionarioController) {
         StringBuilder texto = new StringBuilder();
-        for (Pessoa funcionario : funcionarioController.pegarLista()) {
+        for (Pessoa funcionario : funcionarioController.recuperarTodos()) {
             if(funcionario instanceof Funcionario){
                 texto.append("ID: ")
                         .append(funcionario.getId())

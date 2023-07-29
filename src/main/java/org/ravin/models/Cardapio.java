@@ -118,5 +118,20 @@ public class Cardapio {
         this.alteradoPor = alteradoPor;
     }
 
-
+    @Override
+    public String toString() {
+        return "Cardapio{" +
+                "id=" + id +
+                ", produtos=" + produtos +
+                ", nome='" + nome + '\'' +
+                ", codigo='" + codigo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", categoria=" + categoria +
+                ", ativo=" + ativo +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
+    }
 }

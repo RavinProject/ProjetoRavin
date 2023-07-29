@@ -25,7 +25,7 @@ public class RecuperarEstoqueView {
 
     static void listarEstoque(IEstoqueController estoqueController) {
         String texto = "";
-        List<Estoque> listaEstoque = estoqueController.pegarLista();
+        List<Estoque> listaEstoque = estoqueController.recuperarTodos();
         if(listaEstoque.size() > 0){
             for (Estoque estoque : listaEstoque) {
                 texto += "Código: " + estoque.getProduto().getCodigo() + " Quantidade: " + estoque.getQuantidade() + " Nome: "  + estoque.getProduto().getNome()+ (estoque.getProduto().isAtivo() ? " " : " (INATIVO) ") + "\n";

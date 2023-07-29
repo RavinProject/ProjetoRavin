@@ -8,48 +8,27 @@ import java.util.List;
 
 public class Comanda {
     private int id;
-    private Cliente cliente;
-    private List<Pedido> pedidos;
     private String codigo;
-    private String observacoes;
     private StatusComanda statusComanda;
-    private double valorTotalProdutos;
-    private double valorTotalFinal;
+    private Cliente cliente;
+    private Mesa mesa;
+    private List<Pedido> pedidos;
+    private String observacoes;
+    private double totalBruto;
+    private double totalLiquido;
     private Date criadoEm;
     private String criadoPor;
     private Date alteradoEm;
     private String alteradoPor;
 
-    public Comanda(){};
-    
-    public Comanda(Cliente cliente, String codigo) {
+    public Comanda(){}
+
+    public Comanda(Cliente cliente, String codigo, Mesa mesa) {
         this.cliente = cliente;
         this.codigo = codigo;
+        this.mesa = mesa;
         this.statusComanda = StatusComanda.ABERTA;
         this.pedidos = new ArrayList<>();
-    }
-
-    public void adicionarPedido(Pedido pedido){
-        this.pedidos.add(pedido);
-        this.valorTotalProdutos = calcularTotal();
-    }
-
-    public boolean removerPedido(String codigo){
-        Pedido pedido = this.pedidos.stream()
-                .filter(p -> p.getCodigo().equals(codigo))
-                .findFirst()
-                .orElse(null);
-        if(pedido == null){
-            return false;
-        } else {
-            this.pedidos.remove(pedido);
-            this.valorTotalProdutos = calcularTotal();
-            return true;
-        }
-    }
-
-    private double calcularTotal(){
-        return pedidos.stream().mapToDouble(Pedido::getTotal).sum();
     }
 
     public int getId() {
@@ -60,36 +39,12 @@ public class Comanda {
         this.id = id;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
-
     public String getCodigo() {
         return codigo;
     }
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
-    }
-
-    public String getObservacoes() {
-        return observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
     }
 
     public StatusComanda getStatusComanda() {
@@ -100,11 +55,53 @@ public class Comanda {
         this.statusComanda = statusComanda;
     }
 
-    public double getValorTotalProdutos() { return calcularTotal(); }
+    public Cliente getCliente() {
+        return cliente;
+    }
 
-    public double getValorTotalFinal() { return this.valorTotalFinal; }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
-    public void setValorTotalFinal(double valorTotalFinal) { this.valorTotalFinal = valorTotalFinal; }
+    public Mesa getMesa() {
+        return mesa;
+    }
+
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
+
+    public double getTotalBruto() {
+        return totalBruto;
+    }
+
+    public void setTotalBruto(double totalBruto) {
+        this.totalBruto = totalBruto;
+    }
+
+    public double getTotalLiquido() {
+        return totalLiquido;
+    }
+
+    public void setTotalLiquido(double totalLiquido) {
+        this.totalLiquido = totalLiquido;
+    }
 
     public Date getCriadoEm() {
         return criadoEm;
@@ -137,5 +134,22 @@ public class Comanda {
     public void setAlteradoPor(String alteradoPor) {
         this.alteradoPor = alteradoPor;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Comanda{" +
+                "id=" + id +
+                ", cliente=" + cliente +
+                ", pedidos=" + pedidos +
+                ", codigo='" + codigo + '\'' +
+                ", observacoes='" + observacoes + '\'' +
+                ", statusComanda=" + statusComanda +
+                ", valorTotalProdutos=" + totalBruto +
+                ", valorTotalFinal=" + totalLiquido +
+                ", criadoEm=" + criadoEm +
+                ", criadoPor='" + criadoPor + '\'' +
+                ", alteradoEm=" + alteradoEm +
+                ", alteradoPor='" + alteradoPor + '\'' +
+                '}';
+    }
 }

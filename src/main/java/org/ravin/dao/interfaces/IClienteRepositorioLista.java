@@ -5,8 +5,8 @@ import org.ravin.utils.interfaces.IGeradorId;
 
 import java.util.Optional;
 
-public interface IClienteRepositorio extends IRepositorio<Cliente>, IGeradorId<Cliente> {
-    Optional<Cliente> recuperarClientePorCpf(String cpf);
+public interface IClienteRepositorioLista extends IRepositorioLista<Cliente>, IGeradorId<Cliente> {
+    Optional<Cliente> recuperarPorCpf(String cpf);
 
     default int getId(Cliente cliente){
         return cliente.getId();

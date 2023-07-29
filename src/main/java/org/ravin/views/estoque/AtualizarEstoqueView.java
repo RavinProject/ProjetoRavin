@@ -35,8 +35,8 @@ public class AtualizarEstoqueView {
         produto.setCodigo(solicitaEntradaDeDado("Informe o código do produto: ", produto.getCodigo()));
         produto.setNome(solicitaEntradaDeDado("Informe o nome do produto:", produto.getNome()));
         produto.setDescricao(solicitaEntradaDeDado("Informe uma descrição para o produto:", produto.getDescricao()));
-        produto.setPrecoCusto(Double.parseDouble(solicitaEntradaDeDado("Informe o preço de custo (1,99):", ("" + produto.getPrecoCusto()).replace(".", ",")).replace(',', '.')));
-        produto.setPrecoVenda(Double.parseDouble(solicitaEntradaDeDado("Informe o preço de venda (1,99):", ("" + produto.getPrecoVenda()).replace(".", ",")).replace(',', '.')));
+        produto.setPrecoCusto(Double.parseDouble(solicitaEntradaDeDado("Informe o preço de custo (1,99):", (String.valueOf(produto.getPrecoCusto())).replace(".", ",")).replace(',', '.')));
+        produto.setPrecoVenda(Double.parseDouble(solicitaEntradaDeDado("Informe o preço de venda (1,99):", (String.valueOf(produto.getPrecoVenda())).replace(".", ",")).replace(',', '.')));
         produto.setTempoPreparo(solicitaEntradaDeDado("Informe o tempo de preparo", produto.getTempoPreparo()));
         produto.setObservacoes(solicitaEntradaDeDado("Informe uma observação para o produto:", produto.getObservacoes()));
         produto.setTipoProduto(solicitaTipoProduto(produto.getTipoProduto()));
@@ -59,7 +59,7 @@ public class AtualizarEstoqueView {
                 3 - Saladas
                 4 - Sopas
                 5 - Sobremesas""";
-        int tipo = Integer.parseInt(solicitaEntradaDeDado(stringTipoProduto, (tipoAtual.ordinal() + 1) + "")) - 1;
+        int tipo = Integer.parseInt(solicitaEntradaDeDado(stringTipoProduto, String.valueOf(tipoAtual.ordinal() + 1))) - 1;
         return TipoProduto.values()[tipo];
     }
 
@@ -69,7 +69,7 @@ public class AtualizarEstoqueView {
     }
 
     static double solicitaQuantidadeEstoque(String nomeProduto, double quantidadeAtual){
-        String quantidadeStr = solicitaEntradaDeDado("Qual a quantidade o produto " + nomeProduto + " em estoque?", quantidadeAtual + "");
+        String quantidadeStr = solicitaEntradaDeDado("Qual a quantidade o produto " + nomeProduto + " em estoque?", String.valueOf(quantidadeAtual));
         return Double.parseDouble(quantidadeStr.replace(',', '.'));
     }
 }

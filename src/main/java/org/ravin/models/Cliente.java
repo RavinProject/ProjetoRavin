@@ -8,7 +8,6 @@ public class Cliente extends Pessoa {
 
     public Cliente(){ }
 
-    // construtor utilizado pela lista autogerada
     public Cliente(int id, String nome, String telefone, String cpf, boolean ativo) {
         super(id, nome, telefone, cpf, ativo);
     }

@@ -1,23 +1,23 @@
 package org.ravin.dao;
 
-import org.ravin.dao.interfaces.IProdutoRepositorio;
+import org.ravin.dao.interfaces.IProdutoRepositorioLista;
 import org.ravin.models.Produto;
 
 import java.util.List;
 import java.util.Optional;
 
-public class ProdutoRepositorio implements IProdutoRepositorio {
+public class ProdutoRepositorioLista implements IProdutoRepositorioLista {
 
-    private List<Produto> listaProdutos;
+    private final List<Produto> listaProdutos;
 
-    public ProdutoRepositorio(List<Produto> listaProdutos) {
+    public ProdutoRepositorioLista(List<Produto> listaProdutos) {
         this.listaProdutos = listaProdutos;
     }
 
     @Override
     public void inserir(Produto produto) {
         if (produto.getId() == 0) {
-            produto.setId(geraProximoId());
+            produto.setId(geraProximoId(listaProdutos));
         }
         pegarLista().add(produto);
     }
@@ -25,16 +25,6 @@ public class ProdutoRepositorio implements IProdutoRepositorio {
     @Override
     public List<Produto> pegarLista() {
         return listaProdutos;
-    }
-
-    @Override
-    public int getId(Produto produto) {
-        return produto.getId();
-    }
-
-    @Override
-    public int geraProximoId() {
-        return IProdutoRepositorio.super.geraProximoId();
     }
 
     @Override

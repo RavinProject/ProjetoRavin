@@ -1,15 +1,15 @@
 package org.ravin.dao;
 
-import org.ravin.dao.interfaces.IPedidoRepositorio;
+import org.ravin.dao.interfaces.IPedidoRepositorioLista;
 import org.ravin.models.Pedido;
 
 import java.util.List;
 import java.util.Optional;
 
-public class PedidoRepositorio implements IPedidoRepositorio {
+public class PedidoRepositorioLista implements IPedidoRepositorioLista {
     private final List<Pedido> listaPedidos;
 
-    public PedidoRepositorio(List<Pedido> listaPedidos){
+    public PedidoRepositorioLista(List<Pedido> listaPedidos){
         this.listaPedidos = listaPedidos;
     }
 
@@ -40,16 +40,5 @@ public class PedidoRepositorio implements IPedidoRepositorio {
     @Override
     public void removerPorId(int id) {
 
-    }
-
-    @Override
-    public int geraProximoId() {
-        int maiorId = 0;
-        for (Pedido pedido : pegarLista()) {
-            if (pedido.getId() > maiorId) {
-                maiorId = pedido.getId();
-            }
-        }
-        return maiorId + 1;
     }
 }

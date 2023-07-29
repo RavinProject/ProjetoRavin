@@ -11,8 +11,8 @@ import java.util.Optional;
 
 public class ProdutoController implements IProdutoController {
 
+    // Injeção de dependência
     private final IProdutoService produtoService;
-
     public ProdutoController(IProdutoService produtoService){
         this.produtoService = produtoService;
     }
@@ -54,8 +54,8 @@ public class ProdutoController implements IProdutoController {
     }
 
     @Override
-    public List<Produto> pegarLista() {
-        return produtoService.pegarLista();
+    public List<Produto> recuperarTodos() {
+        return produtoService.recuperarTodos();
     }
     
 }

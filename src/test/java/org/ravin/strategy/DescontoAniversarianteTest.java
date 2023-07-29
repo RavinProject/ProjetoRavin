@@ -14,7 +14,6 @@ public class DescontoAniversarianteTest {
     public void testAplicarDesconto() {
         int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
         int differentBirthMonth = (currentMonth + 1) % 12;  // Isso garante que birthMonth não seja o mês atual
-        int currentBirthMonth = currentMonth;
 
         // Teste quando o mês de aniversário do cliente não é o mês atual
         Cliente cliente = createClienteWithBirthMonth(differentBirthMonth);
@@ -22,7 +21,7 @@ public class DescontoAniversarianteTest {
         assertEquals(100.0, desconto.aplicarDesconto(100.0), "O desconto não deve ser aplicado se não for o mês de aniversário do cliente");
 
         // Teste quando o mês de aniversário do cliente é o mês atual
-        cliente = createClienteWithBirthMonth(currentBirthMonth);
+        cliente = createClienteWithBirthMonth(currentMonth);
         desconto = new TestableDescontoAniversariante(cliente, currentMonth);
         assertEquals(90.0, desconto.aplicarDesconto(100.0), "O desconto deve ser aplicado se for o mês de aniversário do cliente");
     }

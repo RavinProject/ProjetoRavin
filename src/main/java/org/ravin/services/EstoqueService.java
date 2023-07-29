@@ -1,7 +1,7 @@
 package org.ravin.services;
 
 import org.ravin.dao.ListasDados;
-import org.ravin.dao.interfaces.IEstoqueRepositorio;
+import org.ravin.dao.interfaces.IEstoqueRepositorioLista;
 import org.ravin.models.Estoque;
 import org.ravin.services.interfaces.IEstoqueService;
 
@@ -10,16 +10,14 @@ import java.util.Optional;
 
 public class EstoqueService implements IEstoqueService {
 
-    private final IEstoqueRepositorio estoqueRepositorio;
+    // Injeção de dependência parcial - lista por Singleton
+    private final IEstoqueRepositorioLista estoqueRepositorio;
     public EstoqueService(){
         estoqueRepositorio = ListasDados.getInstance().getEstoqueRepositorio();
     }
 
     @Override
     public void inserir(Estoque estoque) {
-        if (estoque.getId() == 0) {
-            estoque.setId(geraProximoId());
-        }
         estoqueRepositorio.inserir(estoque);
     }
 
@@ -29,19 +27,9 @@ public class EstoqueService implements IEstoqueService {
     }
 
     @Override
-    public List<Estoque> pegarLista() {
+    public List<Estoque> recuperarTodos() {
 
         return estoqueRepositorio.pegarLista();
-    }
-
-    @Override
-    public int getId(Estoque estoque) {
-        return estoque.getId();
-    }
-
-    @Override
-    public int geraProximoId() {
-        return IEstoqueService.super.geraProximoId();
     }
 
     @Override

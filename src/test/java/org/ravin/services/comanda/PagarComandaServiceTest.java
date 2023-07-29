@@ -7,11 +7,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.ravin.dao.interfaces.IComandaRepositorio;
-import org.ravin.models.Cliente;
-import org.ravin.models.Comanda;
-import org.ravin.models.Pedido;
-import org.ravin.models.Produto;
+import org.ravin.dao.interfaces.IComandaRepositorioLista;
+import org.ravin.models.*;
 import org.ravin.strategy.interfaces.IDescontoAniversariante;
 import org.ravin.strategy.interfaces.IDescontoFactory;
 import org.ravin.utils.enums.StatusComanda;
@@ -31,7 +28,7 @@ public class PagarComandaServiceTest {
     private IDescontoFactory descontoFactory;
 
     @Mock
-    private IComandaRepositorio comandaRepository;
+    private IComandaRepositorioLista comandaRepository;
 
     @Mock
     private IDescontoAniversariante descontoAniversariante;
@@ -39,18 +36,17 @@ public class PagarComandaServiceTest {
     @InjectMocks
     private PagarComandaService pagarComandaService;
 
-    private String codigo = "COMANDA1";
-    private Comanda comanda;
-    private Produto produto;
+    private final String codigo = "COMANDA1";
 
     @BeforeEach
     public void setup() {
         Cliente mockCliente = new Cliente();
-        produto = new Produto(1, "Teste", "Teste", "Produto1", 90.00, 100.00, CARNES);
+        Mesa mockMesa = new Mesa();
+        Produto produto = new Produto(1, "Teste", "Teste", "Produto1", 90.00, 100.00, CARNES);
         Pedido pedido = new Pedido(produto, 1);
         List<Pedido> pedidos = List.of(pedido);
 
-        comanda = new Comanda(mockCliente, codigo);
+        Comanda comanda = new Comanda(mockCliente, codigo, mockMesa);
         comanda.setPedidos(pedidos);
 
         when(comandaRepository.recuperarComandaPorCodigo(codigo)).thenReturn(Optional.of(comanda));
@@ -68,6 +64,6 @@ public class PagarComandaServiceTest {
 
         Comanda capturedComanda = argumentCaptor.getValue();
         assertEquals(StatusComanda.PAGA, capturedComanda.getStatusComanda());
-        assertEquals(100.0, capturedComanda.getValorTotalFinal(), 0.01);
+        assertEquals(100.0, capturedComanda.getTotalLiquido(), 0.01);
     }
 }

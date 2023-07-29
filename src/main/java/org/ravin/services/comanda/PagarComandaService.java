@@ -1,6 +1,6 @@
 package org.ravin.services.comanda;
 
-import org.ravin.dao.interfaces.IComandaRepositorio;
+import org.ravin.dao.interfaces.IComandaRepositorioLista;
 import org.ravin.models.Cliente;
 import org.ravin.models.Comanda;
 import org.ravin.services.comanda.interfaces.IPagarComandaService;
@@ -14,10 +14,10 @@ import static org.ravin.utils.enums.StatusComanda.PAGA;
 
 public class PagarComandaService implements IPagarComandaService {
 
-    private final IComandaRepositorio comandaRepository;
+    private final IComandaRepositorioLista comandaRepository;
     private final IDescontoFactory descontoFactory;
 
-    public PagarComandaService(IComandaRepositorio comandaRepository, IDescontoFactory descontoFactory) {
+    public PagarComandaService(IComandaRepositorioLista comandaRepository, IDescontoFactory descontoFactory) {
         this.comandaRepository = comandaRepository;
         this.descontoFactory = descontoFactory;
     }
@@ -28,10 +28,9 @@ public class PagarComandaService implements IPagarComandaService {
      * por aniversário.
      *
      * @param codigo da comanda a ser paga
-     * @return true se bem-sucedido
      * @throws EntidadeNaoEncontradaException Se a comanda com o código fornecido não for encontrada.
      */
-    public boolean pagarComanda(String codigo) throws EntidadeNaoEncontradaException {
+    public void pagarComanda(String codigo) throws EntidadeNaoEncontradaException {
         Optional<Comanda> oComanda = comandaRepository.recuperarComandaPorCodigo(codigo);
         if(oComanda.isPresent()) {
             Comanda comanda = oComanda.get();
@@ -40,9 +39,8 @@ public class PagarComandaService implements IPagarComandaService {
             IDescontoAniversariante descontoAniversariante = descontoFactory.criarDescontoAniversariante(cliente);
             double novoTotal = processarComanda(comanda, descontoAniversariante);
             comanda.setStatusComanda(PAGA);
-            comanda.setValorTotalFinal(novoTotal);
+            comanda.setTotalLiquido(novoTotal);
             comandaRepository.atualizar(comanda);
-            return true;
             // TODO implementar liberação de mesa em futura iteração
         } else {
             throw new EntidadeNaoEncontradaException("Comanda com o código " + codigo + " não encontrada.");
@@ -51,7 +49,7 @@ public class PagarComandaService implements IPagarComandaService {
 
     // Método privado que recebe a estratégia de desconto
     private double processarComanda(Comanda comanda, IDescontoAniversariante desconto) {
-        double valorTotal = comanda.getValorTotalProdutos();
+        double valorTotal = comanda.getTotalBruto();
         return desconto.aplicarDesconto(valorTotal);
     }
 }

@@ -10,19 +10,15 @@ import java.util.Optional;
 
 public class EstoqueController implements IEstoqueController {
 
+    // Injeção de dependência
     private final IEstoqueService estoqueService;
-
     public EstoqueController(IEstoqueService estoqueService){
         this.estoqueService = estoqueService;
     }
 
     public boolean estoqueJaCadastrado(String codigo){
         Optional<Estoque> estoque = estoqueService.recuperarPorCodigo(codigo);
-        if (estoque.isPresent()) {
-            return true;
-        } else {
-            return false;
-        }
+        return estoque.isPresent();
     }
 
     @Override
@@ -41,8 +37,8 @@ public class EstoqueController implements IEstoqueController {
     }
 
     @Override
-    public List<Estoque> pegarLista() {
-        return estoqueService.pegarLista();
+    public List<Estoque> recuperarTodos() {
+        return estoqueService.recuperarTodos();
     }
 
     @Override

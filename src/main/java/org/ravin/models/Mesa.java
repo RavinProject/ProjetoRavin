@@ -3,13 +3,10 @@ package org.ravin.models;
 import org.ravin.utils.enums.StatusMesa;
 
 import java.util.Date;
-import java.util.List;
 
 public class Mesa {
     private int id;
     private Funcionario funcionario;
-    private List<Comanda> comandas;
-    private String nome;
     private String codigo;
     private int numero;
     private int quantidadeMaxima;
@@ -18,32 +15,22 @@ public class Mesa {
     private String criadoPor;
     private Date alteradoEm;
     private String alteradoPor;
-    
-    public Mesa(String nome, String codigo, int numero, int quantidadeMaxima) {
-        this.nome = nome;
+
+    public Mesa() {}
+
+    // Construtor sem funcionário
+    public Mesa(String codigo, int numero, int quantidadeMaxima) {
         this.codigo = codigo;
         this.numero = numero;
         this.quantidadeMaxima = quantidadeMaxima;
     }
 
-    public boolean reservarMesa(){
-        return false;
-    }
-
-    public boolean liberarMesa(){
-        return false;
-    }
-
-    public boolean ocuparMesa(int qtdPessoas){
-        return false;
-    }
-
-    public void alocarFuncionario(Funcionario funcionario){
-
-    }
-
-    public void adicionarComanda(Comanda comanda){
-        
+    // Construtor com funcionário
+    public Mesa(String codigo, int numero, int quantidadeMaxima, Funcionario funcionario) {
+        this.codigo = codigo;
+        this.numero = numero;
+        this.quantidadeMaxima = quantidadeMaxima;
+        this.funcionario = funcionario;
     }
 
     public int getId() {
@@ -60,22 +47,6 @@ public class Mesa {
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
-    }
-
-    public List<Comanda> getComandas() {
-        return comandas;
-    }
-
-    public void setComandas(List<Comanda> comandas) {
-        this.comandas = comandas;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getCodigo() {
@@ -142,4 +113,17 @@ public class Mesa {
         this.alteradoPor = alteradoPor;
     }
 
+    @Override
+    public String toString() {
+        return "Mesa{" +
+                "id=" + id +
+                ", funcionario=" + funcionario +
+                ", codigo='" + codigo + '\'' +
+                ", numero=" + numero +
+                ", quantidadeMaxima=" + quantidadeMaxima +
+                ", statusMesa=" + statusMesa +
+                ", criadoEm=" + criadoEm +
+                ", alteradoEm=" + alteradoEm +
+                '}';
+    }
 }

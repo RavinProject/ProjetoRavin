@@ -1,7 +1,7 @@
 package org.ravin.services;
 
 import org.ravin.dao.ListasDados;
-import org.ravin.dao.interfaces.IProdutoRepositorio;
+import org.ravin.dao.interfaces.IProdutoRepositorioLista;
 import org.ravin.models.Produto;
 import org.ravin.services.interfaces.IProdutoService;
 
@@ -9,14 +9,16 @@ import java.util.List;
 import java.util.Optional;
 
 public class ProdutoService implements IProdutoService {
-    private final IProdutoRepositorio produtoRepositorio;
+
+    // Injeção de dependência parcial - lista por Singleton
+    private final IProdutoRepositorioLista produtoRepositorio;
     public ProdutoService(){
         produtoRepositorio = ListasDados.getInstance().getProdutoRepositorio();
     }
 
     @Override
-    public void inserir(Produto objeto) {
-
+    public void inserir(Produto produto) {
+        produtoRepositorio.inserir(produto);
     }
 
     @Override
@@ -25,18 +27,8 @@ public class ProdutoService implements IProdutoService {
     }
 
     @Override
-    public List<Produto> pegarLista() {
+    public List<Produto> recuperarTodos() {
         return null;
-    }
-
-    @Override
-    public int getId(Produto produto) {
-        return produto.getId();
-    }
-
-    @Override
-    public int geraProximoId() {
-        return IProdutoService.super.geraProximoId();
     }
 
     @Override

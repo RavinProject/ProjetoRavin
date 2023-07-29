@@ -1,28 +1,28 @@
 package org.ravin.dao;
 
-import org.ravin.dao.interfaces.IEstoqueRepositorio;
-import org.ravin.dao.interfaces.IProdutoRepositorio;
+import org.ravin.dao.interfaces.IEstoqueRepositorioLista;
+import org.ravin.dao.interfaces.IProdutoRepositorioLista;
 import org.ravin.models.Estoque;
 
 import java.util.List;
 import java.util.Optional;
 
-public class EstoqueRepositorio implements IEstoqueRepositorio {
+public class EstoqueRepositorioLista implements IEstoqueRepositorioLista {
 
     private final List<Estoque> listaEstoque;
 
-    public EstoqueRepositorio(List<Estoque> listaEstoque) {
+    public EstoqueRepositorioLista(List<Estoque> listaEstoque) {
         this.listaEstoque = listaEstoque;
     }
 
     @Override
     public void inserir(Estoque estoque) {
         // insiro o produto na lista de produtos
-        IProdutoRepositorio produtoRepositorio = ListasDados.getInstance().getProdutoRepositorio();
+        IProdutoRepositorioLista produtoRepositorio = ListasDados.getInstance().getProdutoRepositorio();
         produtoRepositorio.inserir(estoque.getProduto());
         // insiro o estoque na lista de estoque
         if (estoque.getId() == 0) {
-            estoque.setId(geraProximoId());
+            estoque.setId(geraProximoId(listaEstoque));
         }
         pegarLista().add(estoque);
     }
@@ -45,7 +45,7 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
     @Override
     public void atualizar(Estoque estoqueAtualizado) {
         // atualizo o produto na lista de produtos
-        IProdutoRepositorio produtoRepositorio = ListasDados.getInstance().getProdutoRepositorio();
+        IProdutoRepositorioLista produtoRepositorio = ListasDados.getInstance().getProdutoRepositorio();
         produtoRepositorio.atualizar(estoqueAtualizado.getProduto());
         // atualizo o estoque
         for (int i = 0; i < pegarLista().size(); i++) {
@@ -77,18 +77,7 @@ public class EstoqueRepositorio implements IEstoqueRepositorio {
     }
 
     @Override
-    public int geraProximoId() {
-        int maiorId = 0;
-        for (Estoque estoque : pegarLista()) {
-            if (estoque.getId() > maiorId) {
-                maiorId = estoque.getId();
-            }
-        }
-        return maiorId + 1;
-    }
-
-    @Override
     public int getId(Estoque estoque) {
-        return IEstoqueRepositorio.super.getId(estoque);
+        return IEstoqueRepositorioLista.super.getId(estoque);
     }
 }

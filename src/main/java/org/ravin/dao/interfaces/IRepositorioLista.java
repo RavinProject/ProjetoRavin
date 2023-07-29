@@ -1,10 +1,13 @@
 package org.ravin.dao.interfaces;
 
+import org.ravin.utils.interfaces.IGeradorId;
+
 import java.util.List;
 import java.util.Optional;
 
-public interface IRepositorio<T> {
+public interface IRepositorioLista<T>  extends IGeradorId<T> {
 
+    int getId(T t);
     // Create
     void inserir(T object);
 

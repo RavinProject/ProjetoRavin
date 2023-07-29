@@ -1,14 +1,12 @@
 package org.ravin.services.interfaces;
 
-import org.ravin.utils.interfaces.IGeradorId;
-
 import java.util.List;
 import java.util.Optional;
 
-public interface IService <T> extends IGeradorId<T> {
-    void inserir(T objeto);
+public interface IService <T>{
+    void inserir(T t);
     Optional<T> recuperarPorId(int id);
-    List<T> pegarLista();
-    void atualizar(T objeto);
-    boolean remover(T objeto);
+    List<T> recuperarTodos();
+    void atualizar(T t);
+    boolean remover(T t);
 }

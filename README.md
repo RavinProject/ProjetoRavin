@@ -20,31 +20,32 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu sistema:
 ```bash
 git clone https://github.com/RavinProject/ProjetoRavin.git
 ```
-2. Navegue até o diretório que contém a classe principal `App.java`:
+1. Navegue até o diretório que contém a classe principal `App.java`:
 ```bash
 cd ProjetoRavin/src/main/java/org/ravin
 ```
-3. Compile o código:
+1. Compile o código:
 ```bash
 javac App.java
 ```
-4. Execute a classe principal:
+1. Execute a classe principal:
 ```bash
 java App
 ```
 
 ## Status atual
 
-|   Entidades  | Criação (Create)   | Leitura (Read)     | Atualização (Update) | Deleção (Delete)   |
-|--------------|--------------------|--------------------|----------------------|--------------------|
-| Cardápio     | 🚧 | 🚧 | 🚧 | 🚧 |
-| Cliente      | ✔️ | ✔️ | ✔️  | ✔️ |
-| Comanda      | 🚧 | 🚧 | 🚧 | 🚧 |
-| Estoque      | ✔️ | ✔️ | ✔️ | ✔️ |
-| Funcionário  | ✔️ | ✔️ | ✔️  | ✔️ |
-| Mesa         | 🚧 | 🚧 | 🚧 | 🚧 |
-| Pedido       | 🚧 | 🚧 | 🚧 | 🚧 |
-| Produto      | ✔️ | ✔️ | ✔️ | ✔️ |
+| Entidades   | Criação (Create) | Leitura (Read) | Atualização (Update) | Deleção (Delete) |
+|-------------|------------------|----------------|----------------------|------------------|
+| Cardápio    | 🚧               | 🚧             | 🚧                   | 🚧               |
+| Cliente     | ✔️               | ✔️             | ✔️                   | ✔️               |
+| Comanda     | 🚧               | 🚧             | 🚧                   | 🚧               |
+| Estoque     | ✔️               | ✔️             | ✔️                   | ✔️               |
+| Funcionário | ✔️               | ✔️             | ✔️                   | ✔️               |
+| Mesa        | ✔️               | ✔️             | ✔️                   | ✔️               |
+| Reserva     | 🚧               | 🚧             | 🚧                   | 🚧               | 
+| Pedido      | 🚧               | 🚧             | 🚧                   | 🚧               |
+| Produto     | ✔️               | ✔️             | ✔️                   | ✔️               |
 
 ---
 

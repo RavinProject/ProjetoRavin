@@ -12,7 +12,7 @@ import static org.ravin.views.View.solicitaEntradaDeDado;
 import static org.ravin.views.cliente.SubmenuCliente.imprimeCliente;
 
 public class CadastrarClienteView {
-    static void cadastrar(IClienteController clienteController) {
+    static void cadastrarCliente(IClienteController clienteController) {
         try {
             String nome = solicitaEntradaDeDado("Informe o nome do cliente:");
             String telefone = solicitaEntradaDeDado("Informe o telefone:");

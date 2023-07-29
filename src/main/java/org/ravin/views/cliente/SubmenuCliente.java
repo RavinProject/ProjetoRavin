@@ -1,14 +1,15 @@
 package org.ravin.views.cliente;
 
 import org.ravin.controllers.ClienteController;
+import org.ravin.controllers.interfaces.IClienteController;
 import org.ravin.models.Cliente;
 import org.ravin.services.ClienteService;
 import org.ravin.services.interfaces.IClienteService;
 import org.ravin.utils.DateUtils;
 import org.ravin.views.View;
 
-import static org.ravin.views.cliente.AtualizarClienteView.atualizar;
-import static org.ravin.views.cliente.CadastrarClienteView.cadastrar;
+import static org.ravin.views.cliente.AtualizarClienteView.atualizarCliente;
+import static org.ravin.views.cliente.CadastrarClienteView.cadastrarCliente;
 import static org.ravin.views.cliente.ExcluirClienteView.excluirCliente;
 import static org.ravin.views.cliente.RecuperarClienteView.listarClientes;
 import static org.ravin.views.cliente.RecuperarClienteView.pesquisarClientePorCpf;
@@ -17,14 +18,14 @@ public class SubmenuCliente extends View{
     public static void menuCliente() {
         // Injeção de Dependência
         IClienteService clienteServico = new ClienteService();
-        ClienteController clienteController = new ClienteController(clienteServico);
+        IClienteController clienteController = new ClienteController(clienteServico);
 
         boolean exec = true;
         while (exec) {
             String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
-                case "1" -> cadastrar(clienteController);
-                case "2" -> atualizar(clienteController);
+                case "1" -> cadastrarCliente(clienteController);
+                case "2" -> atualizarCliente(clienteController);
                 case "3" -> listarClientes(clienteController);
                 case "4" -> pesquisarClientePorCpf(clienteController);
                 case "5" -> excluirCliente(clienteController);
@@ -35,8 +36,7 @@ public class SubmenuCliente extends View{
     }
 
     private static String menuInicial(){
-        StringBuilder builder = new StringBuilder();
-        builder.append("""
+        return """
                 ==================== RAVIN ====================
                 CLIENTE:
                 1 - Cadastrar Cliente
@@ -45,11 +45,10 @@ public class SubmenuCliente extends View{
                 4 - Visualizar Cliente
                 5 - Excluir Cliente
                 x - voltar
-                """);
-        return builder.toString();
+                """;
     }
 
-    static void imprimeCliente(Cliente cliente) {
+    public static void imprimeCliente(Cliente cliente) {
         String clienteDados = "ID: " + cliente.getId() +
                 "\nNome: " + cliente.getNome() +
                 "\nTelefone: " + cliente.getTelefone() +

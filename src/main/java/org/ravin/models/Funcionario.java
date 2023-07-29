@@ -54,7 +54,6 @@ public class Funcionario extends Pessoa {
             case SEPARADO -> "Separado";
             case DIVORCIADO -> "Divorciado";
             case VIUVO -> "Viúvo";
-            default -> "não informado";
         };
     }
 
@@ -74,7 +73,6 @@ public class Funcionario extends Pessoa {
             case FUNDAMENTAL -> "Fundamental";
             case MEDIO -> "Médio";
             case SUPERIOR -> "Superior";
-            default -> "não informado";
         };
     }
 
@@ -98,12 +96,11 @@ public class Funcionario extends Pessoa {
             case GARCON -> "Garçon";
             case GERENTE -> "Gerente";
             case RECEPCIONISTA -> "Recepcionista";
-            default -> "não informado";
         };
     }
 
-    public void setCargo(Cargo string) {
-        this.cargo = string;
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
     }
 
     public String getPis() {
@@ -196,6 +193,7 @@ public class Funcionario extends Pessoa {
                 ", disponibilidade=" + disponibilidade +
                 '}';
     }
+
 }
 
 
