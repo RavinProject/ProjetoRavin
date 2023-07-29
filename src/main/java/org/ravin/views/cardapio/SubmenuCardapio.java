@@ -24,8 +24,7 @@ public class SubmenuCardapio extends View{
     }
 
     private static String menuInicial() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("""
+        return """
                 ==================== RAVIN ====================
                 CARDÁPIO:
                 1 - Consultar Cardápio
@@ -33,7 +32,6 @@ public class SubmenuCardapio extends View{
                 3 - Atualizar Cardápio
                 4 - Excluir Cardápio
                 x - voltar
-                """);
-        return builder.toString();
+                """;
     }
 }

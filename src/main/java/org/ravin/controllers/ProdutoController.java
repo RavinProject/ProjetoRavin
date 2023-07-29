@@ -54,8 +54,8 @@ public class ProdutoController implements IProdutoController {
     }
 
     @Override
-    public List<Produto> pegarLista() {
-        return produtoService.pegarLista();
+    public List<Produto> recuperarTodos() {
+        return produtoService.recuperarTodos();
     }
     
 }

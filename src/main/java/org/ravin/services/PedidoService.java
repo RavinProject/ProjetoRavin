@@ -1,8 +1,7 @@
 package org.ravin.services;
 
 import org.ravin.dao.ListasDados;
-import org.ravin.dao.PedidoRepositorio;
-import org.ravin.dao.interfaces.IPedidoRepositorio;
+import org.ravin.dao.interfaces.IPedidoRepositorioLista;
 import org.ravin.models.Pedido;
 import org.ravin.models.Produto;
 
@@ -12,13 +11,12 @@ import java.util.Date;
 public class PedidoService {
 
     // Injeção de dependência parcial - lista por Singleton
-    private IPedidoRepositorio pedidoRepositorio;
-    public PedidoService(){ this.pedidoRepositorio = ListasDados.getInstance().gerPedidoRepositorio(); }
+    private final IPedidoRepositorioLista pedidoRepositorio;
+    public PedidoService(){ pedidoRepositorio = ListasDados.getInstance().getPedidoRepositorio(); }
 
     public void criarPedido(Produto produto, int quantidade){
         Pedido pedido = new Pedido(produto, quantidade);
         pedido.setDataHoraSolicitacao(new Timestamp(new Date().getTime()));
-
-        this.pedidoRepositorio.inserir(pedido);
+        pedidoRepositorio.inserir(pedido);
     }
 }

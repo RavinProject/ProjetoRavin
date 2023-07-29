@@ -10,7 +10,6 @@ import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 import javax.swing.*;
 import java.util.Date;
 
-
 import static org.ravin.views.View.confirmaAcao;
 import static org.ravin.views.View.solicitaEntradaDeDado;
 import static org.ravin.views.estoque.AtualizarEstoqueView.atualizarProduto;
@@ -34,7 +33,6 @@ public class CadastrarEstoqueView {
                 atualizarProduto(estoque.getProduto());
             }
         }else{
-            // se não existe crio um novo produto
             Produto produto = new Produto();
             produto.setCodigo(codigoProduto);
             produto.setNome(solicitaEntradaDeDado("Informe o nome do produto:"));
@@ -63,7 +61,7 @@ public class CadastrarEstoqueView {
         }
         
         // por fim atualizo a quantidade do produto no estoque  
-        estoque.setQuantidade(Double.parseDouble(solicitaEntradaDeDado("Qual a quantidade o produto " + estoque.getProduto().getNome() + " em estoque?", estoque.getQuantidade() + "").replace(',', '.')));
+        estoque.setQuantidade(Double.parseDouble(solicitaEntradaDeDado("Qual a quantidade o produto " + estoque.getProduto().getNome() + " em estoque?", String.valueOf(estoque.getQuantidade())).replace(',', '.')));
         estoque.setAlteradoEm(new Date());
         estoque.setAlteradoPor(null);
         //

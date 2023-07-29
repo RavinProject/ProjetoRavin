@@ -6,7 +6,7 @@ import org.ravin.strategy.interfaces.IDescontoAniversariante;
 import java.util.Calendar;
 
 public class DescontoAniversariante implements IDescontoAniversariante {
-    private Cliente cliente;
+    private final Cliente cliente;
 
     public DescontoAniversariante(Cliente cliente) {
         this.cliente = cliente;

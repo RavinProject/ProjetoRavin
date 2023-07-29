@@ -3,7 +3,6 @@ package org.ravin.views.cliente;
 import org.ravin.controllers.interfaces.IClienteController;
 import org.ravin.models.Cliente;
 import org.ravin.utils.DateUtils;
-import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
 
 import java.util.Date;
 
@@ -12,7 +11,7 @@ import static org.ravin.views.View.solicitaEntradaDeDado;
 import static org.ravin.views.cliente.SubmenuCliente.imprimeCliente;
 
 public class AtualizarClienteView {
-    static void atualizar(IClienteController clienteController) {
+    static void atualizarCliente(IClienteController clienteController) {
 
         try {
             String cpf = solicitaEntradaDeDado("Informe o CPF do cliente que deseja alterar:");
@@ -27,9 +26,9 @@ public class AtualizarClienteView {
                 cliente.setNascimento(DateUtils.stringToDate(solicitaEntradaDeDado("Data de nascimento: \nFormato: dd/mm/yyyy", DateUtils.dateToString(cliente.getNascimento()))));
                 cliente.setObservacao(solicitaEntradaDeDado("Observação", cliente.getObservacao()));
                 cliente.setAlergias(solicitaEntradaDeDado("Alergias: ", cliente.getAlergias()));
-                boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim", cliente.isVip() ? "1" : "0").equals("1") ? true : false;
+                boolean vip = solicitaEntradaDeDado("VIP?\n 0 - Não \n 1 - Sim", cliente.isVip() ? "1" : "0").equals("1");
                 cliente.setVip(vip);
-                boolean ativo = solicitaEntradaDeDado("Ativo?\n 0 - Não \n 1 - Sim", cliente.getAtivo() ? "1" : "0").equals("1") ? true : false;
+                boolean ativo = solicitaEntradaDeDado("Ativo?\n 0 - Não \n 1 - Sim", cliente.getAtivo() ? "1" : "0").equals("1");
                 cliente.setStatusAtivo(ativo);
                 cliente.setAlteradoEm(new Date());
                 cliente.setAlteradoPor(null);

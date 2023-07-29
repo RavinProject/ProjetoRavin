@@ -32,7 +32,7 @@ public class ExcluirClienteView {
             } else {
                 exibeDialogo("Cliente não encontrado com o cpf informado!");
             }
-        } catch (Exception | EntidadeNaoEncontradaException e) {
+        } catch (EntidadeNaoEncontradaException e) {
             exibeDialogo("Dado informado inválido!\nCadastro não finalizado...");
             e.printStackTrace();
         }

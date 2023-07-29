@@ -45,7 +45,6 @@ public class Pedido {
     }
 
     public void setCodigo(String codigo){
-        return;
     }
 
     public double getTotal() {
