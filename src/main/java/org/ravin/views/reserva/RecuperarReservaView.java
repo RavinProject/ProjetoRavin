@@ -28,7 +28,7 @@ public class RecuperarReservaView {
 
             if (cliente != null) {
                 StringBuilder texto = new StringBuilder();
-                for (Reserva reserva : reservaController.recuperarPorCliente(cliente)) {
+                for (Reserva reserva : reservaController.recuperarReservasPorCliente(cliente)) {
                     texto.append(reserva.toString()).append("\n");
                 }
                 exibeDialogo(texto.toString());
@@ -41,17 +41,17 @@ public class RecuperarReservaView {
     }
 
     static void listarReservasPorMesa(IReservaController reservaController, IMesaController mesaController) throws EntidadeNaoEncontradaException {
-        String codigoMesa = solicitaEntradaDeDado("Informe o ID da mesa para listar suas reservas:");
+        String codigoMesa = solicitaEntradaDeDado("Informe o Código da mesa para listar suas reservas:");
         Mesa mesa = mesaController.recuperarPorCodigo(codigoMesa);
 
         if (mesa != null) {
             StringBuilder texto = new StringBuilder();
-            for (Reserva reserva : reservaController.recuperarReservasPorCodigo(codigoMesa)) {
+            for (Reserva reserva : reservaController.recuperarReservasPorMesa(mesa)) {
                 texto.append(reserva.toString()).append("\n");
             }
             exibeDialogo(texto.toString());
         } else {
-            exibeDialogo("Mesa não encontrada com o ID informado!");
+            exibeDialogo("Mesa não encontrada com o Código informado!");
         }
     }
 }
