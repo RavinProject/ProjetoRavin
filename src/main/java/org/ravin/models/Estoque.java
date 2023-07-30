@@ -11,12 +11,17 @@ public class Estoque {
     private Date alteradoEm;
     private String alteradoPor;
 
-    public Estoque(){
+    public Estoque(){ }
 
-    }
-
+    // Construtor do gerador de lista - contém Id
     public Estoque(int id, Produto produto, double quantidade){
         this.id = id;
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
+
+    // Construtor sem Id
+    public Estoque(Produto produto, double quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }

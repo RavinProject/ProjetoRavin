@@ -2,6 +2,7 @@ package org.ravin.services;
 
 import org.ravin.dao.ListasDados;
 import org.ravin.dao.interfaces.IEstoqueRepositorioLista;
+import org.ravin.dao.interfaces.IProdutoRepositorioLista;
 import org.ravin.models.Estoque;
 import org.ravin.services.interfaces.IEstoqueService;
 
@@ -12,12 +13,16 @@ public class EstoqueService implements IEstoqueService {
 
     // Injeção de dependência parcial - lista por Singleton
     private final IEstoqueRepositorioLista estoqueRepositorio;
+    private final IProdutoRepositorioLista produtoRepositorio;
     public EstoqueService(){
         estoqueRepositorio = ListasDados.getInstance().getEstoqueRepositorio();
+        produtoRepositorio = ListasDados.getInstance().getProdutoRepositorio();
     }
 
+    // Inserção acontece simultaneamente em Produto e Estoque
     @Override
     public void inserir(Estoque estoque) {
+        produtoRepositorio.inserir(estoque.getProduto());
         estoqueRepositorio.inserir(estoque);
     }
 
@@ -28,12 +33,13 @@ public class EstoqueService implements IEstoqueService {
 
     @Override
     public List<Estoque> recuperarTodos() {
-
-        return estoqueRepositorio.pegarLista();
+        return estoqueRepositorio.recuperarTodos();
     }
 
+    // Atualização acontece simultaneamente em Produto e Estoque
     @Override
     public void atualizar(Estoque estoque) {
+        produtoRepositorio.atualizar(estoque.getProduto());
         estoqueRepositorio.atualizar(estoque);
     }
 

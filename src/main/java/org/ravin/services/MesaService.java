@@ -29,7 +29,7 @@ public class MesaService implements IMesaService {
 
     @Override
     public List<Mesa> recuperarTodos() {
-        return mesaRepositorio.pegarLista();
+        return mesaRepositorio.recuperarTodos();
     }
 
     @Override

@@ -28,16 +28,16 @@ public class ProdutoService implements IProdutoService {
 
     @Override
     public List<Produto> recuperarTodos() {
-        return null;
+        return produtoRepositorio.recuperarTodos();
     }
 
     @Override
-    public void atualizar(Produto objeto) {
+    public void atualizar(Produto produto) {
 
     }
 
     @Override
-    public boolean remover(Produto objeto) {
+    public boolean remover(Produto produto) {
         return false;
     }
 

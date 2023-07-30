@@ -24,7 +24,7 @@ public class FuncionarioService implements IFuncionarioService {
 
     @Override
     public List<Funcionario> recuperarTodos() {
-        return funcionarioRepositorio.pegarLista();
+        return funcionarioRepositorio.recuperarTodos();
     }
 
 

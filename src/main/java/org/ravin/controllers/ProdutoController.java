@@ -11,8 +11,8 @@ import java.util.Optional;
 
 public class ProdutoController implements IProdutoController {
 
-    // Injeção de dependência
     private final IProdutoService produtoService;
+
     public ProdutoController(IProdutoService produtoService){
         this.produtoService = produtoService;
     }

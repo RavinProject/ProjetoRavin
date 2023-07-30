@@ -7,6 +7,7 @@ public class Reserva {
     private Cliente cliente;
     private Mesa mesa;
     private Date data;
+    private Date criadoEm;
     private String criadoPor;
     private Date alteradoEm;
     private String alteradoPor;
