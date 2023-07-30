@@ -4,10 +4,12 @@ import org.ravin.controllers.interfaces.IReservaController;
 import org.ravin.models.Cliente;
 import org.ravin.models.Mesa;
 import org.ravin.models.Reserva;
-import org.ravin.services.interfaces.IReservaService;
+import org.ravin.services.reserva.interfaces.IReservaService;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
+import org.ravin.utils.exceptions.MesaNaoDisponivelException;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class ReservaController implements IReservaController {
 
@@ -16,14 +18,21 @@ public class ReservaController implements IReservaController {
     public ReservaController(IReservaService reservaService) {
         this.reservaService = reservaService;
     }
+
+
     @Override
-    public void inserir(Reserva reserva) {
+    public void inserir(Reserva reserva) throws MesaNaoDisponivelException {
         reservaService.inserir(reserva);
     }
 
     @Override
-    public Reserva recuperarPorId(int id) {
-        return null;
+    public Reserva recuperarPorId(int id) throws EntidadeNaoEncontradaException {
+        Optional<Reserva> oReserva = reservaService.recuperarPorId(id);
+        if (oReserva.isPresent()) {
+            return oReserva.get();
+        } else {
+            throw new EntidadeNaoEncontradaException("Reserva não encontrada para o ID: " + id);
+        }
     }
 
     @Override
@@ -32,32 +41,27 @@ public class ReservaController implements IReservaController {
     }
 
     @Override
-    public void atualizar(Reserva objeto) {
-
+    public void atualizar(Reserva reserva) {
+        reservaService.atualizar(reserva);
     }
 
     @Override
-    public boolean remover(Reserva objeto) {
-        return false;
+    public boolean remover(Reserva reserva) {
+        try {
+            reservaService.remover(reserva);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
-    public void reservarMesa(Cliente cliente, Mesa mesa, Date data) {
-
+    public List<Reserva> recuperarReservasPorCliente(Cliente cliente) {
+        return reservaService.recuperarReservasPorCliente(cliente);
     }
 
     @Override
-    public List<Reserva> recuperarPorCliente(Cliente cliente) {
-        return null;
-    }
-
-    @Override
-    public Reserva recuperarPorMesa(Mesa mesa) {
-        return null;
-    }
-
-    @Override
-    public List<Reserva> recuperarReservasPorCodigo(String codigoMesa) {
-        return null;
+    public List<Reserva> recuperarReservasPorMesa(Mesa mesa) {
+        return reservaService.recuperarReservasPorMesa(mesa);
     }
 }
