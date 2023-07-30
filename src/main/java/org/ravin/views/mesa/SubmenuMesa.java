@@ -7,7 +7,7 @@ import org.ravin.services.MesaService;
 import org.ravin.services.interfaces.IMesaService;
 import org.ravin.views.View;
 
-import static org.ravin.views.mesa.AlterarMesaView.atualizarMesa;
+import static org.ravin.views.mesa.AtualizarMesaView.atualizarMesa;
 import static org.ravin.views.mesa.CadastrarMesaView.cadastrarMesa;
 import static org.ravin.views.mesa.ExcluirMesaView.excluirMesa;
 import static org.ravin.views.mesa.RecuperarMesaView.listarMesas;

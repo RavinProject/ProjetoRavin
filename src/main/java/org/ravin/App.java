@@ -1,6 +1,8 @@
 package org.ravin;
 
 import org.ravin.utils.constants.Constants;
+import org.ravin.utils.exceptions.EntidadeNaoEncontradaException;
+import org.ravin.utils.exceptions.MesaNaoDisponivelException;
 import org.ravin.views.cardapio.SubmenuCardapio;
 import org.ravin.views.cliente.SubmenuCliente;
 import org.ravin.views.comanda.SubmenuComanda;
@@ -13,7 +15,7 @@ import static org.ravin.views.View.solicitaEntradaDeDado;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws EntidadeNaoEncontradaException, MesaNaoDisponivelException {
         printLogotipo();
         System.out.println(Constants.BEM_VINDO);
         mainMenu();
@@ -26,7 +28,7 @@ public class App {
         }
     }
 
-    private static void mainMenu() {
+    private static void mainMenu() throws EntidadeNaoEncontradaException, MesaNaoDisponivelException {
         boolean exec = true;
         while (exec) {
             String opcao = solicitaEntradaDeDado(menuInicial());
@@ -40,7 +42,7 @@ public class App {
     }
 
     // Função para processar a opção do menu selecionada pelo usuário
-    private static boolean processaOpcaoMenu(String opcao) {
+    private static boolean processaOpcaoMenu(String opcao) throws EntidadeNaoEncontradaException, MesaNaoDisponivelException {
         switch (opcao) {
             case "1" -> {
                 SubmenuCliente.menuCliente();

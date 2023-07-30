@@ -31,7 +31,7 @@ public class SubmenuEstoque extends View {
         while (exec) {
             String opcao = solicitaEntradaDeDado(menuInicial());
             switch (opcao) {
-                case "1" -> cadastrarEstoque(estoqueController, produtoController);
+                case "1" -> cadastrarEstoque(estoqueController);
                 case "2" -> atualizarEstoque(estoqueController, produtoController);
                 case "3" -> listarEstoque(estoqueController);
                 case "4" -> pesquisarEstoque(estoqueController);
