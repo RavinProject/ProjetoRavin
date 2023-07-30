@@ -23,7 +23,7 @@ public class MesaRepositorioLista implements IMesaRepositorioLista {
     }
 
     @Override
-    public List<Mesa> pegarLista() {
+    public List<Mesa> recuperarTodos() {
         return listaMesas;
     }
 
@@ -68,4 +68,15 @@ public class MesaRepositorioLista implements IMesaRepositorioLista {
     public void removerPorId(int id) {
         listaMesas.removeIf(m -> m.getId() == id);
     }
+
+    @Override
+    public int geraProximoId(List<Mesa> lista) {
+        return IMesaRepositorioLista.super.geraProximoId(lista);
+    }
+
+    @Override
+    public int getId(Mesa mesa) {
+        return mesa.getId();
+    }
 }
+

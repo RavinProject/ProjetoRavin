@@ -33,7 +33,7 @@ public class ClienteRepositorioLista implements IClienteRepositorioLista {
     }
 
     @Override
-    public Optional<Cliente> recuperarPorCpf(String cpf) {
+    public Optional<Cliente> recuperarClientePorCpf(String cpf) {
         // Itera pela lista e tenta encontrar um cliente com o CPF fornecido
         for (Cliente cliente : listaClientes) {
             if (cliente.getCpf().equals(cpf)) {
@@ -43,8 +43,9 @@ public class ClienteRepositorioLista implements IClienteRepositorioLista {
         return Optional.empty();
     }
 
+
     @Override
-    public List<Cliente> pegarLista() {
+    public List<Cliente> recuperarTodos() {
         return listaClientes;
     }
 

@@ -14,20 +14,20 @@ public class ListasDados {
     private static ListasDados instancia;
     private List<Cliente> clientesList;
     private List<Funcionario> funcionariosList;
-    private final List<Estoque> estoqueList;
-    private final List<Produto> produtosList;
-    private final List<Mesa> mesaList;
-    private final List<Reserva> reservaList;
-    private final List<Pedido> pedidoList;
-    private final List<Comanda> comandaList;
+    private List<Estoque> estoqueList;
+    private List<Produto> produtosList;
+    private List<Mesa> mesaList;
+    private List<Pedido> pedidoList;
+    private List<Comanda> comandaList;
+    private List<Reserva> reservaList;
     private final IClienteRepositorioLista clienteRepo;
     private final IFuncionarioRepositorioLista funcionarioRepo;
     private final IEstoqueRepositorioLista estoqueRepo;
     private final IProdutoRepositorioLista produtoRepo;
     private final IPedidoRepositorioLista pedidoRepo;
     private final IMesaRepositorioLista mesaRepo;
-    private final IReservaRepositorioLista reservaRepo;
     private final IComandaRepositorioLista comandaRepo;
+    private final IReservaRepositorioLista reservaRepo;
 
     private ListasDados() {
 
@@ -65,8 +65,8 @@ public class ListasDados {
         reservaRepo = new ReservaRepositorioLista(reservaList);
 
         // Atualizando as listas após as inserções
-        clientesList = clienteRepo.pegarLista();
-        funcionariosList = funcionarioRepo.pegarLista();
+        clientesList = clienteRepo.recuperarTodos();
+        funcionariosList = funcionarioRepo.recuperarTodos();
     }
 
     public static ListasDados getInstance() {

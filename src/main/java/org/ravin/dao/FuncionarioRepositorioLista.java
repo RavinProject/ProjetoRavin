@@ -20,18 +20,18 @@ public class FuncionarioRepositorioLista implements IFuncionarioRepositorioLista
         if (funcionario.getId() == 0) {
             funcionario.setId(geraProximoId(listaFuncionarios));
         }
-        pegarLista().add(funcionario); // Adiciona o funcionario na lista
+        recuperarTodos().add(funcionario); // Adiciona o funcionario na lista
     }
 
     @Override
-    public List<Funcionario> pegarLista() {
+    public List<Funcionario> recuperarTodos() {
         return listaFuncionarios; // Retornar a lista de funcionario
     }   
 
     @Override
     public Optional<Funcionario> recuperarPorId(int id) {
         // Itera pela lista e tenta encontrar um funcionario com o ID fornecido
-        for (Funcionario funcionario : pegarLista()) {
+        for (Funcionario funcionario : recuperarTodos()) {
             if (funcionario.getId() == id) {
                 return Optional.of(funcionario);
             }
@@ -42,9 +42,9 @@ public class FuncionarioRepositorioLista implements IFuncionarioRepositorioLista
     @Override
     public void atualizar(Funcionario funcionarioAtualizado) {
         // Itera pela lista e atualiza o cliente com o mesmo ID
-        for (int i = 0; i < pegarLista().size(); i++) {
-            if (pegarLista().get(i).getId() == funcionarioAtualizado.getId()) {
-                pegarLista().set(i, funcionarioAtualizado);
+        for (int i = 0; i < recuperarTodos().size(); i++) {
+            if (recuperarTodos().get(i).getId() == funcionarioAtualizado.getId()) {
+                recuperarTodos().set(i, funcionarioAtualizado);
                 break;
             }
         }
@@ -53,19 +53,19 @@ public class FuncionarioRepositorioLista implements IFuncionarioRepositorioLista
 
     @Override
     public void remover(Funcionario funcionario) {
-        pegarLista().remove(funcionario); // Remove o cliente da lista
+        recuperarTodos().remove(funcionario); // Remove o cliente da lista
     }
 
     @Override
     public void removerPorId(int id) {
         // Itera pela lista e remove o funcionario com o ID fornecido
-        pegarLista().removeIf(funcionario -> funcionario.getId() == id);
+        recuperarTodos().removeIf(funcionario -> funcionario.getId() == id);
     }
 
     @Override
     public Optional<Funcionario> recuperarPorCpf(String cpf) {
         // Itera pela lista e tenta encontrar um cliente com o CPF fornecido
-        for (Funcionario funcionario : pegarLista()) {
+        for (Funcionario funcionario : recuperarTodos()) {
             if (funcionario.getCpf().equals(cpf)) {
                 return Optional.of(funcionario);
             }

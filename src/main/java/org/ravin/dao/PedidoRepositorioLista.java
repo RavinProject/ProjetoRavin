@@ -18,7 +18,7 @@ public class PedidoRepositorioLista implements IPedidoRepositorioLista {
     }
 
     @Override
-    public List<Pedido> pegarLista() {
+    public List<Pedido> recuperarTodos() {
         return this.listaPedidos;
     }
 
@@ -40,5 +40,11 @@ public class PedidoRepositorioLista implements IPedidoRepositorioLista {
     @Override
     public void removerPorId(int id) {
 
+    }
+
+
+    @Override
+    public int getId(Pedido pedido) {
+        return IPedidoRepositorioLista.super.getId(pedido);
     }
 }

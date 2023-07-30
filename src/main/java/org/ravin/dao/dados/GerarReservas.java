@@ -12,10 +12,15 @@ public class GerarReservas {
     public static List<Reserva> montaLista(List<Cliente> clientes, List<Mesa> mesas) {
         List<Reserva> reservas = new ArrayList<>();
 
-        for (int i = 0; i < clientes.size() && i < mesas.size(); i++) {
-            Reserva reserva = new Reserva(clientes.get(i), mesas.get(i), new Date());
-            reserva.setId(i+1);
-            reservas.add(reserva);
+        int idCounter = 1; // contador para os IDs das reservas
+
+        for (int i = 0; i < clientes.size() && i+1 < mesas.size(); i++) {
+            Reserva reserva1 =new Reserva(clientes.get(i), mesas.get(i), new Date());
+            Reserva reserva2 = new Reserva(clientes.get(i), mesas.get(i+1), new Date());
+            reserva1.setId(idCounter++);
+            reserva2.setId(idCounter++);
+            reservas.add(reserva1);
+            reservas.add(reserva2);
         }
 
         return reservas;

@@ -25,7 +25,7 @@ public class ReservaRepositorioLista implements IReservaRepositorioLista {
     }
 
     @Override
-    public List<Reserva> pegarLista() {
+    public List<Reserva> recuperarTodos() {
         return listaReservas;
     }
 
