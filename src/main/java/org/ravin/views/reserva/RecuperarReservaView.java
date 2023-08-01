@@ -22,36 +22,30 @@ public class RecuperarReservaView {
     }
 
     static void listarReservasPorCliente(IReservaController reservaController, IClienteController clienteController) {
+        String cpf = solicitaEntradaDeDado("Informe o CPF do cliente para listar suas reservas:");
         try {
-            String cpf = solicitaEntradaDeDado("Informe o CPF do cliente para listar suas reservas:");
             Cliente cliente = clienteController.recuperarPorCpf(cpf);
-
-            if (cliente != null) {
-                StringBuilder texto = new StringBuilder();
-                for (Reserva reserva : reservaController.recuperarReservasPorCliente(cliente)) {
-                    texto.append(reserva.toString()).append("\n");
-                }
-                exibeDialogo(texto.toString());
-            } else {
-                exibeDialogo("Cliente não encontrado com o CPF informado!");
+            StringBuilder texto = new StringBuilder();
+            for (Reserva reserva : reservaController.recuperarReservasPorCliente(cliente)) {
+                texto.append(reserva.toString()).append("\n");
             }
-        } catch (EntidadeNaoEncontradaException e) {
-            exibeDialogo("Cliente não encontrado com o CPF informado!");
+            exibeDialogo(texto.toString());
+        } catch(EntidadeNaoEncontradaException e){
+            exibeDialogo(e.getMessage());
         }
     }
 
-    static void listarReservasPorMesa(IReservaController reservaController, IMesaController mesaController) throws EntidadeNaoEncontradaException {
+    static void listarReservasPorMesa(IReservaController reservaController, IMesaController mesaController) {
         String codigoMesa = solicitaEntradaDeDado("Informe o Código da mesa para listar suas reservas:");
-        Mesa mesa = mesaController.recuperarPorCodigo(codigoMesa);
-
-        if (mesa != null) {
+        try {
+            Mesa mesa = mesaController.recuperarPorCodigo(codigoMesa);
             StringBuilder texto = new StringBuilder();
             for (Reserva reserva : reservaController.recuperarReservasPorMesa(mesa)) {
                 texto.append(reserva.toString()).append("\n");
             }
             exibeDialogo(texto.toString());
-        } else {
-            exibeDialogo("Mesa não encontrada com o Código informado!");
+        } catch(EntidadeNaoEncontradaException e) {
+            exibeDialogo(e.getMessage());
         }
     }
 }

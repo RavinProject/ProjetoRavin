@@ -3,6 +3,8 @@ package org.ravin.services.reserva.interfaces;
 import org.ravin.models.Cliente;
 import org.ravin.models.Mesa;
 import org.ravin.models.Reserva;
+import org.ravin.utils.exceptions.ComandaEmMesaException;
+import org.ravin.utils.exceptions.DataIndisponivelException;
 import org.ravin.utils.exceptions.MesaNaoDisponivelException;
 
 import java.util.Date;
@@ -11,7 +13,7 @@ import java.util.Optional;
 
 public interface IReservaService {
 
-    void inserir(Reserva reserva) throws MesaNaoDisponivelException;
+    void inserir(Reserva reserva) throws MesaNaoDisponivelException, DataIndisponivelException, ComandaEmMesaException;
 
     Optional<Reserva> recuperarPorId(int id);
 
@@ -28,5 +30,5 @@ public interface IReservaService {
 
     List<Reserva> recuperarReservasPorMesa(Mesa mesa);
 
-    boolean estaDisponivel(Date data);
+    public boolean estaDisponivel(Date data, Mesa mesa) ;
 }

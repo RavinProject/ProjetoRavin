@@ -38,7 +38,7 @@ public class VerificarComandaEmMesaService implements IVerificarComandaEmMesaSer
      * @return true se houver comandas ativas vinculadas à mesa, false caso contrário.
      */
     @Override
-    public boolean verificarComandaEmMesa(Mesa mesa) {
+    public boolean verificarComandasAbertasEmMesa(Mesa mesa) {
         List<Comanda> comandasAtivas = comandaRepository.recuperarListaPorMesaEStatus(mesa, StatusComanda.ABERTA);
         return !comandasAtivas.isEmpty();
     }

@@ -53,7 +53,7 @@ public class SubmenuMesa extends View{
                 "ID: " + mesa.getId() +
                         "\n Código: " + mesa.getCodigo() +
                         "\n Número: " + mesa.getNumero() +
-                        "\n Funcionário responsável: " + mesa.getFuncionario().getNome() +
+                        "\n Funcionário responsável: " + (mesa.getFuncionario() != null ? mesa.getFuncionario().getNome() : "N/A") +
                         "\n Quantidade Máxima: " + mesa.getQuantidadeMaxima() +
                         "\n Status: " + mesa.getStatusMesa().toString() +
                         "\n Criado Em: " + mesa.getCriadoEm() +

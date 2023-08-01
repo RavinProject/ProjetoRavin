@@ -24,15 +24,19 @@ public class RecuperarEstoqueView {
     }
 
     static void listarEstoque(IEstoqueController estoqueController) {
-        String texto = "";
+        StringBuilder texto = new StringBuilder();
         List<Estoque> listaEstoque = estoqueController.recuperarTodos();
         if(listaEstoque.size() > 0){
             for (Estoque estoque : listaEstoque) {
-                texto += "Código: " + estoque.getProduto().getCodigo() + " Quantidade: " + estoque.getQuantidade() + " Nome: "  + estoque.getProduto().getNome()+ (estoque.getProduto().isAtivo() ? " " : " (INATIVO) ") + "\n";
+                texto.append("Código: ").append(estoque.getProduto().getCodigo()).
+                        append(" Quantidade: ").append(estoque.getQuantidade()).
+                        append(" Nome: ").append(estoque.getProduto().getNome()).
+                        append(estoque.getProduto().isAtivo() ? " " : " (INATIVO) ").
+                        append("\n");
             }
         }else{
-            texto = "Estoque vazio!";
+            texto = new StringBuilder("Estoque vazio!");
         }
-        exibeDialogo(texto);
+        exibeDialogo(texto.toString());
     }
 }

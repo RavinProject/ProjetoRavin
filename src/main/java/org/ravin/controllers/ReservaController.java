@@ -22,7 +22,13 @@ public class ReservaController implements IReservaController {
 
     @Override
     public void inserir(Reserva reserva) throws MesaNaoDisponivelException {
-        reservaService.inserir(reserva);
+        try {
+            reservaService.inserir(reserva);
+        } catch (org.ravin.utils.exceptions.DataIndisponivelException e) {
+            throw new RuntimeException(e);
+        } catch (org.ravin.utils.exceptions.ComandaEmMesaException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

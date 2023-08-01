@@ -14,6 +14,9 @@ import org.ravin.models.Mesa;
 import org.ravin.models.Reserva;
 import org.ravin.services.reserva.interfaces.IReservaService;
 import org.ravin.services.reserva.interfaces.IVerificarComandaEmMesaService;
+import org.ravin.utils.enums.StatusMesa;
+import org.ravin.utils.exceptions.ComandaEmMesaException;
+import org.ravin.utils.exceptions.DataIndisponivelException;
 import org.ravin.utils.exceptions.MesaNaoDisponivelException;
 
 import java.util.Date;
@@ -32,18 +35,33 @@ public class ReservaService implements IReservaService {
     /**
      * Insere uma nova reserva.
      *
-     * <p>Este método tenta inserir uma nova reserva apenas se a data estiver disponível e não houver comanda associada à mesa.
+     * <p>Este método tenta inserir uma nova reserva apenas se a data e a mesa estiverem disponíveis e não houver comanda associada à mesa.
+     * Além disso, verifica se os parâmetros da reserva são válidos (não nulos).
      *
-     * @param reserva a reserva a ser inserida.
-     * @throws MesaNaoDisponivelException se a mesa não estiver disponível para a data selecionada.
+     * @param reserva a reserva a ser inserida. Não pode ser nula e deve conter uma data e mesa válidas.
+     * @throws IllegalArgumentException se a reserva, a data ou a mesa forem nulas.
+     * @throws MesaNaoDisponivelException se a mesa já estiver ocupada.
+     * @throws DataIndisponivelException se a data selecionada não estiver disponível para a mesa especificada.
+     * @throws ComandaEmMesaException se existir uma comanda associada à mesa selecionada.
      */
-    @Override
-    public void inserir(Reserva reserva) throws MesaNaoDisponivelException {
-        if (estaDisponivel(reserva.getData()) && !verificarComandaService.verificarComandaEmMesa(reserva.getMesa())) {
-            inserir(reserva);
-        } else {
-            throw new MesaNaoDisponivelException("Mesa não disponível para a data selecionada.");
+    public void inserir(Reserva reserva) throws MesaNaoDisponivelException, DataIndisponivelException, ComandaEmMesaException {
+        if (reserva == null || reserva.getData() == null || reserva.getMesa() == null) {
+            throw new IllegalArgumentException("Reserva, data ou mesa não podem ser nulos.");
         }
+
+        if (reserva.getMesa().getStatusMesa() != StatusMesa.LIVRE) {
+            throw new MesaNaoDisponivelException("A mesa já está ocupada.");
+        }
+
+        if (!estaDisponivel(reserva.getData(), reserva.getMesa())) {
+            throw new DataIndisponivelException("A data selecionada não está disponível.");
+        }
+
+        if (verificarComandaService.verificarComandasAbertasEmMesa(reserva.getMesa())) {
+            throw new ComandaEmMesaException("Existe uma comanda associada à mesa selecionada.");
+        }
+
+        reservaRepository.inserir(reserva);
     }
 
     /**
@@ -122,9 +140,9 @@ public class ReservaService implements IReservaService {
      * @return {@code true} se a data estiver disponível, {@code false} caso contrário.
      */
     @Override
-    public boolean estaDisponivel(Date data) {
+    public boolean estaDisponivel(Date data, Mesa mesa) {
         for (Reserva reserva : reservaRepository.recuperarTodos()) {
-            if (reserva.getData().equals(data)) {
+            if (reserva.getData().equals(data) && reserva.getMesa().equals(mesa)) {
                 return false;
             }
         }

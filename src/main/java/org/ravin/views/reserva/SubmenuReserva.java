@@ -25,7 +25,7 @@ import static org.ravin.views.reserva.ExcluirReservaView.excluirReserva;
 import static org.ravin.views.reserva.RecuperarReservaView.*;
 
 public class SubmenuReserva extends View {
-    public static void menuReserva() throws EntidadeNaoEncontradaException {
+    public static void menuReserva() {
 
         // Injeção de Dependência
         IVerificarComandaEmMesaService verificarComandaEmMesaService = new VerificarComandaEmMesaService();
