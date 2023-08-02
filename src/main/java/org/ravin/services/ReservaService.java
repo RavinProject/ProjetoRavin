@@ -28,7 +28,7 @@ public class ReservaService implements IReservaService {
 
     @Override
     public boolean estaDisponivel(Date data) {
-        for (Reserva reserva : reservaRepository.pegarLista()) {
+        for (Reserva reserva : reservaRepository.recuperarTodos()) {
             if (reserva.getData().equals(data)) {
                 return false;
             }
@@ -48,7 +48,7 @@ public class ReservaService implements IReservaService {
 
     @Override
     public List<Reserva> recuperarTodos() {
-        return reservaRepository.pegarLista();
+        return reservaRepository.recuperarTodos();
     }
 
     @Override

@@ -7,12 +7,11 @@ import java.util.Optional;
 
 public interface IRepositorioLista<T>  extends IGeradorId<T> {
 
-    int getId(T t);
     // Create
     void inserir(T object);
 
     // Read
-    List<T> pegarLista();
+    List<T> recuperarTodos();
     Optional<T> recuperarPorId(int id);
 
     // Update
@@ -21,4 +20,5 @@ public interface IRepositorioLista<T>  extends IGeradorId<T> {
     // Delete
     void remover(T object);
     void removerPorId(int id);
+
 }

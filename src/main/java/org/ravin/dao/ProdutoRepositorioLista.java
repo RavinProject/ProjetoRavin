@@ -19,17 +19,17 @@ public class ProdutoRepositorioLista implements IProdutoRepositorioLista {
         if (produto.getId() == 0) {
             produto.setId(geraProximoId(listaProdutos));
         }
-        pegarLista().add(produto);
+        listaProdutos.add(produto);
     }
 
     @Override
-    public List<Produto> pegarLista() {
+    public List<Produto> recuperarTodos() {
         return listaProdutos;
     }
 
     @Override
     public Optional<Produto> recuperarPorId(int id) {
-        for (Produto produto : pegarLista()) {
+        for (Produto produto : listaProdutos) {
             if (produto.getId() == id) {
                 return Optional.of(produto);
             }
@@ -39,9 +39,9 @@ public class ProdutoRepositorioLista implements IProdutoRepositorioLista {
 
     @Override
     public void atualizar(Produto produtoAtualizado) {
-        for (int i = 0; i < pegarLista().size(); i++) {
-            if (pegarLista().get(i).getId() == produtoAtualizado.getId()) {
-                pegarLista().set(i, produtoAtualizado);
+        for (int i = 0; i < listaProdutos.size(); i++) {
+            if (listaProdutos.get(i).getId() == produtoAtualizado.getId()) {
+                listaProdutos.set(i, produtoAtualizado);
                 break;
             }
         }
@@ -49,17 +49,17 @@ public class ProdutoRepositorioLista implements IProdutoRepositorioLista {
 
     @Override
     public void remover(Produto produto) {
-        pegarLista().remove(produto);
+        listaProdutos.remove(produto);
     }
 
     @Override
     public void removerPorId(int id) {
-        pegarLista().removeIf(produto -> produto.getId() == id);
+        listaProdutos.removeIf(produto -> produto.getId() == id);
     }
 
     @Override
     public Optional<Produto> recuperarProdutoPorCodigo(String codigo) {
-        for (Produto produto : pegarLista()) {
+        for (Produto produto : listaProdutos) {
             if (produto.getCodigo().equals(codigo)) {
                 return Optional.of(produto);
             }

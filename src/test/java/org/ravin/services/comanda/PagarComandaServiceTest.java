@@ -36,7 +36,7 @@ public class PagarComandaServiceTest {
     @InjectMocks
     private PagarComandaService pagarComandaService;
 
-    private final String codigo = "COMANDA1";
+    private String codigo = "COMANDA1";
 
     @BeforeEach
     public void setup() {

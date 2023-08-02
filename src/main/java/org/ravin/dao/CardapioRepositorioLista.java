@@ -13,7 +13,7 @@ public class CardapioRepositorioLista implements ICardapioRepositorioLista {
     }
 
     @Override
-    public List<Cardapio> pegarLista() {
+    public List<Cardapio> recuperarTodos() {
         return null;
     }
 

@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class ClienteController implements IClienteController {
-
-    // Injeção de dependência
+    
     private final IClienteService clienteService;
+
     public ClienteController(IClienteService clienteService) {
         this.clienteService = clienteService;
     }
@@ -22,7 +22,12 @@ public class ClienteController implements IClienteController {
     }
 
     @Override
-    public Cliente recuperarPorId(int id) throws EntidadeNaoEncontradaException {
+    public void atualizar(Cliente objeto) {
+        clienteService.atualizar(objeto);
+    }
+
+    @Override
+    public Cliente recuperarPorId(int id) throws EntidadeNaoEncontradaException{
         Optional<Cliente> cliente = clienteService.recuperarPorId(id);
         if (cliente.isPresent()) {
             return cliente.get();
@@ -47,13 +52,8 @@ public class ClienteController implements IClienteController {
     }
 
     @Override
-    public void atualizar(Cliente objeto) {
-        clienteService.atualizar(objeto);
-    }
-
-    @Override
-    public boolean remover(Cliente objeto) {
-        clienteService.remover(objeto);
+    public boolean remover(Cliente cliente) {
+        clienteService.remover(cliente);
         return true;
     }
 }

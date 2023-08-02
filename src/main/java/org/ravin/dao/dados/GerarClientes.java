@@ -10,7 +10,7 @@ public class GerarClientes {
     public static List<Cliente> montaLista() {
         List<Cliente> listaClientes = new ArrayList<>();
 
-        listaClientes.add(new Cliente(1, "Daniele Felicio", "04798456233", "003665782047", true));
+        listaClientes.add(new Cliente(1, "teste", "0", "0", true));
         listaClientes.add(new Cliente(2, "Regis Amaral", "055984457560", "00333472048", true));
         listaClientes.add(new Cliente(3, "João Silva", "055123456789", "01234567890", false));
         listaClientes.add(new Cliente(4, "Maria Santos", "055987654321", "09876543210", true));

@@ -20,15 +20,15 @@ Antes de começar, certifique-se de ter o seguinte instalado em seu sistema:
 ```bash
 git clone https://github.com/RavinProject/ProjetoRavin.git
 ```
-1. Navegue até o diretório que contém a classe principal `App.java`:
+2. Navegue até o diretório que contém a classe principal `App.java`:
 ```bash
 cd ProjetoRavin/src/main/java/org/ravin
 ```
-1. Compile o código:
+3. Compile o código:
 ```bash
 javac App.java
 ```
-1. Execute a classe principal:
+4. Execute a classe principal:
 ```bash
 java App
 ```
@@ -43,7 +43,7 @@ java App
 | Estoque     | ✔️               | ✔️             | ✔️                   | ✔️               |
 | Funcionário | ✔️               | ✔️             | ✔️                   | ✔️               |
 | Mesa        | ✔️               | ✔️             | ✔️                   | ✔️               |
-| Reserva     | 🚧               | 🚧             | 🚧                   | 🚧               | 
+| Reserva     | ✔️               | ✔️             | ✔️                   | ✔️               | 
 | Pedido      | 🚧               | 🚧             | 🚧                   | 🚧               |
 | Produto     | ✔️               | ✔️             | ✔️                   | ✔️               |
 

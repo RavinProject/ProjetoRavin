@@ -7,7 +7,7 @@ import org.ravin.services.MesaService;
 import org.ravin.services.interfaces.IMesaService;
 import org.ravin.views.View;
 
-import static org.ravin.views.mesa.AlterarMesaView.atualizarMesa;
+import static org.ravin.views.mesa.AtualizarMesaView.atualizarMesa;
 import static org.ravin.views.mesa.CadastrarMesaView.cadastrarMesa;
 import static org.ravin.views.mesa.ExcluirMesaView.excluirMesa;
 import static org.ravin.views.mesa.RecuperarMesaView.listarMesas;
@@ -53,7 +53,7 @@ public class SubmenuMesa extends View{
                 "ID: " + mesa.getId() +
                         "\n Código: " + mesa.getCodigo() +
                         "\n Número: " + mesa.getNumero() +
-                        "\n Funcionário responsável: " + mesa.getFuncionario().getNome() +
+                        "\n Funcionário responsável: " + (mesa.getFuncionario() != null ? mesa.getFuncionario().getNome() : "N/A") +
                         "\n Quantidade Máxima: " + mesa.getQuantidadeMaxima() +
                         "\n Status: " + mesa.getStatusMesa().toString() +
                         "\n Criado Em: " + mesa.getCriadoEm() +

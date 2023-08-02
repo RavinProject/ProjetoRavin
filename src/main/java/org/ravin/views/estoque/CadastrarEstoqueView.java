@@ -1,7 +1,6 @@
 package org.ravin.views.estoque;
 
 import org.ravin.controllers.interfaces.IEstoqueController;
-import org.ravin.controllers.interfaces.IProdutoController;
 import org.ravin.models.Estoque;
 import org.ravin.models.Produto;
 import org.ravin.utils.enums.TipoProduto;
@@ -12,11 +11,11 @@ import java.util.Date;
 
 import static org.ravin.views.View.confirmaAcao;
 import static org.ravin.views.View.solicitaEntradaDeDado;
-import static org.ravin.views.estoque.AtualizarEstoqueView.atualizarProduto;
 import static org.ravin.views.estoque.SubmenuEstoque.imprimeProdutoEmEstoque;
+import static org.ravin.views.produto.AtualizarProdutoView.atualizarProduto;
 
 public class CadastrarEstoqueView {
-    static void cadastrarEstoque(IEstoqueController estoqueController, IProdutoController produtoController) {
+    static void cadastrarEstoque(IEstoqueController estoqueController) {
         
         String codigoProduto = solicitaEntradaDeDado("Informe o código do produto:");
         Estoque estoque = new Estoque();

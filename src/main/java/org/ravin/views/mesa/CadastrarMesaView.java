@@ -15,7 +15,6 @@ public class CadastrarMesaView {
 
     static void cadastrarMesa(IMesaController mesaController) {
         try {
-            String nome = solicitaEntradaDeDadoValida("Informe o nome da Mesa: ");
             String codigo = solicitaEntradaDeDadoValida("Informe o código da Mesa: ");
             int numero = Integer.parseInt(solicitaEntradaDeDadoValida("Informe o número da Mesa: "));
             int quantidadeMaxima = Integer.parseInt(solicitaEntradaDeDadoValida("Informe a quantidade máxima de lugares da Mesa: "));
@@ -28,7 +27,7 @@ public class CadastrarMesaView {
 
             mesaController.inserir(mesa);
             exibeDialogo("Mesa cadastrada com sucesso!");
-            imprimeMesa(mesaController.recuperarPorCodigo(mesa.getCodigo()));
+            imprimeMesa(mesa);
         } catch (InputMismatchException e) {
             exibeDialogo("Por favor, insira os dados corretamente!\nCadastro não finalizado...");
             e.printStackTrace();

@@ -28,7 +28,7 @@ public class ClienteService implements IClienteService{
 
     @Override
     public List<Cliente> recuperarTodos() {
-        return clienteRepositorio.pegarLista();
+        return clienteRepositorio.recuperarTodos();
     }
 
 
@@ -50,7 +50,7 @@ public class ClienteService implements IClienteService{
     @Override
     public Optional<Cliente> recuperarPorCpf(String cpf) {
 
-        return clienteRepositorio.recuperarPorCpf(cpf);
+        return clienteRepositorio.recuperarClientePorCpf(cpf);
     }
     
 }

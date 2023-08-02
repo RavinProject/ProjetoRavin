@@ -20,9 +20,9 @@ public class MesaController implements IMesaController {
 
     @Override
     public Mesa recuperarPorId(int id) throws EntidadeNaoEncontradaException {
-        Optional<Mesa> mesa = mesaService.recuperarPorId(id);
-        if (mesa.isPresent()) {
-            return mesa.get();
+        Optional<Mesa> oMesa = mesaService.recuperarPorId(id);
+        if (oMesa.isPresent()) {
+            return oMesa.get();
         } else {
             throw new EntidadeNaoEncontradaException("Mesa não encontrada para o ID: " + id);
         }
@@ -30,9 +30,9 @@ public class MesaController implements IMesaController {
 
     @Override
     public Mesa recuperarPorCodigo(String codigo) throws EntidadeNaoEncontradaException {
-        Optional<Mesa> mesa = mesaService.recuperarPorCodigo(codigo);
-        if (mesa.isPresent()) {
-            return mesa.get();
+        Optional<Mesa> oMesa = mesaService.recuperarPorCodigo(codigo);
+        if (oMesa.isPresent()) {
+            return oMesa.get();
         } else {
             throw new EntidadeNaoEncontradaException("Mesa não encontrada para o Codigo: " + codigo);
         }

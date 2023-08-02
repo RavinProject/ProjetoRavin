@@ -16,28 +16,31 @@ import static org.ravin.views.View.solicitaEntradaDeDado;
 import static org.ravin.views.reserva.SubmenuReserva.imprimeReserva;
 
 public class AtualizarReservaView {
-    static void atualizar(IReservaController reservaController, IClienteController clienteController, IMesaController mesaController) {
+    static void atualizarReserva(IReservaController reservaController, IClienteController clienteController, IMesaController mesaController) {
 
         try {
             String cpfCliente = solicitaEntradaDeDado("Informe o CPF do cliente para listar suas reservas:");
             Cliente cliente = clienteController.recuperarPorCpf(cpfCliente);
 
             if (cliente != null) {
-                List<Reserva> reservas = reservaController.recuperarPorCliente(cliente);
+                List<Reserva> reservas = reservaController.recuperarReservasPorCliente(cliente);
                 if (reservas.isEmpty()) {
                     exibeDialogo("Nenhuma reserva encontrada para este cliente!");
                     return;
                 }
 
-                exibeDialogo("Reservas:");
+                StringBuilder reservasString = new StringBuilder("Reservas:\n\n");
                 for (int i = 0; i < reservas.size(); i++) {
-                    exibeDialogo((i+1) + ". " + reservas.get(i).toString());
+                    reservasString.append((i+1)).append(". ").append(reservas.get(i).toString()).append("\n");
                 }
+                reservasString.append("\n\nPor favor, escolha o número da reserva que deseja alterar dentre as opções acima.");
+                exibeDialogo(reservasString.toString());
 
-                int escolha = Integer.parseInt(solicitaEntradaDeDado("Selecione o número da reserva que deseja alterar:"));
+                int escolha = Integer.parseInt(solicitaEntradaDeDado("Digite o número da reserva:"));
+
                 Reserva reserva = reservas.get(escolha - 1);
 
-                String codigoMesa = solicitaEntradaDeDado("ID da Mesa:", String.valueOf(reserva.getMesa().getId()));
+                String codigoMesa = solicitaEntradaDeDado("Código da Mesa:", String.valueOf(reserva.getMesa().getCodigo()));
                 Mesa mesa = mesaController.recuperarPorCodigo(codigoMesa);
                 if (mesa != null) {
                     reserva.setMesa(mesa);
